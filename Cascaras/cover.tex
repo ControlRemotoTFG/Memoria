@@ -33,7 +33,7 @@
 %
 %---------------------------------------------------------------------
 %
-% Fichero que contiene la configuraciï¿½n de la portada y de la 
+% Fichero que contiene la configuración de la portada y de la 
 % primera hoja del documento.
 %
 %---------------------------------------------------------------------
@@ -43,31 +43,32 @@
 % utilizando comandos.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Tï¿½tulo del documento:
+% Título del documento:
 % \tituloPortada{titulo}
 % Nota:
 % Si no se define se utiliza el del \titulo. Este comando permite
-% cambiar el tï¿½tulo de forma que se especifiquen dï¿½nde se quieren
+% cambiar el título de forma que se especifiquen dónde se quieren
 % los retornos de carro cuando se utilizan fuentes grandes.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tituloPortada{%
-Control Remoto de Videojuegos con Smartphones%
+\texis: Una plantilla de \LaTeX\\
+para Tesis y otros documentos%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Autor del documento:
 % \autorPortada{Nombre}
 % Se utiliza en la portada y en el valor por defecto del
-% primer subtï¿½tulo de la segunda portada.
+% primer subtítulo de la segunda portada.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\autorPortada{Pablo G\'omez Calvo \\ Sergio Juan Higuera Velasco}
+\autorPortada{Marco Antonio Gómez Martín\\Pedro Pablo Gómez Martín}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Fecha de publicaciï¿½n:
+% Fecha de publicación:
 % \fechaPublicacion{Fecha}
-% Puede ser vacï¿½o. Aparece en la ï¿½ltima lï¿½nea de ambas portadas
+% Puede ser vacío. Aparece en la última línea de ambas portadas
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fechaPublicacion{Noviembre 2018}
+\fechaPublicacion{Noviembre 2009}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Imagen de la portada (y escala)
@@ -84,70 +85,71 @@ Control Remoto de Videojuegos con Smartphones%
 % Para el texto justo debajo del escudo.
 % Si no se indica, se utiliza "TESIS DOCTORAL".
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\tipoDocumento{TRABAJO DE FIN DE GRADO}
+\tipoDocumento{MANUAL DE USUARIO}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Instituciï¿½n/departamento asociado al documento.
+% Institución/departamento asociado al documento.
 % \institucion{Nombre}
-% Puede tener varias lï¿½neas. Se utiliza en las dos portadas.
-% Si no se indica aparecerï¿½ vacï¿½o.
+% Puede tener varias líneas. Se utiliza en las dos portadas.
+% Si no se indica aparecerá vacío.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \institucion{%
-Grado en Desarrollo de Videojuegos\\[0.2em]
-Facultad de Inform\'atica\\[0.2em]
+Departamento de Ingeniería del Software e Inteligencia Artificial\\[0.2em]
+Facultad de Informática\\[0.2em]
 Universidad Complutense de Madrid
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Director del trabajo.
 % \directorPortada{Nombre}
-% Se utiliza para el valor por defecto del segundo subtï¿½tulo, donde
-% se indica quiï¿½n es el director del trabajo.
-% Si se fuerza un subtï¿½tulo distinto, no hace falta definirlo.
+% Se utiliza para el valor por defecto del segundo subtítulo, donde
+% se indica quién es el director del trabajo.
+% Si se fuerza un subtítulo distinto, no hace falta definirlo.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\directorPortada{Walterio Malatesta}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Texto del primer subtï¿½tulo de la segunda portada.
+% Texto del primer subtítulo de la segunda portada.
 % \textoPrimerSubtituloPortada{Texto}
 % Para configurar el primer "texto libre" de la segunda portada.
 % Si no se especifica se indica "Memoria que presenta para optar al
-% tï¿½tulo de Doctor en Informï¿½tica" seguido del \autorPortada.
+% título de Doctor en Informática" seguido del \autorPortada.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textoPrimerSubtituloPortada{%
-\textit{Trabajo de Fin de Grado}  \\ [0.3em]
-\textbf{Desarrollo de Videojuegos} \\ [0.3em]
+\textit{Informe técnico del departamento}  \\ [0.3em]
+\textbf{Ingeniería del Software e Inteligencia Artificial} \\ [0.3em]
+\textbf{IT/2009/3}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Texto del segundo subtï¿½tulo de la segunda portada.
+% Texto del segundo subtítulo de la segunda portada.
 % \textoSegundoSubtituloPortada{Texto}
 % Para configurar el segundo "texto libre" de la segunda portada.
 % Si no se especifica se indica "Dirigida por el Doctor" seguido
 % del \directorPortada.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textoSegundoSubtituloPortada{%
-\textit{Versi\'on \texisVer}
+\textit{Versión \texisVer}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \explicacionDobleCara
-% Si se utiliza, se aclara que el documento estï¿½ preparado para la
-% impresiï¿½n a doble cara.
+% Si se utiliza, se aclara que el documento está preparado para la
+% impresión a doble cara.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \explicacionDobleCara
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \isbn
-% Si se utiliza, aparecerï¿½ el ISBN detrï¿½s de la segunda portada.
+% Si se utiliza, aparecerá el ISBN detrás de la segunda portada.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+\isbn{978-84-692-7109-4}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \copyrightInfo
-% Si se utiliza, aparecerï¿½ informaciï¿½n de los derechos de copyright
-% detrï¿½s de la segunda portada.
+% Si se utiliza, aparecerá información de los derechos de copyright
+% detrás de la segunda portada.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \copyrightInfo{\autor}
 
@@ -158,7 +160,7 @@ Universidad Complutense de Madrid
 \makeCover
 
 % Variable local para emacs, para que encuentre el fichero
-% maestro de compilaciï¿½n
+% maestro de compilación
 %%%
 %%% Local Variables:
 %%% mode: latex

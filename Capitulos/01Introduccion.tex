@@ -33,284 +33,91 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Introducci�n}
+\chapter{Introducci\'on}
 
 \begin{FraseCelebre}
 \begin{Frase}
-Bienvenidos a la grieta del invocador.
+%P�sose don Quijote delante de dicho carro, y haciendo en su fantas�a
+%uno de los m�s desvariados discursos que jam�s hab�a hecho, dijo en
+%alta voz:
 \end{Frase}
 \begin{Fuente}
-League of Legends
+ % Alonso Fern�ndez de Avellaneda, El Ingenioso Hidalgo Don Quijote de
+  %la Mancha
 \end{Fuente}
 \end{FraseCelebre}
 
 \begin{resumen}
-  Este cap�tulo presenta una breve introducci�n a \texis.  El
-  lector podr� hacerse una idea de qu� es y para qu� sirve. Tambi�n se
-  encuentra aqu� una descripci�n del resto de cap�tulos del manual.
+  Este cap\'itulo presenta una breve introducci\'on al proyecto.  El
+  lector podr\'a hacerse una idea de qu\'e es y para qu\'e sirve. Tambi\'en se
+  encuentra aqu\'i una descripci\'on del resto de cap\'itulos del manual.
 \end{resumen}
 
 
 %-------------------------------------------------------------------
-\section{Introducci�n}
+\section{Introducci\'on}
 %-------------------------------------------------------------------
 \label{cap1:sec:introduccion}
 
+La industria del videojuego en esta \'ultima d\'ecada nos ha ense'nado que la innovaci\'on
+ a la hora de crear experiencias nuevas para los usuarios es algo que enriquece a muchos jugadores, estamos ayudando a que
+ nuestro jugador se meta m\'as en el papel que tiene que desempe'nar dentro del
+ videojuego que est\'e jugando.
 
-Si est�s leyendo estas l�neas es muy posible que haya llegado la hora
-de ponerte a escribir la tesis, despu�s de mucho tiempo dando vueltas
-al �rea de investigaci�n concreta en el que est�s inmerso. O puede que
-est�s a punto de empezar a escribir la memoria del proyecto de fin de
-carrera, fin de master, o cualquier otro documento de cierta
-envergadura.
+Es por esta raz\'on que muchas empresas, cada vez m\'as, dedican gran cantidad de sus recursos
+a hacer realidad muchas experiencias que los usuarios quieren tener como, por ejemplo,
+ jugar a juegos deportivos mientras se hace deporte.
 
-Sea lo que sea lo que te traes entre manos, lo m�s probable es que no
-sea f�cil hacerlo. Muy posiblemente no tengas a�n muy claro qu� vas a
-escribir, pero tu tutor/director/profesor te ha dicho que vayas
-empezando a plasmar esas ideas sobre el papel para tener algo firme, y
-sentir que vas avanzando.
+Pero para invertir en crear este nuevo tipo de estilos de juego se necesita una gran financiaci\'on,
+ cosa que estudios peque'nos no tienen. La mayor fuente de ideas para estos proyectos de creaci\'on
+ de nuevas experiencias para los usuarios suelen ser los estudios independientes ya que se suele trabajar en un
+ \'ambito donde las ideas son m\'as dadas a aflorar. Estos estudios independientes usan motores como Unity3D o Unreal Engine 4.
+ Estos motores son gratuitos y ofrecen una gran cantidad de herramientas a disposici\'on de sus usuarios para
+ que los desarrolladores puedan ahorrar tiempo de implementaci\'on de una nueva feature y lo utilic\'en para que su juego siga creciendo.
+El desarrollo para dispositivos m\'oviles en estudios independientes ha crecido de manera exponencial gracias a que motores como Unity lo hacen bastante accesible. 
 
-Y entonces viene el problema de c�mo escribirlo. Muy posiblemente
-habr�s escrito alg�n art�culo en \LaTeX\ y est�s convencido de que esa
-es la v�a a seguir para hacer un documento que superar� las 10 p�ginas
-y que tendr� bibliograf�a. O puede, simplemente, que alguien te haya
-dicho que lo mejor es que escribas el proyecto en \LaTeX\ porque la
-apariencia final es mejor, porque es m�s c�modo, o cualquier otra
-raz�n.
 
-Sea como fuere, parece que est�s m�s o menos decidido a escribir tu
-documento en \LaTeX. Bien hecho. Pero, �c�mo?. Al contrario de lo que
-suele ocurrir en congresos y en revistas, no tienes disponible ninguna
-p�gina en la que descargarte las ``instrucciones para los autores'',
-con la c�moda plantilla en \LaTeX\ que t�, sufrido autor, simplemente
-tienes que rellenar. No. Ahora las cosas son m�s complicadas.
-
-As� que te vas a la gu�a de \LaTeX\ con la que empezaste (apostamos
-que es la misma con la que hemos empezado todos), y ves las distintas
-posibilidades que te ofrece en su ``\texttt{documentclass}'':
-\texttt{article}, \texttt{report}, \texttt{book}, ... Y te quedas con
-la �ltima. Pero te asaltan muchas preguntas. �C�mo organizo todo esto?
-o �c�mo hago la portada? o incluso �qu� hago para que no ponga
-``Chapter'', sino ``Cap�tulo''?. En ese punto, es de suponer, has
-pedido ayuda a la gente de alrededor y/o a tu buscador de Internet
-favorito. Y de alguna forma, te has encontrado leyendo estas l�neas.
-
-Tenemos que decir que exactamente esa fue nuestra situaci�n cuando por
-fin nos decidimos a escribir nuestras tesis. Desgraciadamente, ni la
-gente que ten�amos alrededor ni nuestro buscador favorito supieron
-contestarnos de forma satisfactoria, por lo que tuvimos que invertir
-\emph{mucho tiempo} hasta conseguir que el resultado que sal�a de
-nuestros \texttt{.tex} nos gustara, hasta que nos sentimos c�modos con
-la estructura de los ficheros, con las macros disponibles y con el
-modo de compilaci�n.
-
-Y para que nadie m�s pueda utilizar como excusa el no saber c�mo
-personalizar la clase \texttt{book} para retrasar el comienzo de su
-tesis, para que nadie m�s se decida por Word u otro paquete ofim�tico
-en vez de \LaTeX\ porque lo ve mucho m�s sencillo, en definitiva, para
-que nadie pierda tanto tiempo como perdimos nosotros creando la
-estructura, decidimos hacer p�blico el esqueleto b�sico que
-construimos nosotros para hacerlas. Ese esqueleto b�sico o plantilla
-es \texis.
-
-En vez de hacer disponible la plantilla o ficheros \texttt{.tex} sin
-ning�n contenido, proporcionamos un manual en formato PDF que (a no
-ser que est�s leyendo directamente el c�digo \LaTeX), ser� lo que
-est�s leyendo. Este manual ha sido creado \emph{con la propia
-  plantilla}. Por lo tanto, la distribuci�n de \texis\ es en
-realidad el c�digo fuente de \emph{su propio manual}. Con su c�digo
-fuente entre tus manos, lo �nico que tienes que hacer es borrar su
-contenido (\emph{este texto}), y rellenarlo con tu gran contribuci�n
-al mundo.  Como podr�s comprobar, la estructura del propio manual
-sigue el esquema de lo que podr�a ser una tesis, trabajo de
-investigaci�n o proyecto de fin de carrera, precisamente para que sea
-f�cil quitar el contenido textual y sustituirlo por el nuevo.
-
-En los cap�tulos que siguen encontrar�s toda la informaci�n necesaria
-para poder utilizar los ficheros \LaTeX\ para crear tus propios
-documentos. Adem�s, el propio c�digo fuente est� lleno de comentarios
-(especialmente en los ficheros que definen el estilo), por lo que
-tambi�n en ellos encontrar�s una buena fuente de informaci�n. Eso es
-especialmente importante en caso de que quieras modificar en algo el
-aspecto final de tu documento.
-
-Esperemos que te sea de utilidad. Si es as�, nos gustar�a que lo
-reconocieras en la secci�n de agradecimientos. Si durante tu proceso
-de escritura has a�adido alg�n aspecto que crees que puede ser
-interesante para otros, no dudes en dec�rnoslo para intentar incluirlo
-en siguientes versiones de la propia plantilla; tampoco dudes en
-enviarnos sugerencias sobre las explicaciones de este manual para
-poder mejorarlo con el tiempo. Por �ltimo, tambi�n puedes enviarnos el
-resultado final para poner una referencia a �l en la p�gina de
-descarga, donde, por cierto, puedes ver otros documentos creados con
-la plantilla, lo que te permitir� coger ideas de cosas que puedes
-variar. Recuerda que la versi�n m�s reciente de \texis\ est�
-disponible en \url{http://gaia.fdi.ucm.es/projects/texis/}.
-
-%-------------------------------------------------------------------
-\section{Qu� es \texis}
-%-------------------------------------------------------------------
-\label{cap1:sec:que-es}
-
-La plantilla que tienes entre las manos es, como hemos dicho, el
-esqueleto del c�digo fuente de las Tesis Doctorales de los dos autores
-\citep{GomezMartinMA2008PhD, GomezMartinPP2008PhD}. Por tanto, sirve
-para escribir otras Tesis Doctorales u otros documentos con estructura
-similar de forma f�cil.
-
-\texis\ te permite adem�s generar el fichero utilizando tanto el
-comando \texttt{latex} (que genera de forma nativa ficheros
-\texttt{dvi} que luego se convierten a ficheros \texttt{ps} o
-\texttt{pdf}), como \texttt{pdflatex}. De esta forma el usuario final
-puede elegir entre cualquiera de las dos herramientas\footnote{Esto es
-  �til por ejemplo cuando quieres utilizar \texttt{pdflatex} pero
-  finalmente el servicio de publicaciones s�lo admite el uso de
-  \texttt{latex}.}.  Aconsejamos, no obstante, la utilizaci�n de este
-�ltimo, debido a que \texis\ contiene ciertos comandos para dotar al
-PDF final de marcadores que permiten una navegaci�n c�moda por el
-fichero utilizando los visores tradicionales.
-
-\medskip
-
-Como explicaremos en el cap�tulo siguiente, la plantilla se aprovecha
-mejor en sistemas GNU/Linux. Nota que hemos dicho que la plantilla
-``\emph{se aprovecha mejor}'' en sistemas GNU/Linux, no que \emph{no
-pueda utilizarse} en Windows o Mac; es evidente que \LaTeX\ es
-multiplataforma, y por lo tanto puede compilarse en cualquier sistema
-que tenga instalada una distribuci�n del mismo.
-
-La raz�n por esta ``desviaci�n positiva'' hacia Linux estriba en que
-para hacer m�s c�modo el proceso de edici�n y compilaci�n, \texis\
-proporciona ficheros que facilitan el proceso de generaci�n del
-fichero PDF final, tal y como se describe en el
-cap�tulo~\ref{cap:makefile}.  Esos ficheros adicionales s�lo funcionan
-correctamente si son ejecutados en Linux.
-
-%-------------------------------------------------------------------
-\section{Qu� no es}
-%-------------------------------------------------------------------
-\label{cap1:sec:que-no-es}
-
-Esta plantilla \emph{no} es un manual de \LaTeX, ni una gu�a de
-referencia, ni un compendio de preguntas frecuentes. De hecho, no nos
-consideramos expertos en \LaTeX, por lo que no tendr�amos fuerzas para
-escribir algo as�. Si necesitas un manual de \LaTeX, puedes encontrar
-muchos y muy buenos en Internet. Al final de este cap�tulo aparece una
-lista con algunos de ellos.
-
-La plantilla tampoco es \emph{una clase} de \LaTeX. Si miras el c�digo
-fuente podr�s comprobar que el documento comienza con
-\verb+\documentclass{book}+\footnote{Personalizado, eso s�, para que
-  utilice DIN A-4, a doble cara y con letra de 11 puntos.}, por lo que
-se basa en la clase \texttt{book}.
-
-La plantilla tampoco te ayudar� a gestionar tu bibliograf�a. Los
-\texttt{.bib} los tendr�s que crear y organizar t� ya sea de forma
-manual o con alguna herramienta dise�ada para ello.
-
-\medskip
-
-Queremos una vez m�s insistir antes de terminar que no somos expertos
-en \LaTeX.  Durante el proceso de escritura de nuestras Tesis nos
-tuvimos que enfrentar a problemas de formato que tuvimos que
-solucionar buscando en Internet o preguntando a personas cercanas. Y
-podemos decir que pr�cticamente todos los problemas a los que nos
-hemos enfrentado en nuestra vida como usuarios de \LaTeX\ est�n
-resueltos aqu�, pues sendas Tesis han sido los documentos m�s extensos
-que hemos escrito.
-
-Por lo tanto, si tienes alguna duda concreta de \LaTeX, en vez de
-preguntarnos a nosotros, busca en foros de Internet o en la
-documentaci�n del paquete que est�s utilizando. A buen seguro
-encontrar�s ah� la respuesta. Si la duda que tienes es relativa a la
-plantilla, revisa los comentarios que encontrar�s en el c�digo fuente,
-hay ciertas cosas de demasiado bajo nivel que hemos preferido no
-contar en el texto. Y s�lo como �ltimo recurso, preguntanos a
-nosotros, aunque ya te advertimos que puede que no sepamos
-responderte. Querr�amos poder animarte a escribirnos tus dudas, pero
-preferimos no hacerlo para no decepcionarte.
+Con todos estos ingredientes nos hicimos la siguiente pregunta,
+ ?`Y si un juego se pudiese jugar en el tel\'efono m\'ovil pero en verdad el juego se estuviese ejecutando en el ordenador?
 
 
 %-------------------------------------------------------------------
-\section{Estructura de cap�tulos}
+\section{Proposici\'on de la idea}
+%-------------------------------------------------------------------
+\label{cap1:sec:porp-idea}
+
+Este trabajo pretende contribuir al crecimiento de las experiencias que se le puede ofrecer a un usuario desde un juego de una empresa indendiente que utilice Unity como su motor de desarrollo.Se busca crear un h\'ibrido entre un juego convencional de ordenador junto con una tecnolog\'ia, la cual la mayor parte de los usuarios tiene, como son los tel\'efonos m\'oviles.
+
+La herramienta propuesta se apoyar\'a sobre la herramienta lider para desarrollar juegos de manera indendiente, Unity, sirviendo como una prueba de concepto para integrar el uso de un dispositivo m\'ovil a un juego convencional de ordenador.
+
+Una vez terminada,  la herramienta podr\'a ser usada por cualquier desarrollador que lo desee. La herramienta ser\'a de uso libre para su posible ampliaci\'on. 
+
+%-------------------------------------------------------------------
+\section{Estructura de cap\'itulos}
 %-------------------------------------------------------------------
 \label{cap1:sec:estructura}
 
-El manual est� estructurado en los siguientes cap�tulos:
+Este documento est\'a estructurado en los siguientes cap\'itulos:
 
 \begin{itemize}
-\item El cap�tulo~\ref{cap2} describe a vista de p�jaro los distintos
-  ficheros que forman \texis. Adem�s da una primera aproximaci�n
-  a c�mo generar el documento final (\texttt{.pdf}).
+\item El cap\'itulo~\ref{cap2} expone una revisi\'on del estado del arte de las tecnolog\'ias involucradas en el desarrollo de este trabajo.
 
-\item El cap�tulo~\ref{cap3} se centra en el proceso de
-  edici�n. Aunque aparentemente la tarea de escribir el texto es
-  trivial, \texis\ proporciona una serie de comandos que pueden
-  ser �tiles durante la escritura (al menos a nosotros nos lo
-  parecieron). Este cap�tulo se centra en la explicaci�n de esos
-  comandos.
+\item El cap\'itulo~\ref{cap3} se centra en los objetivos a cumplir en este proyecto junto con la especificaci\'on y las metodolog\'ias que se van a seguir para la completa realizaci\'on de este trabajo.
 
-\item El cap�tulo~\ref{cap4} pasa a describir c�mo se estructuran las
-  im�genes en \texis. Igual que antes, esto puede parecer
-  superfluo a un usuario medio de \LaTeX, pero \texis\ contiene
-  algunos comandos que esperan esa estructura. Es el usuario el �ltimo
-  que decide si utiliza esos comandos (y por lo tanto esa estructura)
-  u opta por otra completamente distinta.
+\item El cap\'itulo~\ref{cap4} explica todo lo relacionado con el dise'no de la herramienta y la posterior implementaci\'on de la misma. Tambi\'en incluye la explicaci\'on de los prototipos llevados a cabo durante el desarrollo del proyecto.
 
-\item El cap�tulo~\ref{cap5} aborda la bibliograf�a y la gesi�n de los
-  acr�nimos. Como se ver�, \texis\ dispone de algunas opciones de
-  personalizaci�n que merecen un peque�o cap�tulo.
+\item El cap\'itulo~\ref{cap5} aborda los resultados obtenidos y la demostraci\'on de lo conseguido.
 
-\item El cap�tulo~\ref{cap6} pone fin al manual, detallando las
-  opciones del fichero \texttt{Makefile} que permiten una generaci�n
-  c�moda del documento final en entornos Linux.
+\item El cap\'itulo~\ref{cap6} expone la discus\'on y las conslusiones.
 \end{itemize}
 
-El manual tiene, por �ltimo, un ap�ndice que, si bien no es
-interesante desde el punto de vista del usuario, nos sirve de excusa
-para proporcionar el c�digo \LaTeX\ necesario para su creaci�n: a modo
-de ``as� se hizo'', comenta brevemente c�mo fue el proceso de
-escritura de nuestras tesis.
+%El manual tiene, por �ltimo, un ap�ndice que, si bien no es
+%interesante desde el punto de vista del usuario, nos sirve de excusa
+%para proporcionar el c�digo \LaTeX\ necesario para su creaci�n: a modo
+%de ``as� se hizo'', comenta brevemente c�mo fue el proceso de
+%escritura de nuestras tesis.
 
 
-%-------------------------------------------------------------------
-\section*{\NotasBibliograficas}
-%-------------------------------------------------------------------
-\TocNotasBibliograficas
-
-El ``libro'' por el que la mayor�a de la gente empieza sus andaduras
-con \LaTeX\ es \cite{ldesc2e} pues es relativamente corto, f�cil de
-leer y de acceso p�blico (licencia GPL), por lo que se puede
-conseguir la versi�n electr�nica f�cilmente. Un libro algo m�s
-completo que �ste y que suele ser el segundo en orden de preferencia
-es \cite{notsoshort} con la misma licencia. Dentro de los libros
-dedicados a \LaTeX\ de libre distribuci�n, tambi�n se puede contar con
-\cite{latexAPrimer}.
-
-No obstante, los libros de \LaTeX\ m�s conocidos son ``The \LaTeX\
-Companion'' \citep{latexCompanion} y ``\LaTeX: A Document Preparation
-System'' \citep{LaTeXLamport}.
-
-%-------------------------------------------------------------------
-\section*{\ProximoCapitulo}
-%-------------------------------------------------------------------
-\TocProximoCapitulo
-
-Una vez hecha una descripci�n de \texis, el pr�ximo cap�tulo
-describe los ficheros que componen tanto la plantilla como el manual
-que est�s leyendo. Tambi�n se explicar� c�mo se puede generar o
-compilar el manual a partir de los \texttt{.tex} proporcionados. Por
-lo tanto, el cap�tulo sirve como una primera aproximaci�n r�pida al
-trabajo con \texis; al final del mismo seremos capaces de entender
-la estructura de directorios propuesta y d�nde se encuentran los
-ficheros que hay que editar para cambiar el contenido del documento
-final.
-
-No obstante, el cap�tulo siguiente debe verse �nicamente como una
-primera aproximaci�n. El cap�tulo~\ref{cap:edicion} da m�s detalles
-sobre el proceso de edici�n del documento, y el
-cap�tulo~\ref{cap:makefile} dar� una alternativa al modo de
-compilaci�n explicado.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
