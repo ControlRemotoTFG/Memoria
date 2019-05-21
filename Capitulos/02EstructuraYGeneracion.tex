@@ -55,26 +55,24 @@
 %-------------------------------------------------------------------
 \label{cap2:sec:herramientas}
 
-En este proyecto se ha unificado el uso de varias tecnolog\'ias, en principio independientes, para formar una herramienta que una el desarrollo de videojuegos para ordenador y el uso de una aplicaci\'on de Android que nos facilite la conexi\'on Pc <--> Android. Estas tecnolog\'ias/herramientas han sido:
+En este proyecto se ha unificado el uso de varias tecnolog\'ias, en principio independientes, para formar una herramienta que una el desarrollo de videojuegos para ordenador y el uso de una aplicaci\'on de Android que nos facilite la conexi\'on del PC con Android. Estas tecnolog\'ias/herramientas han sido:
 %-------------------------------------------------------------------
 \subsection{Unity}
 %-------------------------------------------------------------------
 \label{cap2:subsec:unity}
 
-Unity es un motor de videojuegos multiplaforma creado por Unity Technologies. Se encuentra disponible para sistemas Windows, Mac Os X y Linux. Es una de las herramientas de desarrollo de videojuegos m\'as populares actualmente en el mundo de los desarrolladores independientes. Tambi\'en cuenta con una gran cantidad de documentaci\'on generada tanto por los diversos usuarios como por sus creadores.
+Unity es un motor de videojuegos multiplaforma creado por Unity Technologies. Se encuentra disponible para sistemas Windows, Mac Os X y Linux. Es una de las herramientas de desarrollo de videojuegos m\'as populares actualmente en el mundo de los desarrolladores independientes. Tambi\'en cuenta con una gran cantidad de documentaci\'on generada tanto por los diversos usuarios como por sus creadores. Otra opci\'on barajada era Unreal Engine 4; este motor es m\'as potente que Unity y tambi\'en es altamente usado por las desarrolladoras.
 
-Las principales caracter\'isticas de Unity son:
+Las principales caracter\'isticas buscadas son:
 
 \begin{itemize}
-\item \textbf{Multiplataforma.} El hecho de que Unity sea un sistema multiplataforma, te garantiza poder hacer juegos/aplicaciones que puedan ejecutarse en cualquier dispositivo a un coste bastante bajo en cuanto a esfuerzo. 
+\item \textbf{Multiplataforma.} El hecho de que Unity y Unreal sean sistemas multiplataforma, te garantiza poder hacer juegos/aplicaciones que puedan ejecutarse en cualquier dispositivo a un coste bastante bajo en cuanto a esfuerzo.
 
-\item  \textbf{Extensibilidad.} Este es el aspecto en el cual nosotros m\'as nos hemos fijado, ya que Unity permite la integraci\'on de Plug-ins de una manera bastante c\'omoda y \'agil.
+\item  \textbf{Potencia.} Unreal Engine 4 es m\'as potente que Unity gracias a su fotorrealismo y trabajo de gr\'aficos hiperrealista como en la demo de Star Wars creada por los desarrolladores del motor, aun asi Unity no es ,ni mucho menos, un motor mediocre ya que consigue buenos acabados gracias al uso de diferentes shaders y filtros. Lo decisivo es que Unity es un motor ya dado en la universidad que facilitaba el uso del mismo y ,que para el objeto de este proyecto, su potencia ya es m\'as que suficiente.
 
-\item  \textbf{Potencia.} Unity cuenta con un gran competidor en este aspecto, Unreal Engine 4, pero en las \'ultimas versiones se est\'a intentando que esa gran diferencia que antes hab\'ia entre Unity y Unreal sea cada vez m\'as peque'na.
+\item  \textbf{Documentaci\'on.} El caso de Unity en cuanto a documentaci\'on es algo que los desarroladores de Unity mantienen funcional de manera continua. Puedes acceder a la documentaci\'on de una manera muy intuitiva desde la misma p\'agina web de Unity y en los \'ultimos meses est\'an incluyendo proyectos de juegos completos de principio a fin.
 
-\item  \textbf{Documentaci\'on.} El caso de Unity en cuanto a documentaci\'on es algo que los desarroladores de Unity cuidan bastante. Puedes acceder a la documentaci\'on de una manera muy intuitiva desde la misma p\'agina web de Unity y en los \'ultimos meses est\'an incluyendo proyectos de juegos completos de principio a fin.
-
-\item  \textbf{Comunidad.} Debido a que Unity es un motor de videojuegos potente y gratuito, cuenta con un gran n\'umero de gente que sabe utilizarlo y crea contenido did\'actico para que su aprendizaje sea m\'as ameno.
+\item  \textbf{Comunidad.} Debido a que Unity es un motor de videojuegos potente y gratuito, cuenta con un gran n\'umero de desarrolladores que saben utilizarlo, lo que facilita la soluci\'on de problemas m\'as espec\'ificos.
 \end{itemize}
 
 %h	Establece la posición del elemento flotante «aquí». Ésto es, aproximadamente en el mismo punto donde aparece en el código (sin embargo, no siempre es exacto el posicionamiento)
@@ -84,15 +82,6 @@ Las principales caracter\'isticas de Unity son:
 %!	Sobreescribe los parámetros que LATEX usa para determinar una «buena» posición para la imagen.
 %H	Establece el elemento flotante precisamente en el mismo lugar en el que aparece en el código, se requiere importar el paquete float. Es hasta cierto punto equivalente a h!.
 
-\begin{figure}[h]
-  \centering
-  %
-  {
-     \includegraphics[width=0.6\textwidth]%
-                     {Imagenes/Bitmap/02/Unity_Logo}
-     \label{cap2:fig:UnityLogo}
-}
-\end{figure}
 %-------------------------------------------------------------------
 \subsection{Android Studio}
 %-------------------------------------------------------------------
@@ -109,19 +98,8 @@ Las principales caracter\'isticas de Android Studio son:
 \item \textbf{Editor de dise'no.} Android Studio cuenta con un editor visual para poder acomodar el layout de tu aplicaci\'on Android de una manera mucho m\'as sencilla.
 
 \end{itemize}
-
-\begin{figure}[h]
-  \centering
-  %
-  {
-     \includegraphics[width=0.6\textwidth]%
-                     {Imagenes/Bitmap/02/Android_Studio_Logo}
-     \label{cap2:fig:AndroidStudioLogo}
-}
-\end{figure}
-
-
-
+%-------------------------------------------------------------------
+\section{Librer\'ias usadas}
 %-------------------------------------------------------------------
 \subsection{ZXing}
 %-------------------------------------------------------------------
@@ -133,20 +111,8 @@ Las principales caracter\'isticas de ZXing son:
 \begin{itemize}
 
 \item \textbf{Versatilidad.} Al ser una librer\'ia que tiene soporte en muchos otros lenguajes que no son Java, puedes utilizarla en tus proyectos multiplataforma si estas plataformas usan diferentes leguajes como en nuestro caso (Android Studio y Unity).
-\item \textbf{Facilidad.} Ponerse a trabajar con ello fue algo sencillo, tambi\'en en los diferentes repositorios de GitHub hay demos de c\'omo usar la librer\'ia.
 
 \end{itemize}
-
-\begin{figure}[h]
-  \centering
-  %
-  {
-     \includegraphics[width=0.6\textwidth]%
-                     {Imagenes/Bitmap/02/ZXing_Logo}
-     \label{cap2:fig:ZXingLogo}
-}
-\end{figure}
-
 %-------------------------------------------------------------------
 \section{Proyectos Similares}
 %-------------------------------------------------------------------
@@ -156,49 +122,25 @@ Las principales caracter\'isticas de ZXing son:
 
 Hay algunas empresas que han invertido mucho en innovar y crear nuevas formas para que los usuarios disfruten de los diferentes juegos. Algunos de los ejemplos que ya existen en el mercado y han servido de inspiraci\'on para la realizaci\'on de este proyecto son:
 
-\subsection{WiiU}
+\subsection{Wii U}
 %-------------------------------------------------------------------
-\label{cap2:subsec:WiiU}
+\label{cap2:subsec:Wii U}
 %-------------------------------------------------------------------
-
-\begin{center}
-\begin{tabular}[h]{m{3.5cm}m{8cm}}
-& \\ \includegraphics[width=3.5cm]%
-                     {Imagenes/Bitmap/02/Wii_U} &  La Wii U es una consola de Nintendo de la octava generaci\'on. Esta consola de sobremesa inclu\'ia una pantalla port\'atil que serv\'ia a la vez de pantalla secundaria y mando. Esta pantalla port\'atil es t\'actil y recibe una se'nal de 480p. A este nuevo mando se le denomina Wii U GamePad. Este nuevo mando permit\'ia a los desarrolladores tener un HUD mucho m\'as limpio dentro del juego ya que, en muchos casos, esta pantalla era utilizada para poner elementos como el minimapa. \\
-\end{tabular}
-\end{center}
+Wii U es una consola de Nintendo de la octava generaci\'on. Esta consola de sobremesa inclu\'ia una pantalla port\'atil que serv\'ia a la vez de pantalla secundaria y mando. Esta pantalla port\'atil es t\'actil y recibe una se'nal de 480p. A este nuevo mando se le denomina Wii U GamePad. Este nuevo mando permit\'ia a los desarrolladores tener un HUD mucho m\'as limpio dentro del juego ya que, en muchos casos, esta pantalla era utilizada para poner elementos como el minimapa. \\
 
 \subsection{Joystick}
 %-------------------------------------------------------------------
 \label{cap2:subsec:Joystick}
 %-------------------------------------------------------------------
-
-\begin{center}
-\begin{tabular}[h]{m{3.5cm}m{8cm}}
-& \\ \includegraphics[width=3cm]%
-                     {Imagenes/Bitmap/02/Joystick} &  El joystick es un perif\'erico de entrada que consiste en una palanca que tiene libre movimiento sobre una base. Este informa sobre su \'angulo y direcci\'on al dispositivo al que est\'e conectado.
+El joystick es un perif\'erico de entrada que consiste en una palanca que tiene libre movimiento sobre una base. Este informa sobre su \'angulo y direcci\'on al dispositivo al que est\'e conectado.
 Los joysticks se han utilizado siempre en el mundo de los videojuegos, empezando por la Atari hasta llegar al DualShock de PlayStation que hay actualmente.  \\
-\end{tabular}
-\end{center}
-
-
 
 \subsection{PlayLink}
 %-------------------------------------------------------------------
 \label{cap2:subsec:PlayLink}
 
-PlayStation es una de las compa'n\'ias que m\'as jugadores mueve, sus consolas son de las m\'as vendidas en todo el mundo y para que esto sea posible siempre tienen que intentar estar a la cabeza de nuevos perif\'ericos, nuevos juegos y, por supuesto, darles a sus usuarios las mejores experiencias posibles. En 2017, Sony PlayStation sac\'o al mercado una nueva serie de juegos llamados PlayLink. Estos juegos tienen una particularidad con respecto a un juego convencional de consola, estos juegos est\'an hechos para jugarlos con gente y usando un dispositivo m\'ovil como mando/controlador. Conectando la consola y el m\'ovil a la misma red WIFI y conect\'andolos a trav\'es de una aplicaci\'on, se pueden conectar de 2 a 8 jugadores, depende de los que admita cada juego, para poder jugar en familia o con amigos.
+PlayStation es una de las compa'n\'ias que m\'as tr\'afico de jugadores mueve llegando a la cifra de 90 millones de usuarios activos mensuales, sus consolas son de las m\'as vendidas en todo el mundo y para que esto sea posible siempre tienen que intentar estar a la cabeza de nuevos perif\'ericos, nuevos juegos y, por supuesto, darles a sus usuarios las mejores experiencias posibles. En 2017, Sony PlayStation sac\'o al mercado una nueva serie de juegos llamados PlayLink. Estos juegos tienen una particularidad con respecto a un juego convencional de consola, estos juegos est\'an hechos para jugarlos con gente y usando un dispositivo m\'ovil como mando/controlador. Conectando la consola y el m\'ovil a la misma red WIFI y conect\'andolos a trav\'es de una aplicaci\'on, se pueden conectar de 2 a 8 jugadores, depende de los que admita cada juego, para poder jugar en familia o con amigos.
 
-
-\begin{figure}[h]
-  \centering
-  %
-  {
-     \includegraphics[width=1.0\textwidth]%
-                     {Imagenes/Bitmap/02/Logo_PlayLink_for_PS4}
-     \label{cap2:fig:PlayLink}
-}
-\end{figure}
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
