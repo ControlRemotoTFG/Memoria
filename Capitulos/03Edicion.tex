@@ -49,7 +49,7 @@
 \end{FraseCelebre}
 
 \begin{resumen}
-  Este cap\'itulo se centra en la organizaci\'on que se ha seguido para la realizaci\'on del proyecto. Tambi\'en se explican los objetivos de este TFG y las metodolog\'ias utilizadas.
+  Este cap\'itulo se centra en exponer los objetivos a cumplir por este proyecto, tales como la creaci\'on de la libreria (Unity), la apliaci\'on (Android) y la comunicaci\'on entre ambas ayudado por las metodolog\'ias y herramientas como Scrum y Github.
 \end{resumen}
 
 %-------------------------------------------------------------------
@@ -57,13 +57,12 @@
 %-------------------------------------------------------------------
 \label{cap3:sec:obejtivos}
 
-Con este proyecto se han querido tener los siguientes objetivos generales:
+Con este proyecto se han establecido los siguientes objetivos generales:
 
 \begin{itemize}
-\item Crear una librer\'ia que permitiese la utilizaci\'on de un dispositivo m\'ovil como gamepad y pantalla secundaria.
-\item Aprender todo lo posible sobre la implementaci\'on de una librer\'ia que posteriormente puede ser usada por cualquier desarrollador.
-\item Profundizar en el uso de la red y en la realizaci\'on de un protocolo de conexi\'on entre m\'ovil y ordenador.
-\item Crear un proyecto a modo de demostraci\'on de lo que hemos sido capaces de desarrollar y demuestre las capacidades de la herramienta desarrollada.
+\item Crear una librer\'ia para Unity3D que se comunique con una aplicaci\'on Android usando una comunicaci\'on Cliente-Servidor, Unity3D(Servidor), el cual se encargar\'a de recibir los inputs del Android(Cliente).
+\item Crear la aplicaci\'on Android para usar este como mando virtual.
+\item Crear un prototipo de lo que hemos sido capaces de desarrollar y demuestre las capacidades de la herramienta desarrollada.
 \end{itemize}
 
 En las pr\'oximas subsecciones plantearemos la metodolog\'ia y el plan de trabajo seguido.
@@ -74,32 +73,22 @@ En las pr\'oximas subsecciones plantearemos la metodolog\'ia y el plan de trabaj
 %-------------------------------------------------------------------
 \label{cap3:sec:plandetrabajo}
 
-Para la realizaci\'on de este proyecto se han cogido y unificado muchos aspectos que se han planteado de manera separada durante todo el grado. Unity es algo que hemos utilizado bastante pero sin duda la parte en la que hemos tenido que dedicar m\'as tiempo de investigaci\'on ha sido a c\'omo plantear un protocolo de comunicaci\'on y que este se adapte bien a la latencia de una red dom\'estica.
+Para la realizaci\'on de este TFG se unificar\'an muchos aspectos que se han ido planteando a lo largo del Grado, tales como Unity3D, Android y desarrollo de protocolos tipo Cliente-Servidor.
+\\
+Los primeros meses ser\'an dedicados a la investigaci\'on y el estudio de las herramientas ya existentes que exploran los aspectos en com\'un con este TFG. Se usar\'a Github como sistema de control de versiones, donde estar\'an 2 repositorios: uno para la memoria y otro donde se encontrar\'a el c\'odigo de la demo. 
+\\
+Las reuniones con los directores ser\'an cada 2 semanas. El objetivo de estas reuniones ser\'a llevar un control de lo que se haya avanzado y plantear las pr\'oximas 2 semanas de trabajo.
+Se han marcado unos hitos espec\'ificos:
 
-En los primeros meses del proyecto se asentaron las herramientas de gesti\'on que iban a utilizarse. Se cre\'o una organizaci\'on en GitHub donde se crearon 2 repositorios, uno para las demos y el futuro proyecto final/demostraci\'on t\'ecnica. En otro repositorio se fueron subiendo los cambios realizados a la memoria del proyecto.
-Las herramientas fueron fijadas desde la primera reuni\'on en Octubre de 2018.
-
+ 
 \begin{enumerate}
 
-\item Se decidi\'o utilizar MiKTeX como editor de textos LaTeX.
-\item Como sistema de control de versiones se utilizar\'ia GitHub con los dos repositorios mencionados anteriormente.
-\item Como herramienta de comunicaci\'on con los directores del proyecto se decidi\'o utilizar correos electr\'onicos.
-\item De manera interna para los miembros del proyecto, se utilizar\'a un sistema de segumiento de tareas para saber los objetivos a cumplir y el estado de cada tarea en curso.
+\item \textbf{Navidad.} Sobre estas fechas deberemos tener la conexi\'on entre Android y Unity3D establecida. Con esto se pretende que un personaje en Unity3D sea capaz de moverse gracias al Input que recibe desde Android.
+\item \textbf{Semana Santa.} Se deber\'a de haber conseguido tener una c\'amara en Unity3D enviando una imagen via streaming al dispositivo Android mientras se juega con este.
+\item \textbf{Pre-Ex\'amenes Junio.} Aqui se debe tener una demo que sea capaz de dostrar las capacidades de la herramienta.
 
 \end{enumerate}
 
-Los recursos f\'isicos para este proyecto ser\'an 2 ordenadores con un sistema Windows instalado para ejecutar Unity y Android Studio correctamente. Tambi\'en se precisar\'an de al menos 1 dispositivo m\'ovil para comprobar el funcionamiento correcto del proyecto.
-
-En cuanto a reunionen, se acuerda una reuni\'on cada 2 semanas tanto con los miembros del proyecto como con los directores. El objetivo de estas reuniones es comprobar lo que se ha avanzado en las 2 semanas de desarrollo, exponer ideas que ayuden a mejorar el proyecto y planificar las nuevas tareas que se presentar\'an tras las siguientes 2 semanas. 
-
-Se marcaron diferentes hitos a lo largo del proyecto:
-
-\begin{enumerate}
-
-\item \textbf{ Reuni\'on Pre-Navidad (19/12/2018).} El objetivo para esta reuni\'on es tener una conexi\'on establecida entre un dispositivo Android con un proyecto de Unity. Junto con esa conexi\'on se pretende tener un personaje en movimiento con el Input que reciba del dispositivo m\'ovil.
-\item \textbf{ Reuni\'on Pre-Semana Santa (10/04/2019).}  El objetivo para esta reuni\'on es tener una c\'amara de Unity enviando imagen via streaming al dispositivo m\'ovil mientras que se utiliza este mismo como mando/controlador.
-\item \textbf{ Reuni\'on Pre-Ex\'amenes (22/05/2019).} En esta reuni\'on se debe tener una demostraci\'on de las capacidades de la herramienta. Esta demostraci\'on ser\'a la que se presente ante el tribunal de calificaci\'on de TFG's.
-\end{enumerate}
 
 
 %-------------------------------------------------------------------
@@ -109,17 +98,7 @@ Se marcaron diferentes hitos a lo largo del proyecto:
 
 La metodolog\'ia utilizada para la realizaci\'on de este proyecto est\'a basada en el desarrollo \'agil. Se han marcado peque'nos objetivos de 2 semanas de duraci\'on llamados sprints hasta llegar a las metas grandes o hitos mencionados en el apartado anterior.\\
 La metodolog\'ia que se iba a usar estaba definida desde el primer d\'ia ya que es la que los miembros del proyecto siguen en todos los trabajos que realizan. Se decidi\'o usar \textbf{Scrum}.
-Scrum es una metodolog\'ia \'agil que adopta una estrategia de desarrollo incremental, en lugar de la planificaci\'on y ejecuci\'on completa del proyecto en cuesti\'on. En las reuniones se ve\'ia hasta donde se hab\'ia llegado y en base a eso se planificaba el trabajo para la siguiente reuni\'on. Con constantes revisiones, se pueden ir a'nadiendo nuevas features al proyecto que en primera instancia no se contemplaron.
-
-\begin{figure}[h]
-  \centering
-  %
-  {
-     \includegraphics[width=1.0\textwidth]%
-                     {Imagenes/Bitmap/03/Scrum}
-     \label{cap3:fig:Scrum}
-}
-\end{figure}
+Scrum es una metodolog\'ia \'agil que adopta una estrategia de desarrollo incremental, en lugar de la planificaci\'on y ejecuci\'on completa del proyecto en cuesti\'on. La particularidad que se tiene en este proyecto es el constante cambio de las tareas nuevas que se pueden llegar a incluir tras cada reuni\'on.
 
 %-------------------------------------------------------------------
 \section{Herramientas utilizadas}
@@ -132,27 +111,18 @@ En la secci\'on 3.1 se ha hablado de las herramientas que se acordaron utilizar 
 
 \item \textbf{MiKTeX y LaTeX}\\
 
-\begin{center}
-\begin{tabular}[h]{m{3.5cm}m{8cm}}
-& \\ \includegraphics[width=3.5cm]%
-                     {Imagenes/Bitmap/03/Miktex} & Las caracter\'isticas m\'as apreciables de MiKTeX son su habilidad de actualizarse por s\'i mismo descargando nuevas versiones de componentes y paquetes instalados previamente, y su f\'acil proceso de instalaci\'on. Posee compiladores TeX y LaTeX para generar archivos .pdf y herramientas para generar bibliograf\'ias e \'indices de una manera sencilla. \\
-\end{tabular}
-\end{center}
+
+
+ Las caracter\'isticas m\'as apreciables de MiKTeX son su habilidad de actualizarse por s\'i mismo descargando nuevas versiones de componentes y paquetes instalados previamente, y su f\'acil proceso de instalaci\'on. \\
+
+
 
 \item \textbf{GitHub}\\
 
-\begin{center}
-\begin{tabular}[h]{m{3.5cm}m{8cm}}
-& \\ \includegraphics[width=3.5cm]%
-                     {Imagenes/Bitmap/03/Github} & GitHub es una plataforma de desarrollo cooperativo en la que se pueden alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza para la creaci\'on y almacenamiento de c\'odigo fuente de manera p\'ublica. GitHub ofrece varias caracter\'isticas entre las que destacan: \\
-\end{tabular}
-\end{center}
-\begin{itemize}
-\item Wiki para cada proyecto.
-\item Alojamiento de p\'aginas web para cada proyecto.
-\item Gestor de proyectos.
-\item Control gr\'afico sobre las aportaciones de cada desarrollador en el repositorio.
-\end{itemize}
+
+
+ GitHub es una plataforma de desarrollo cooperativo en la que se pueden alojar proyectos utilizando el sistema de control de versiones Git. Se utiliza para la creaci\'on y almacenamiento de c\'odigo fuente de manera p\'ublica. La herramienta Git se ha usado para mantener un control de versiones sobre 2 repositorios, uno para la demo y otro para la memoria. \\
+
 \end{enumerate}
 
 %\begin{table}[t]
