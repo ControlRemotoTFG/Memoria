@@ -33,9 +33,9 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Desarrollo de la aplicaci\'on de PC}
+\chapter{Arquitectura}
 \label{cap4}
-\label{cap:implementacion}
+\label{cap:arquitectura}
 
 
 \begin{FraseCelebre}
@@ -48,25 +48,39 @@
 \end{FraseCelebre}
 
 \begin{resumen}
-7Este cap�tulo describe todos los aspectos relacionados con las
-im�genes de los documentos. En particular, describe la estructura de
-directorios que \texis\ aconseja, as� como los aspectos
-relacionados con la diferencia entre los formatos esperados cuando
-se genera el documento final con \texttt{latex} y \texttt{pdflatex}.
+
 \end{resumen}
 
 %-------------------------------------------------------------------
-\section{Arquitectura}
+\section{Arquitectura General}
 %-------------------------------------------------------------------
-\label{cap4:sec:arquitectura}
+\label{cap4:sec:arquitectura_general}
+Desde el punto del desarrolador, para poder utilizar esta herramienta va a ser necesario tener la versi\'on XX.XX de Unity3D y Android Studio en su versi\'on XX.XX y un tel\'efono m\'ovil que podamos utilizar como emulador.
+\\
+Esta herramienta tiene 2 partes que est\'an diferenciadas por la plataforma para las que van destinadas. En el lado de Unity3D, se ha implementado una serie de clases que son ajenas al motor donde se est\'a ejecutando el juego. 
+Estas clases est\'an escritas en C\# y utilizan las librer\'ias  nativas de red de este lenguaje para comunicaci\'on. Por encima de estas clases se encuentra la parte espec\'ifica de Unity3D que facilita su uso. 
+\\
+Como parte extra a la herramienta, se ha propuesto un inicio de conexi\'on a trav\'es de la lectura de un QR. Con esto lo que se pretende es enlazar el dispositivo Android con el juego que se est\'a ejecutando en Unity. 
+La lectura de este QR se hace directamente desde la aplicaci\'on creada para este proyecto. Al leer el QR y emparejarse ambos dispositivos, la aplicaci\'on Android cambia de c\'amara a GamePad.
+\\
 
+[INSERTE IMAGEN DE ARQUITECTURA Y DIAGRAMA DE CLASES Y COMPONENTES  + EXPLICACION]
 
 
 %-------------------------------------------------------------------
-\section{Protocolo de conexi\'on Unity y Android Studio}
+\section{Protocolo de conexi\'on}
 %-------------------------------------------------------------------
 \label{cap4:sec:protocolo}
 
+El protocolo se incia con la lectura de un QR que se mostrar\'a en el juego ejecutado en Unity. Una vez el dispositivo Android haya leido ese QR, Android manda la resoluci\'on del dispositivo con 2 bytes. 
+El servidor que se est\'a ejecutando en Unity, guarda esa informaci\'on y escala el mando que se haya seleccionado a la resoluci\'on que tiene el dispositivo Android. Una vez hecho esto, se calculan las coordenadas de los botones del mando y se pasan a un XML.
+\\
+Este XML junto a la imagen es enviado al dispositivo Android. El tel\'efono guarda esta informaci\'on y deja de mostrar la c\'amara para mostrar la imagen del mando que se le ha enviado. En la aplicaci\'on Android han quedado guardadas las coordenadas de los botones, por lo que ya podr\'ia empezar la sesi\'on de juego.
+\\
+Durante una sesi\'on de juego estandar, el dispositivo Android recibir\'a pulsaciones del jugador en la pantalla, calcular\'a el bot\'on al que corresponde y enviar\'a al ordenador un array de 10 bytes en los que ir\'a la informaci\'on necesaria para saber la acci\'on que ha hecho el jugador y reaccionar consecuentemente.
+\\
+
+[ADJUNTAR IMAGEN DESCRIPTIVA DEL CONTENIDO DEL ARRAY + POSTERIOR EXPLICACION DEL SIGNIFICADO DE CADA COSA Y LOS VALORES QUE PUEDE TOMAR]
 
 %-------------------------------------------------------------------
 \section{El uso de los QR para inicio de conexi\'on}
@@ -74,22 +88,12 @@ se genera el documento final con \texttt{latex} y \texttt{pdflatex}.
 \label{cap4:QR}
 
 
+
 %-------------------------------------------------------------------
 \section{Pantalla secundaria y controlador}
 %-------------------------------------------------------------------
 \label{cap4:pantallasecundaria}
 
-
-%-------------------------------------------------------------------
-\section{Tecnolog\'ias involucradas}
-%-------------------------------------------------------------------
-\label{cap4:tecnologiasinvolucradas}
-
-
-%-------------------------------------------------------------------
-\section{Prototipos}
-%-------------------------------------------------------------------
-\label{cap4:prototipos}
 
 
 
