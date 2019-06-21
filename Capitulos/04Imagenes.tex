@@ -87,14 +87,19 @@ Durante una sesi\'on de juego estandar, el dispositivo Android recibir\'a pulsac
 %-------------------------------------------------------------------
 \label{cap4:QR}
 
-
+Los QR's son los c\'odigos de barras 2D m\'as famosos del mundo, la raz\'on por la que se ha elegido esta tecnolog\'ia para sincronizar el dispositivo Android con el juego en ejecuci\'on en Unity es debido a que es una tecnolog\'ia que ambos sistemas saben interpretar y porque actualmente es un est\'andar. Al escanear un c\'odigo QR con un tel\'efono inteligente, se tiene acceso al contenido del c\'odigo. En la mayor parte de ocasiones, este contenido es una URL espec\'ifica, en el caso de este proyecto, lo que contiene el QR es la direcci\'ion IP del equipo que est\'a ejecutando el juego de Unity. A su vez contiene el puerto donde el dispositivo Android debe conectarse y mandar sus mensajes. Una vez leido el QR, la aplicaci\'on Android guarda estos datos para que el juego pueda comenzar y el QR pueda desaparecer. 
+\\
 
 %-------------------------------------------------------------------
 \section{Pantalla secundaria y controlador}
 %-------------------------------------------------------------------
 \label{cap4:pantallasecundaria}
 
-
+Como se dijo en el cap\'itulo 2, para este proyecto se ha usado de referencia las consolas Wii U de Nintendo y PlayLink de Sony. Se quer\'ia que los desarrolladores de los juegos hecho en Unity pudiesen mostrar elementos del juego como un mapa, un inventario o unas notas que seguir fuera del HUD de juego para que este no se viese saturado.
+\\
+Es por esta idea, por lo que a la aplicaci\'on de Android se le ha dado la capacidad de recibir im\'agenes y mostrarlas por la pantalla del Android. Con esto se da la posibilidad de enviar una im\'agen que ya haya sido creada con anterioridad o incluso se abre la posibilidad de enviar lo que est\'a renderizando una c\'amara dentro del juego en tiempo real y hacer que nuestro dispositivo Android lo muestre. 
+\\
+Esto lo que implica es que la comuncicaci\'on entre la aplicaci\'on Android y el juego de Unity va a ser constante y se corre el riesgo de saturar la red. Para solventar este posible fallo, se decidi\'o comprimir la imagen que se enviaba a formato PNG. Este formato fue el elegido porque tanto Unity como Android dan soporte de compresi\'on y descompresi\'on de manera eficaz. 
 
 
 
