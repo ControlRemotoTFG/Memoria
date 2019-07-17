@@ -43,24 +43,43 @@
 \end{resumen}
 
 %-------------------------------------------------------------------
-\section{?}
+\section{Manejo de actividades}
 %-------------------------------------------------------------------
-\label{cap5:sec:pruebas}
+\label{cap5:sec:actividades}
 
+Toda aplicaci\'on de Android est\'a basada en el manejo de actividades. El ciclo de vida de Android marca las pautas que cualquier aplicaci\'on va a seguir y en los casos en los que hay que prestar especial atenci\'on a las interacciones con usuario. Debido a que es Android el que gestiona la actividad, siempre se tiene que tener en cuenta que el usuario puede minimizar, salir o incluso cerrar la aplicaci\'on de manera abrupta debido a un apag\'on en el dispositivo.
+\\
+ En el caso particular de este proyecto, se quer\'ia usar la c\'amara para poder leer el c\'odigo QR y as\'i obtener la informaci\'on necesaria para iniciar una comunicaci\'on con la aplicaci\'on ejecutada en PC. Tras leer el c\'odigo, la interfaz necesita cambiar para mostrar el mando que se quiere usar para jugar. 
+\\
+Para resolver este problema se ha planteado la creaci\'on de una segunda actividad cuando se lea un QR v\'alido. El funcionamiento de esto hace que la actividad con la que arranca la aplicaci\'on sea la de una c\'amara usando el API proporcionado por Android. Esta c\'amara est\'a ejecut\'andose hasta que lee un c\'odigo QR v\'alido y crea una nueva actividad que es en la que se muestra el mando para empezar a jugar.
+\\
+ La primera actividad con la que se inici\'o la aplicaci\'on termina y se queda como actividad principal la segunda, que se ha creado al leer el QR. Con esto se consigue un reseteo de la interfaz para que esta pueda ser modificada.
 
 
 %-------------------------------------------------------------------
-\section{?}
+\section{Interfaz del modo mando}
 %-------------------------------------------------------------------
-\label{cap5:sec:resultado}
+\label{cap5:sec:rinterfaz}
 
-
+Con la nueva actividad, la interfaz de esta cambia por completo respecto a la que habia con el modo c\'amara. Esta interfaz muestra el mando seleccionado en la aplicaci\'on de PC. Este mando emula la posici\'on de los botones del mando seleccionado. La posici\'on de estos botones tiene que variar con respecto a la resoluci\'on de la pantalla de cada dispositivo.
+\\
+ Para hacer esto posible, la aplicaci\'on de PC tiene guardado un XML con cada uno de los mandos. Este documento describe la posici\'on de los botones en una resoluci\'on est\'andar que var\'ia con respecto a una cosntante que viene dada por la resoluci\'on de cada dispositivo. Una vez la aplicaci\'on de PC calcula los valores de los puntos donde deben situarse los botones, este se los manda de vuelta al m\'ovil para que este los muestre en la interfaz. Esto hace que en el XML no se tengan almacenadas todas las posibles combinaciones de la posici\'on de los botones ya que esto ser\'ia un trabajo tedioso y por un error humano, hay combinaciones que pueden ser olvidadas a la hora de rellenar el documento.
+\\
+Por otra parte, la interfaz de la aplicaci\'on Android est\'a preparada para mostrar una imagen de fondo que puede ser est\'atica o cambiante. Este modo deber\'a ser activado por el desarrollador de cada juego y ser\'a notificado a la aplicaci\'on Android en forma de flag. 
+\\
+En la demo realizada para este proyecto se ha puesto como fondo de la aplicaci\'on los frames capturados por la c\'amara de Unity para que pueda usarse el tel\'efono como pantalla y mando a la vez en el caso de querer usar el ordenador para otra tarea. 
 %-------------------------------------------------------------------
-\section{?}
+\section{Manejo de hilos de ejecuci\'on}
 %-------------------------------------------------------------------
-\label{cap5:sec:demo}
+\label{cap5:sec:hilos}
 
-
+Para que todas las tareas mencionadas hasta ahora sean posibles, es necesario el uso de hilos y una gesti\'on minuciosa para no causar ning\'un problema de concurrencia.
+\\
+La aplicaci\'on que se ha propuesto para este proyecto crea un total de 2 hilos adicionales, estos hilos van a encargarse de recoger el input del usuario y mandarlo a la aplicaci\'on de PC, tambien van a encargarse de recibir la imagen de fondo, descomprimirla y plasmarla como fondo de la aplicaci\'on. 
+\\
+El primer hilo de ejecuci\'on y el que siempre va a estar activo es el que va a recoger el input del usuario. Este hilo, gracias al API de Android, tiene la capacidad de guardar la posici\'on donde ha tenido lugar el input del usuario. A su vez, tiene guardados los hotspots de cada bot\'on debido a los datos recibidos con anterioridad por la aplicaci\'on de PC. Para saber si el usuario ha pulsado en uno de los botones del mando, el hilo comprueba si este punto coincide con alguno de los hotspots y en caso afirmativo, activa el flag correspondiente a ese bot\'on y lo manda a la aplicaci\'on de PC para que este ejecute la l\'ogica de la acci\'on que debe ocurrir al pulsar dicho bot\'on (moverse, saltar, etc). Esto tambi\'en ocurre al levantar la pulsaci\'on de un bot\'on.
+\\
+El segundo hilo se usa exclusivamente para el tratado de la imagen de fondo. En el caso de que el desarrollador del juego no quiera usar una imagen de fondo, este hilo no va a necesitarse por lo que no se crear\'a. Dado el caso de que se use, este hilo \'unicamente recibe informaci\'on que en nuestro caso es una imagen en formato PNG comprimido. Este hilo es el encargado de descomprimir la imagen, adaptarlo a la resoluci\'on del tel\'efono y modificar la imagen que se muestra en el fondo de la aplicaci\'on. Tanto si la imagen es est\'atica como si se quiere enviar un streaming de im\'agenes, el tiempo de latencia es de 15ms de media por lo que es pr\'acticamente inapreciable para el ojo humano, cuya latencia aceptada es inferior a 13ms.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
