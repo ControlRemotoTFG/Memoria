@@ -57,11 +57,11 @@
 \label{cap4:sec:arquitectura_general}
 Desde el punto del desarrolador, para poder utilizar esta herramienta va a ser necesario tener la versi\'on XX.XX de Unity3D y Android Studio en su versi\'on XX.XX y un tel\'efono m\'ovil que podamos utilizar como emulador.
 \\
-Esta herramienta tiene 2 partes que est\'an diferenciadas por la plataforma para las que van destinadas. En el lado de Unity3D, se ha implementado una serie de clases que son ajenas al motor donde se est\'a ejecutando el juego. 
+Esta herramienta tiene 2 partes que est\'an diferenciadas por la plataforma para las que van destinadas. En el lado de PC, se ha implementado una serie de clases que son independientes al juego. 
 Estas clases est\'an escritas en C\# y utilizan las librer\'ias  nativas de red de este lenguaje para comunicaci\'on. Por encima de estas clases se encuentra la parte espec\'ifica de Unity3D que facilita su uso. 
 \\
 Como parte extra a la herramienta, se ha propuesto un inicio de conexi\'on a trav\'es de la lectura de un QR. Con esto lo que se pretende es enlazar el dispositivo Android con el juego que se est\'a ejecutando en Unity. 
-La lectura de este QR se hace directamente desde la aplicaci\'on creada para este proyecto. Al leer el QR y emparejarse ambos dispositivos, la aplicaci\'on Android cambia de c\'amara a GamePad.
+La lectura de este QR se hace directamente desde la aplicaci\'on creada para este proyecto. Al leer el QR y emparejarse ambos dispositivos, la aplicaci\'on Android cambia de c\'amara a mando.
 \\
 
 [INSERTE IMAGEN DE ARQUITECTURA Y DIAGRAMA DE CLASES Y COMPONENTES  + EXPLICACION]
@@ -72,7 +72,7 @@ La lectura de este QR se hace directamente desde la aplicaci\'on creada para est
 %-------------------------------------------------------------------
 \label{cap4:sec:protocolo}
 
-El protocolo se incia con la lectura de un QR que se mostrar\'a en el juego ejecutado en Unity. Una vez el dispositivo Android haya leido ese QR, Android manda la resoluci\'on del dispositivo con 2 bytes. 
+La conexi\'on se incia con la lectura de un QR que se mostrar\'a en el juego ejecutado en Unity. Una vez el dispositivo Android haya leido ese QR, Android manda la resoluci\'on del dispositivo con 2 bytes. 
 El servidor que se est\'a ejecutando en Unity, guarda esa informaci\'on y escala el mando que se haya seleccionado a la resoluci\'on que tiene el dispositivo Android. Una vez hecho esto, se calculan las coordenadas de los botones del mando y se pasan a un XML.
 \\
 Este XML junto a la imagen es enviado al dispositivo Android. El tel\'efono guarda esta informaci\'on y deja de mostrar la c\'amara para mostrar la imagen del mando que se le ha enviado. En la aplicaci\'on Android han quedado guardadas las coordenadas de los botones, por lo que ya podr\'ia empezar la sesi\'on de juego.
@@ -87,7 +87,7 @@ Durante una sesi\'on de juego estandar, el dispositivo Android recibir\'a pulsac
 %-------------------------------------------------------------------
 \label{cap4:QR}
 
-Los QR's son los c\'odigos de barras 2D m\'as famosos del mundo, la raz\'on por la que se ha elegido esta tecnolog\'ia para sincronizar el dispositivo Android con el juego en ejecuci\'on en Unity es debido a que es una tecnolog\'ia que ambos sistemas saben interpretar y porque actualmente es un est\'andar. Al escanear un c\'odigo QR con un tel\'efono inteligente, se tiene acceso al contenido del c\'odigo. En la mayor parte de ocasiones, este contenido es una URL espec\'ifica, en el caso de este proyecto, lo que contiene el QR es la direcci\'ion IP del equipo que est\'a ejecutando el juego de Unity. A su vez contiene el puerto donde el dispositivo Android debe conectarse y mandar sus mensajes. Una vez leido el QR, la aplicaci\'on Android guarda estos datos para que el juego pueda comenzar y el QR pueda desaparecer. 
+Los QR's son los c\'odigos de barras 2D, la raz\'on por la que se ha elegido esta tecnolog\'ia para sincronizar el dispositivo Android con el juego en ejecuci\'on en Unity es debido a que es una tecnolog\'ia que ambos sistemas saben interpretar y porque actualmente es un est\'andar, a parte nuestro usuarios ya tienen el propio dispositivo m\'ovil en sus manos listo para sincronizar y pasar a ser su mando. En la mayor parte de ocasiones, este contenido es una URL espec\'ifica, en el caso de este proyecto, lo que contiene el QR es la direcci\'ion IP del equipo que est\'a ejecutando el juego de Unity. A su vez contiene el puerto donde el dispositivo Android debe conectarse y mandar sus mensajes. Una vez leido el QR, la aplicaci\'on Android guarda estos datos para que el juego pueda comenzar y el QR pueda desaparecer. 
 \\
 
 %-------------------------------------------------------------------
@@ -95,7 +95,7 @@ Los QR's son los c\'odigos de barras 2D m\'as famosos del mundo, la raz\'on por 
 %-------------------------------------------------------------------
 \label{cap4:pantallasecundaria}
 
-Como se dijo en el cap\'itulo 2, para este proyecto se ha usado de referencia las consolas Wii U de Nintendo y PlayLink de Sony. Se quer\'ia que los desarrolladores de los juegos hecho en Unity pudiesen mostrar elementos del juego como un mapa, un inventario o unas notas que seguir fuera del HUD de juego para que este no se viese saturado.
+Como se dijo en el cap\'itulo 2, para este proyecto se ha usado de referencia las consolas Wii U de Nintendo y PlayLink de Sony. Se quiere que los desarrolladores de los juegos hecho en Unity pudiesen mostrar elementos del juego como un mapa, un inventario o unas notas que seguir fuera del HUD de juego para que este no se viese saturado.
 \\
 Es por esta idea, por lo que a la aplicaci\'on de Android se le ha dado la capacidad de recibir im\'agenes y mostrarlas por la pantalla del Android. Con esto se da la posibilidad de enviar una im\'agen que ya haya sido creada con anterioridad o incluso se abre la posibilidad de enviar lo que est\'a renderizando una c\'amara dentro del juego en tiempo real y hacer que nuestro dispositivo Android lo muestre. 
 \\
