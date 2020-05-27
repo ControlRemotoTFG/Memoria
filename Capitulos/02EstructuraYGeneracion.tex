@@ -46,33 +46,31 @@
 \end{Fuente}
 \end{FraseCelebre}
 
-\begin{resumen}
- Este cap\'itulo explica las herramientas que han sido utilizadas en el desarrollo de este trabajo. Tambi\'en se ofrecen unos cuantos ejemplos en los cuales nos hemos basado y nos han llevado a pensar que la idea de este proyecto es algo \'util.
-\end{resumen}
+
 
 %-------------------------------------------------------------------
 \section{Herramientas para el desarrollo}
 %-------------------------------------------------------------------
 \label{cap2:sec:herramientas}
 
-En este proyecto se ha unificado el uso de varias tecnolog\'ias para formar una herramienta que una el desarrollo de videojuegos para ordenador y el uso de una aplicaci\'on de Android que nos facilite la conexi\'on del PC con Android. Estas tecnolog\'ias/herramientas han sido:
+En este cap\'itulo se expondr\'an las diferentes tecnolog\'ias que se van a utilizar para la realizaci\'on de este proyecto. Adem\'as de eso, se pondr\'an encima de la mesa las diferentes aplicaciones desarrolladas por empresas del sector de los videojuegos que han sido tomadas como referencia para la creaci\'on de este trabajo. 
 %-------------------------------------------------------------------
 \subsection{Unity}
 %-------------------------------------------------------------------
 \label{cap2:subsec:unity}
 
-Unity es un motor de videojuegos multiplaforma creado por Unity Technologies. Se encuentra disponible para sistemas Windows, Mac Os X y Linux. Es una de las herramientas de desarrollo de videojuegos m\'as populares actualmente en el mundo de los desarrolladores independientes. Tambi\'en cuenta con una gran cantidad de documentaci\'on generada tanto por los diversos usuarios como por sus creadores. Otra opci\'on barajada era Unreal Engine 4; este motor es m\'as potente que Unity y tambi\'en es altamente usado por las desarrolladoras.
+Unity es un motor de videojuegos multiplaforma creado por Unity Technologies. Se encuentra disponible para sistemas Windows, Mac Os X y Linux. Es una de las herramientas de desarrollo de videojuegos m\'as populares actualmente en el mundo de los desarrolladores independientes. Con unity se han realizado algunos de los juegos m\'as famosos del mercado como \textbf{Ghost of a Tale}, \textbf{Cuphead} o  \textbf{Hollow Knight}.
 
 Las principales caracter\'isticas buscadas son:
 
 \begin{itemize}
-\item \textbf{Multiplataforma.} El hecho de que Unity y Unreal sean sistemas multiplataforma, te garantiza poder hacer juegos/aplicaciones que puedan ejecutarse en cualquier dispositivo a un coste bastante bajo en cuanto a esfuerzo.
+\item \textbf{Multiplataforma.} El hecho de que Unity sea sistemas multiplataforma, te garantiza poder hacer juegos/aplicaciones que puedan ejecutarse en cualquier dispositivo a un coste bastante bajo en cuanto a esfuerzo.
 
-\item  \textbf{Potencia.} Unreal Engine 4 es m\'as potente que Unity gracias a su fotorrealismo y trabajo de gr\'aficos hiperrealista como en la demo de Star Wars creada por los desarrolladores del motor, aun asi Unity no es ,ni mucho menos, un motor mediocre ya que consigue buenos acabados gracias al uso de diferentes shaders y filtros. Lo decisivo es que Unity es un motor ya dado en la universidad que facilitaba el uso del mismo y ,que para el objeto de este proyecto, su potencia ya es m\'as que suficiente.
+\item  \textbf{Herramientas y servicios.} Unity es una herramienta que no engloba \'unicamente motores para el renderizado de im\'agenes, simulaciones f\'isicas 2D y 3D, animaci\'on de personajes y audio sino que al tratarse de un motor que usa C\#  como lenguaje de scripting, dispone de todas las herramientas de .NET para el desarrollo. Uno de los servicios que ofrece Unity es \textbf{Unity Analytics} que ayuda a los creadores a realizar anal\'iticas para ver c\'omo juegan sus jugadores.
 
-\item  \textbf{Documentaci\'on.} El caso de Unity en cuanto a documentaci\'on es algo que los desarroladores de Unity mantienen funcional de manera continua. Puedes acceder a la documentaci\'on de una manera muy intuitiva desde la misma p\'agina web de Unity y en los \'ultimos meses est\'an incluyendo proyectos de juegos completos de principio a fin.
+\item  \textbf{Documentaci\'on.} Los desarrolladores de Unity ponen a disposici\'on de los usuarios una documentaci\'on amplia y detallada, tanto que incluso disponen de un historial de versiones de la documentaci\'on por si trabajas con un proyecto de Unity con una versi\'on no actualizada. Adem\'as de esto, ofrecen documentaci\'on sobre la API y ofrecen proyectos realizados por los propios desarrolladores del motor y tutoriales de como sacar el mayor rendimiento posible a las herramientas que ofrece el motor en su plataforma \textbf{Unity Learn.}.
 
-\item  \textbf{Comunidad.} Debido a que Unity es un motor de videojuegos potente y gratuito, cuenta con un gran n\'umero de desarrolladores que saben utilizarlo, lo que facilita la soluci\'on de problemas m\'as espec\'ificos.
+\item  \textbf{Comunidad.} Debido a que Unity es un motor de videojuegos demandado y gratuito, cuenta con un gran n\'umero de desarrolladores que saben utilizarlo, lo que facilita la soluci\'on de problemas m\'as espec\'ificos. Unity tiene una comunidad muy amplia y muy activa tanto en foros como \textbf{Stack Overflow} y en su pripio portal de preguntas \textbf{Unity Answers.}.
 \end{itemize}
 
 %h	Establece la posición del elemento flotante «aquí». Ésto es, aproximadamente en el mismo punto donde aparece en el código (sin embargo, no siempre es exacto el posicionamiento)
@@ -99,36 +97,21 @@ Las principales caracter\'isticas de Android Studio son:
 
 \end{itemize}
 %-------------------------------------------------------------------
-\section{Librer\'ias usadas}
-%-------------------------------------------------------------------
 \subsection{ZXing}
 %-------------------------------------------------------------------
 \label{cap2:subsec:zxing}
 
-Este es un proyecto del tipo Open-Source. Esta libreria de procesamiento de im\'agenes de c\'odigos de barras y QR's est\'a implementada en Java y tiene diferentes versiones en los distintos lenguajes. En nuestro caso hemos usando la versi\'on de .NET para usarla desde Unity.
-Las principales caracter\'isticas de ZXing son:
+Este es un proyecto del tipo Open-Source. Esta libreria de procesamiento de im\'agenes de c\'odigos de barras y QR's est\'a implementada en Java y tiene diferentes versiones en los distintos lenguajes. En el caso de este proyecto, se ha usado la versi\'on de .NET para usarla desde Unity. Al ser una librer\'ia que tiene soporte en muchos otros lenguajes que no son Java, puede ser utilizada en proyectos multiplataforma si estas plataformas usan diferentes leguajes como en este caso con Java y C\#.
 
-\begin{itemize}
 
-\item \textbf{Versatilidad.} Al ser una librer\'ia que tiene soporte en muchos otros lenguajes que no son Java, puedes utilizarla en tus proyectos multiplataforma si estas plataformas usan diferentes leguajes como en nuestro caso (Android Studio y Unity).
-
-\end{itemize}
-
-\subsection{Unity}
-%-------------------------------------------------------------------
-\label{cap2:subsec:unity}
-
-Unity es el motor de videojuegos elegido para desarrollar la parte de PC de este proyecto.
-
-\subsection{Android}
+\subsection{Android SDK}
 %-------------------------------------------------------------------
 \label{cap2:subsec:android}
-ESTO NO ES GILIPOLLAS
-ES LA PUTA API
-Para desarrollo en Android se ha utilizado Android Studio que es un entorno de desarrollo integrado(IDE) oficial para el desarrollo de aplicaciones en Android basado en IntelliJ IDEA. Adem\'as del potente editor de c\'odigos y las herramientas para desarrolladores de IntelliJ, Android Studio ofrece a\'un m\'as funciones que aumentan tu productividad durante la compilaci\'on de apps para Android. Entre ellas se ofrece un sistema de compilaci\'on basado en Gradle el cual es flexible, un emulador r\'apido con varias funciones, al ser un entorno unificado puedes desarrollar a la vez para todos tus dispositivos Android, Instant Run para aplicar cambios mientras tu app se ejecuta sin necesidad de compilar el APK de nuevo e integraci\'on de plantillas de c\'odigo y Github entre otras features.
+
+Cada vez que Android saca una nueva versi\'on de su sistema operativo le acompa\~n su correspondiente SDK. Estas SDK de Android incluyen librerias que son necesarias para el desarrollo para dispositivos Android, adem\'as de documentaci\'on del API, un debugger y un emulador para probar los proyectos sin necesidad de tener un dispositivo f\'isico. Este SDK suele usarse acomplado a un IDE que como se ha explicado anteriormente en el punto \textbf{2.1.2} ha sido \textbf{Android Studio}.
 
 %-------------------------------------------------------------------
-\section{Proyectos Similares}
+\section{Interfaces de entrada}
 %-------------------------------------------------------------------
 
 \label{cap2:sec:proyectos-similares}
@@ -141,22 +124,28 @@ Hay empresas de videojuegos como Nintendo y Sony que han invertido mucho dinero 
 \label{cap2:subsec:Wii U}
 %-------------------------------------------------------------------
 
-Wii U es la consola dom\'estica que Nintendo cre\'o en la octava generaci\'on de consolas. La innovaci\'on principal de esta consola era la de cambiar radicalmente el modo de jugar a una consola de sobremesa ya que desarrollaron el Wii U GamePad. Este GamePad ten\'ia la funci\'on de una segunda pantalla y la de un mando a la vez. Esta pantalla port\'atil es t\'actil y recibe una se'nal de 480p.
+Wii U es la consola dom\'estica que Nintendo cre\'o en la octava generaci\'on de consolas. La innovaci\'on principal de esta consola era la de cambiar radicalmente el modo de jugar a una consola de sobremesa ya que desarrollaron el Wii U GamePad. Este mando ten\'ia la funci\'on de una segunda pantalla y la de un mando tradicional a la vez. Esta pantalla port\'atil es t\'actil y recibe una se'nal de 480p.
 \\
- Este nuevo mando permit\'ia a los desarrolladores tener un HUD mucho m\'as limpio dentro del juego ya que, en muchos casos, esta pantalla era utilizada para poner elementos como el minimapa y en algunos juegos como Mario Bros, hab\'ia cambios de zonas que convert\'ian al GamePad como pantalla principal. \\
+ Este nuevo mando permit\'ia a los desarrolladores tener un HUD mucho m\'as limpio dentro del juego ya que, en muchos casos, esta pantalla era utilizada para poner elementos como el minimapa y en algunos juegos como Mario Bros, hab\'ia cambios de zonas que convert\'ian al mando en pantalla principal. \\
 
-\subsection{GamePad}
+\subsection{Controlador de videojuegos inal\'ambricos}
 %-------------------------------------------------------------------
 \label{cap2:subsec:GamePad}
 %-------------------------------------------------------------------
 
-Un GamePad es un dispositivo de entrada cuya funci\'on es interactuar con los elementos de un juego para realizar diferentes acciones. Los GamePads est\'an extendidos tanto en ordenadores como en consolas y en el \'ultimo a'no est\'an saliendo al mercado nuevos GamePads para dispositivos m\'oviles, los cuales se conectan por bluetooth. Estos \'ultimos son mandos f\'isicos que no est\'an al alcance de todos y actualmente no son compatibles con todos los juegos, se utilizan para juegos muy concretos como PUBG Mobile. Los GamePads han ido cambiando su forma y el n\'umero de botones de los que disponen. La necesidad del uso de GamePads en videojuegos de m\'ovil hizo que Android 9 incluyese la posibilidad de hacer que un usuario conectase su Dualshock 3 a su Android para poder jugar.
+Un controlador de videojuegps es un dispositivo de entrada cuya funci\'on es interactuar con los elementos de un juego para realizar diferentes acciones. Los controladores de videojuegos est\'an extendidos tanto en ordenadores como en consolas y en el \'ultimo a'no est\'an saliendo al mercado nuevos mandos para dispositivos m\'oviles, los cuales se conectan por bluetooth. Estos \'ultimos son mandos f\'isicos que no est\'an al alcance de todos y actualmente no son compatibles con todos los juegos, se utilizan para juegos muy concretos como PUBG Mobile. Los controladores de videojuegos han ido cambiando su forma y el n\'umero de botones de los que disponen. La necesidad del uso de mandos en videojuegos de m\'ovil hizo que Android 9 incluyese la posibilidad de hacer que un usuario conectase su Dualshock 3 a su Android para poder jugar.
 
 \subsection{PlayLink}
 %-------------------------------------------------------------------
 \label{cap2:subsec:PlayLink}
 
 PlayStation es una de las compa'n\'ias que m\'as tr\'afico de jugadores mueve llegando a la cifra de 90 millones de usuarios activos mensuales en enero de 2019, sus consolas son de las m\'as vendidas en todo el mundo y para que esto sea posible siempre tienen que intentar estar a la cabeza de nuevos perif\'ericos, nuevos juegos y, por supuesto, darles a sus usuarios las mejores experiencias posibles. En 2017, Sony PlayStation sac\'o al mercado una nueva serie de juegos llamados PlayLink. Estos juegos tienen una particularidad con respecto a un juego convencional de consola, estos juegos est\'an hechos para jugarlos con gente y usando un dispositivo m\'ovil como mando/controlador. Conectando la consola y el m\'ovil a la misma red WIFI y conect\'andolos a trav\'es de una aplicaci\'on, se pueden conectar de 2 a 8 jugadores, depende de los que admita cada juego, para poder jugar en familia o con amigos.
+
+\subsection{PS4 Remote Play}
+%-------------------------------------------------------------------
+\label{cap2:subsec:ps4-remote-play}
+
+En el \'ultimo trimestre del a\~no 2019, Sony lanz\'o la aplicaci\'on \textbf{PS4 Remote Play} para que los usuarios pudieran controlar su PlayStation 4 desde un dispositivo m\'ovil. Esta aplicaci\'on ten\'ia como requisito una conexi\'on a internet de entre 5 y 12 Mbps por conexi\'on LAN para una mejor experiencia. Esta aplicaci\'on permite no solamente el manejo de una PS4 usando un dispositivo m\'ovil sino que adem\'as permite conectar un Dualshock 4 para controlar el juego y usar el m\'ovil \'unicamente como pantalla.
 
 
 % Variable local para emacs, para  que encuentre el fichero maestro de

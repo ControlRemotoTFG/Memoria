@@ -33,9 +33,9 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Arquitectura}
+\chapter{Implementaci\'on y Especificaci\'on}
 \label{cap4}
-\label{cap:arquitectura}
+\label{cap:implentacion-especificacion}
 
 
 \begin{FraseCelebre}
@@ -47,14 +47,47 @@
 \end{Fuente}
 \end{FraseCelebre}
 
-\begin{resumen}
+%-------------------------------------------------------------------
+\section{Introducci\'on}
+%-------------------------------------------------------------------
+\label{cap4:sec:intro}
 
-\end{resumen}
+Una vez decididas las herramientas que se iban a usar y con gran parte de la informaci\'on recogida, lleg\'o el momento de realizar un an\'alisis del funcionamiento de Android y dise\~nar un protocolo de red que ayudase a conectar la aplicaci\'on de Android con el juego de Unity. En este cap\'itulo se explicar\'an todas las decisiones que se tomaron a la hora de implementar ambas aplicaciones y se ampliar\'a la informaci\'on sobre como interactuan ambos sistemas.
 
 %-------------------------------------------------------------------
-\section{Arquitectura General}
+\section{Aplicaci\'on Android}
 %-------------------------------------------------------------------
-\label{cap4:sec:arquitectura_general}
+\label{cap4:sec:Android}
+
+
+Como se ha comentado en cap\'iyulos anteriores, se ha usado Android Studio como entorno de desarrollo de la aplicaci\'on m\'ovil. Para poder comenzar este desarrollo primero se ha tenido que comprender el funcionamiento de un dispositivo Android y para eso primero se debe conocer el ciclo de vida de una aplicaci\'on cuando es ejecutada en un dispositivo Android:
+
+\begin{figure}[h]
+
+\centering {
+\includegraphics[width=0.6\textwidth]{Imagenes/Bitmap/Ciclo_de_vida_Android.png}
+}
+\end{figure}
+
+Con este ciclo de vida en mente, hay que tener en cuenta que una vez la aplicaci\'on quedase en pausa porque entrase una llamada o simplemente el usuario dejase la aplicaci\'on en segundo plano, Android podr\'ia matar el proceso de nuestra aplicaci\'on y tener que volver a crearla si el usuario vuelve a poner en la vista principal la aplicaci\'on.
+\\
+En Android es necesario definir las acciones que el sistema va a ejecutar cuando estos estados del ciclo de vida se inicien. Para el caso espec\'ifico de este proyecto se vi\'o que al querer usar la c\'amara nada m\'as iniciar la aplicaci\'on, era necesario utilizar 2 actividades diferentes. La primera de estas actividades se ejecuta siempre que la aplicaci\'on se inicia ya que su funci\'on es la de utilizar la c\'amara para poder leer un c\'odigo QR. Este c\'odigo QR contiene 2 datos:
+
+\begin{enumerate}
+
+\item IP del ordenador al que debe conectarse.
+\item Puerto al que deben enviarse los paquetes.
+
+\end{enumerate}
+
+La creaci\'on del QR y la utilizaci\'on de la libreria ZXing\footnote{https://archive.codeplex.com/?p=zxingnet} se explican en este mismo cap\'itulo pero en el apartado de  IMPLEMENTACION DE LA APLICAICON DE ESCRITORIO.
+\\
+Gracias a la API de Android, se ha podido acceder al manejo completo de la c\'amara. Esta implementaci\'on se encuentra en el paquete:\\ \textbf{com.google.android.gms.vision.CameraSource.}\footnote{https://developers.google.com/android/reference/com/google/android/gms/vision/CameraSource?hl=es}
+\\
+Adem\'as de la importaci\'on de paquetes, Android tiene un sistema de gesti\'on de permisos. Para poder usar la c\'amara es necesario a\~nadirlos expl\'icitamente en el archivo \textbf{AndroidManifest.xml:}\footnote{https://developer.android.com/guide/topics/manifest/manifest-intro?hl=es-419}
+\\    <uses-permission android:name="android.permission.CAMERA" />\\
+
+
 Desde el punto del desarrolador, para poder utilizar esta herramienta va a ser necesario tener la versi\'on XX.XX de Unity3D y Android Studio en su versi\'on XX.XX y un tel\'efono m\'ovil que podamos utilizar como emulador.
 \\
 Esta herramienta tiene 2 partes que est\'an diferenciadas por la plataforma para las que van destinadas. En el lado de PC, se ha implementado una serie de clases que son independientes al juego. 
