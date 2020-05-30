@@ -55,11 +55,62 @@
 Una vez decididas las herramientas que se iban a usar y con gran parte de la informaci\'on recogida, lleg\'o el momento de realizar un an\'alisis del funcionamiento de Android y dise\~nar un protocolo de red que ayudase a conectar la aplicaci\'on de Android con el juego de Unity. En este cap\'itulo se explicar\'an todas las decisiones que se tomaron a la hora de implementar ambas aplicaciones y se ampliar\'a la informaci\'on sobre como interactuan ambos sistemas.
 
 %-------------------------------------------------------------------
-\section{Aplicaci\'on Android}
+\section{Arquitectura global}
 %-------------------------------------------------------------------
-\label{cap4:sec:Android}
+\label{cap4:sec:global}
 
+Tal y como se ha planteado en los anteriores cap\'itulos, para la realizaci\'on de este proyecto se ha requerido de la conexi\'on entre una aplicaci\'on de escritorio realizada con Unity3D y una aplicaci\'on de un dispositivo m\'ovil Android. Ambos dispositivos recibir\'an y enviaran mensajes pero el protocolo a seguir ha sido UDP. UDP es un protocolo a nivel de transporte que permite el env\'io de datagramas a trav\'es de la red sin necesidad de haber realizado una conexi\'on previa. Esto se consigue gracias a que la cabecera del propio datagrama UDP incorpora la informaci\'on suficiente para realizar su direccionamiento.
+\\
+Con la utilizaci\'on de UDP se corre el riesgo de p\'erdida de informaci\'on, cosa que para este proyecto es menos probable ya que en ning\'un momento este datagrama sale a internet. Se ha puesto como requisito que tanto el ordenador como el dispositivo m\'ovil se encuentren conectados a la misma red local, lo que hace muy poco probable la p\'erdida de paquetes UDP. Esta posible p\'erdida ser\'a analizada en el cap\'itulo siguiente donde se analiza las pruebas realizadas con usuarios.
+\\
+\begin{figure}[h]
 
+\centering {
+\includegraphics[width=0.65\textwidth]{Imagenes/Bitmap/UDP-protocol.png}
+}
+\end{figure}
+
+A la hora de iniciar la conexi\'on, es la aplicaci\'on m\'ovil la que va a conectarse al puerto que abra la aplicaci\'on de escritorio previamente. Para poder hacer esto, se propuso la utilizaci\'on de un QR. Este QR contiene la informaci\'on de la IP del ordenador donde se est\'a ejecutando el juego y el puerto designado para la recepci\'on de los mensajes provenientes de la aplicaci\'on m\'ovil. Una vez la aplicaci\'on m\'ovil guarda esos datos extraidos tras leer el c\'odigo QR, se incia la conexi\'on y el intercambio de paquetes entre ambas aplicaciones.
+\\
+La decisi\'on de usar UDP cobr\'o su importancia en este apartado ya que no se espera un intercambio ordenado de informaci\'on entre ambas aplicaciones ,ya que el usuario puede hacer una pulsaci\'on en la pantalla del m\'ovil en cualquier momento. La informaci\'on que se env\'ia desde la aplicaci\'on Android es la siguiente:
+
+\begin{enumerate}
+
+\item Dimensiones de la pantalla del dispositivo m\'ovil con 2 enteros, ancho y alto.
+\item Pulsaci\'on en la pantalla con 3 enteros (X, Y, tipo de evento). 
+
+\end{enumerate}
+
+Las dimensiones se mandan \'unicamente una vez al iniciar la conexiones mientras que las coordenadas de las pulsaciones se env\'ian cada vez que estas ocurren. El tercer entero que se manda en estos paquetes viene definido por cada tipo de pulsaci\'on que se puede registrar en Android. Los tipos contemplados son:
+\begin{itemize} 
+\item \textbf{ACTION\_DOWN:} Env\'ia el valor 0. Este evento se dispara al realizar una pulsaci\'on en la pantalla.
+\item \textbf{ACTION\_UP:} Env\'ia el valor 2. Este evento se dispara al levantar el dedo de la pantalla.
+\end{itemize}
+
+En el lado del servidor de la aplicaci\'on de Unity se espera la llegada de las dimensiones de la pantalla que env\'ia la aplicaci\'on m\'ovil para enviar desde su lado la siguiente informaci\'on en paquetes diferentes:
+
+\begin{enumerate}
+\item Tiempo de vibraci\'on que debe realizarse cada vez que se pulse una posici\'on correcta de la pantalla del m\'ovil. Se considera una pulsaci\'on correcta un punto que est\'e dentro de un bot\'on.
+\item Imagen del mando con o sin fondo cogido directamente de una c\'amara de Unity.
+\item En caso de que el juego admita la vibraci\'on del m\'ovil, se env\'ia el tiempo de vibraci\'on.
+\end {enumerate}
+
+El primero de estos mensajes con el tiempo de vibraci\'on solamente se env\'ia una \'unica vez al inicio de la conexi\'on.
+\\
+El flujo de mensajes durante la ejecuci\'on de estas aplicaciones tiene un intercambio de datagramas constante de \'ordenes para que el dispositivo m\'ovil vibre, im\'agenes compridas y coordenadas de pulsaciones de la pantalla del dispositivo m\'ovil.
+La figura XXXX describe este protocolo de manera m\'as gr\'afica.
+
+\begin{figure}[h]
+
+\centering
+\includegraphics[width=0.6\textwidth]{Imagenes/Bitmap/UDP-protocol.png}
+\end{figure}
+
+\newpage
+%-------------------------------------------------------------------
+\section{Aplicaci\'on m\'ovil}
+%-------------------------------------------------------------------
+\label{cap4:sec:android}
 Como se ha comentado en cap\'iyulos anteriores, se ha usado Android Studio como entorno de desarrollo de la aplicaci\'on m\'ovil. Para poder comenzar este desarrollo primero se ha tenido que comprender el funcionamiento de un dispositivo Android y para eso primero se debe conocer el ciclo de vida de una aplicaci\'on cuando es ejecutada en un dispositivo Android:
 
 \begin{figure}[h]
