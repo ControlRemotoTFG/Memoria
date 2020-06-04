@@ -63,12 +63,7 @@ Tal y como se ha planteado en los anteriores cap\'itulos, para la realizaci\'on 
 \\
 Con la utilizaci\'on de UDP se corre el riesgo de p\'erdida de informaci\'on, cosa que para este proyecto es menos probable ya que en ning\'un momento este datagrama sale a internet. Se ha puesto como requisito que tanto el ordenador como el dispositivo m\'ovil se encuentren conectados a la misma red local, lo que hace muy poco probable la p\'erdida de paquetes UDP. Esta posible p\'erdida ser\'a analizada en el cap\'itulo siguiente donde se analiza las pruebas realizadas con usuarios.
 \\
-\begin{figure}[h]
 
-\centering {
-\includegraphics[width=0.65\textwidth]{Imagenes/Bitmap/UDP-protocol.png}
-}
-\end{figure}
 
 A la hora de iniciar la conexi\'on, es la aplicaci\'on m\'ovil la que va a conectarse al puerto que abra la aplicaci\'on de escritorio previamente. Para poder hacer esto, se propuso la utilizaci\'on de un QR. Este QR contiene la informaci\'on de la IP del ordenador donde se est\'a ejecutando el juego y el puerto designado para la recepci\'on de los mensajes provenientes de la aplicaci\'on m\'ovil. Una vez la aplicaci\'on m\'ovil guarda esos datos extraidos tras leer el c\'odigo QR, se incia la conexi\'on y el intercambio de paquetes entre ambas aplicaciones.
 \\
@@ -92,7 +87,7 @@ En el lado del servidor de la aplicaci\'on de Unity se espera la llegada de las 
 \begin{enumerate}
 \item Tiempo de vibraci\'on que debe realizarse cada vez que se pulse una posici\'on correcta de la pantalla del m\'ovil. Se considera una pulsaci\'on correcta un punto que est\'e dentro de un bot\'on.
 \item Imagen del mando con o sin fondo cogido directamente de una c\'amara de Unity.
-\item En caso de que el juego admita la vibraci\'on del m\'ovil, se env\'ia el tiempo de vibraci\'on.
+\item En caso de que el juego admita la vibraci\'on del m\'ovil, se env\'ia la acci\'on de realizar la vibraci\'on o no.
 \end {enumerate}
 
 El primero de estos mensajes con el tiempo de vibraci\'on solamente se env\'ia una \'unica vez al inicio de la conexi\'on.
@@ -111,79 +106,47 @@ La figura XXXX describe este protocolo de manera m\'as gr\'afica.
 \section{Aplicaci\'on m\'ovil}
 %-------------------------------------------------------------------
 \label{cap4:sec:android}
-Como se ha comentado en cap\'iyulos anteriores, se ha usado Android Studio como entorno de desarrollo de la aplicaci\'on m\'ovil. Para poder comenzar este desarrollo primero se ha tenido que comprender el funcionamiento de un dispositivo Android y para eso primero se debe conocer el ciclo de vida de una aplicaci\'on cuando es ejecutada en un dispositivo Android:
+
+La principal funci\'on de este proyecto es el uso de un dispositivo Android para controlar de manera remota un videojuego realizado en Unity. Para esto es necesario conocer la arquitectura de Android y c\'omo funciona el ciclo de vida de sus aplicaciones.
+La siguiente figura muestra el ciclo de vida de cualquier aplicaci\'on que se ejecute en un dispositivo Android.
 
 \begin{figure}[h]
 
-\centering {
+\centering
 \includegraphics[width=0.6\textwidth]{Imagenes/Bitmap/Ciclo_de_vida_Android.png}
-}
 \end{figure}
 
-Con este ciclo de vida en mente, hay que tener en cuenta que una vez la aplicaci\'on quedase en pausa porque entrase una llamada o simplemente el usuario dejase la aplicaci\'on en segundo plano, Android podr\'ia matar el proceso de nuestra aplicaci\'on y tener que volver a crearla si el usuario vuelve a poner en la vista principal la aplicaci\'on.
-\\
-En Android es necesario definir las acciones que el sistema va a ejecutar cuando estos estados del ciclo de vida se inicien. Para el caso espec\'ifico de este proyecto se vi\'o que al querer usar la c\'amara nada m\'as iniciar la aplicaci\'on, era necesario utilizar 2 actividades diferentes. La primera de estas actividades se ejecuta siempre que la aplicaci\'on se inicia ya que su funci\'on es la de utilizar la c\'amara para poder leer un c\'odigo QR. Este c\'odigo QR contiene 2 datos:
+Como puede observarse, cada Activity de una aplicaci\'on ejecutada en Android tiene varias etapas por las que puede pasar:
 
 \begin{enumerate}
+\item onCreate()
+\item onStart()
+\item onResume()
+\item onPause()
+\item onStop()
+\item onDestroy()
+\end {enumerate}
 
-\item IP del ordenador al que debe conectarse.
-\item Puerto al que deben enviarse los paquetes.
-
-\end{enumerate}
-
-La creaci\'on del QR y la utilizaci\'on de la libreria ZXing\footnote{https://archive.codeplex.com/?p=zxingnet} se explican en este mismo cap\'itulo pero en el apartado de  IMPLEMENTACION DE LA APLICAICON DE ESCRITORIO.
+Cuando el usuario comienza a abandonar la actividad, el sistema llama a m\'etodos para desmantelarla. En algunos casos, este desmantelamiento es solo parcial ya que la actividad todav\'ia reside en la memoria (por ejemplo, cuando el usuario cambia a otra app) y a\'un puede volver al primer plano. En caso de que el usuario vuelva a poner dicha actividad en primer plano, esta se reanuda donde el usuario la dej\'o.
 \\
-Gracias a la API de Android, se ha podido acceder al manejo completo de la c\'amara. Esta implementaci\'on se encuentra en el paquete:\\ \textbf{com.google.android.gms.vision.CameraSource.}\footnote{https://developers.google.com/android/reference/com/google/android/gms/vision/CameraSource?hl=es}
+Adem\'as de ciclo de vida, Android tiene un sistema de permisos. Desde la versi\'on 6.0 de Android (nivel de API 23) pueden incluirse en el fichero de manifiesto de la app los permisos que se deben solicitar al usuario para poder acceder a algunos recursos espec\'ificos. En este proyecto se necesita usar la c\'amara para poder realizar la lectura del c\'odigo QR, es por esto que se ha tenido que a\~nadir este permiso en el fichero de manifiesto de la app.
 \\
-Adem\'as de la importaci\'on de paquetes, Android tiene un sistema de gesti\'on de permisos. Para poder usar la c\'amara es necesario a\~nadirlos expl\'icitamente en el archivo \textbf{AndroidManifest.xml:}\footnote{https://developer.android.com/guide/topics/manifest/manifest-intro?hl=es-419}
-\\    <uses-permission android:name="android.permission.CAMERA" />\\
+Este c\'odigo QR es generado gracias a la librer\'ia de ZXing.NET desde la aplicaci\'on de Unity, la cual se cuenta en la siguiente secci\'on. Android por su parte incorpora una API para la lectura de c\'odigos. El c\'odigo QR contiene la siguiente informaci\'on:
 
+\begin{itemize}
+\item IP del servidor donde se est\'a ejecutando el juego.
+\item Puerto de escucha del servidor.
+\end {itemize}
 
-Desde el punto del desarrolador, para poder utilizar esta herramienta va a ser necesario tener la versi\'on XX.XX de Unity3D y Android Studio en su versi\'on XX.XX y un tel\'efono m\'ovil que podamos utilizar como emulador.
+Si el c\'odigo QR que se lee es correcto, se lanza una segunda Activitidad. La creaci\'on de una segunda actividad permite usar un archivo de manifiesto diferente y con \'el, generar una interfaz de usuario adecuada a esta segunda actividad. Esta segunda actividad tiene como prop\'osito establecer la comunicaci\'on con el servidor ya iniciado en la direcci\'on IP extraida del c\'odigo QR y a su vez el intercambio de informaci\'on (pulsaciones e im\'agenes) durante la sesi\'on de juego.
 \\
-Esta herramienta tiene 2 partes que est\'an diferenciadas por la plataforma para las que van destinadas. En el lado de PC, se ha implementado una serie de clases que son independientes al juego. 
-Estas clases est\'an escritas en C\# y utilizan las librer\'ias  nativas de red de este lenguaje para comunicaci\'on. Por encima de estas clases se encuentra la parte espec\'ifica de Unity3D que facilita su uso. 
-\\
-Como parte extra a la herramienta, se ha propuesto un inicio de conexi\'on a trav\'es de la lectura de un QR. Con esto lo que se pretende es enlazar el dispositivo Android con el juego que se est\'a ejecutando en Unity. 
-La lectura de este QR se hace directamente desde la aplicaci\'on creada para este proyecto. Al leer el QR y emparejarse ambos dispositivos, la aplicaci\'on Android cambia de c\'amara a mando.
-\\
-
-[INSERTE IMAGEN DE ARQUITECTURA Y DIAGRAMA DE CLASES Y COMPONENTES  + EXPLICACION]
+QUE SE VE, QUE SE MANDA, QUE SE RECIBE, COMO LO RECOGEMOS. ARQUITECTURA E HILOS QUE ME TIENE QUE DIBUJAR SERGIO EN DIBUJAR Y PASARLO A BONITO SUPER NAISER
 
 
 %-------------------------------------------------------------------
-\section{Protocolo de conexi\'on}
+\section{Aplicaci\'on PC}
 %-------------------------------------------------------------------
-\label{cap4:sec:protocolo}
-
-La conexi\'on se incia con la lectura de un QR que se mostrar\'a en el juego ejecutado en Unity. Una vez el dispositivo Android haya leido ese QR, Android manda la resoluci\'on del dispositivo con 2 bytes. 
-El servidor que se est\'a ejecutando en Unity, guarda esa informaci\'on y escala el mando que se haya seleccionado a la resoluci\'on que tiene el dispositivo Android. Una vez hecho esto, se calculan las coordenadas de los botones del mando y se pasan a un XML.
-\\
-Este XML junto a la imagen es enviado al dispositivo Android. El tel\'efono guarda esta informaci\'on y deja de mostrar la c\'amara para mostrar la imagen del mando que se le ha enviado. En la aplicaci\'on Android han quedado guardadas las coordenadas de los botones, por lo que ya podr\'ia empezar la sesi\'on de juego.
-\\
-Durante una sesi\'on de juego estandar, el dispositivo Android recibir\'a pulsaciones del jugador en la pantalla, calcular\'a el bot\'on al que corresponde y enviar\'a al ordenador un array de 10 bytes en los que ir\'a la informaci\'on necesaria para saber la acci\'on que ha hecho el jugador y reaccionar consecuentemente.
-\\
-
-[ADJUNTAR IMAGEN DESCRIPTIVA DEL CONTENIDO DEL ARRAY + POSTERIOR EXPLICACION DEL SIGNIFICADO DE CADA COSA Y LOS VALORES QUE PUEDE TOMAR]
-
-%-------------------------------------------------------------------
-\section{El uso de los QR para inicio de conexi\'on}
-%-------------------------------------------------------------------
-\label{cap4:QR}
-
-Los QR's son los c\'odigos de barras 2D, la raz\'on por la que se ha elegido esta tecnolog\'ia para sincronizar el dispositivo Android con el juego en ejecuci\'on en Unity es debido a que es una tecnolog\'ia que ambos sistemas saben interpretar y porque actualmente es un est\'andar, a parte nuestro usuarios ya tienen el propio dispositivo m\'ovil en sus manos listo para sincronizar y pasar a ser su mando. En la mayor parte de ocasiones, este contenido es una URL espec\'ifica, en el caso de este proyecto, lo que contiene el QR es la direcci\'ion IP del equipo que est\'a ejecutando el juego de Unity. A su vez contiene el puerto donde el dispositivo Android debe conectarse y mandar sus mensajes. Una vez leido el QR, la aplicaci\'on Android guarda estos datos para que el juego pueda comenzar y el QR pueda desaparecer. 
-\\
-
-%-------------------------------------------------------------------
-\section{Pantalla secundaria y controlador}
-%-------------------------------------------------------------------
-\label{cap4:pantallasecundaria}
-
-Como se dijo en el cap\'itulo 2, para este proyecto se ha usado de referencia las consolas Wii U de Nintendo y PlayLink de Sony. Se quiere que los desarrolladores de los juegos hecho en Unity pudiesen mostrar elementos del juego como un mapa, un inventario o unas notas que seguir fuera del HUD de juego para que este no se viese saturado.
-\\
-Es por esta idea, por lo que a la aplicaci\'on de Android se le ha dado la capacidad de recibir im\'agenes y mostrarlas por la pantalla del Android. Con esto se da la posibilidad de enviar una im\'agen que ya haya sido creada con anterioridad o incluso se abre la posibilidad de enviar lo que est\'a renderizando una c\'amara dentro del juego en tiempo real y hacer que nuestro dispositivo Android lo muestre. 
-\\
-Esto lo que implica es que la comuncicaci\'on entre la aplicaci\'on Android y el juego de Unity va a ser constante y se corre el riesgo de saturar la red. Para solventar este posible fallo, se decidi\'o comprimir la imagen que se enviaba a formato PNG. Este formato fue el elegido porque tanto Unity como Android dan soporte de compresi\'on y descompresi\'on de manera eficaz. 
+\label{cap4:sec:aplicaiconPC}
 
 
 

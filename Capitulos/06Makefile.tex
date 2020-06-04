@@ -33,53 +33,17 @@
 %
 %---------------------------------------------------------------------
 
-\chapter{Desarrollo de la aplicaci\'on de Unity}
+\chapter{Conclusi\'on y trabajo futuro}
 \label{cap6}
 \label{cap:discusion}
 
 
 
-\begin{resumen}
-
-\end{resumen}
-
 %-------------------------------------------------------------------
-\section{Establecimiento de conexi\'on}
+\section{¿?}
 %-------------------------------------------------------------------
 \label{cap6:sec:conexion}
 
-El motor de videojuegos de Unity est\'a construido usando el lenguaje de programaci\'on C\#. Con el uso de este lenguaje de programaci\'on, se abre el abanico de frameworks que pueden usarse para complementar cualquier aplicaci\'on programada en este lenguaje. Uno de estos frameworks es .NET.
-\\
- El framework .NET fue desarrollado en 2002 por la empresa Microsoft y en este proyecto se usa para el apartado de comunicaci\'on por red de Unity y una aplicaci\'on ejecutada en Android. .NET hace \'enfasis en la independia de las plataformas en la que se ejecuten las aplicaciones que se quieren comunicar, este el motivo de su uso en este proyecto. La versi\'on a utilizar es la 4.7.2 y \'unicamente se usa como API de env\'io y recepci\'on de mensajes en un socket. 
-\\
-
-Como se ha explicado en cap\'itulos anteriores, en este proyecto se comunican 2 aplicaciones: una ejecutada en un ordenador y otra en un dispositivo Android. Para iniciar la conexi\'on entre estos es necesario el uso de un servidor que reciba datos y un cliente que los env\'ie.
-\\
- En la primera parte de este proyecto el servidor es inicializado y ejecutado en la aplicaci\'on de PC, en un hilo aparte que se encarga de recibir el Input del jugador pero este punto se explicar\'a con m\'as profundidad en el apartado siguiente. Para poder emparejar ambos dispositivos, se lleg\'o a la conclusi\'on de que un QR era la opci\'on menos intrusiva y a la vez m\'as c\'omoda para el usuario ya que con un simple gesto, todo estar\'ia emparejado y conectado sin que el usuario tuviese que hacer ninguna acci\'on m\'as. Este c\'odigo QR, a diferencia de en su uso cotidiano, no lleva una URL en su interior sino que lleva la IP del ordenador donde se est\'a ejecutando la aplicaci\'on de Unity y el puerto al que deben enviarse los datos. La \'unica premisa para que ambos dispositivos se emparejen, es que ambos est\'en conectados a la misma red. 
-\\
-Para conseguir la IP del PC cada vez que ejecutamos la aplicaci\'on y que esta sea diferente en cada red a la que nos conectamos, usamos la API de .NET una vez m\'as para tener acceso al DNS y que este nos de la direcci\'on IP del ordenador. 
-
-%-------------------------------------------------------------------
-\section{Recepci\'on de Input}
-%-------------------------------------------------------------------
-\label{cap6:sec:input}
-
-Tal y como se dijo en el cap\'itulo anterior, la aplicaci\'on de Android env\'ia por red el bot\'on que se ha pulsado. Esto cuando llega a la aplicaci\'on de PC es le\'ido e interpretado, lo \'unico que se necesita es saber el significado de la ristra de bytes que se env\'ian pero eso ya fue explicado en el cap\'itulo 4 en el apartado donde se explica el protocolo de conexi\'on. Una vez hecho esto, hay que leer los bytes referidos al movimiento desde una clase exterior al servidor y que ya ejecute API de Unity porque el servidor como tal es independiente de Unity y s\'olo usa .NET.
-\\
- Esta \'ultima opci\'on es la que se plantea y se usa en el ejemplo que se ha hecho para demostrar el funcionamiento de este proyecto.
-Para que estos datos sean le\'idos correctamente sin ser borrados o alterados, desde el servidor se rellena un array que se encuentra en la clase del movimiento del jugador.
-\\
- Hacer este guardado permite leer el array una \'unica vez y una vez que se ha rellenado se ejecuta el Update de la clase encargada del movimiento del jugador, lo que hace que este se mueva y no entre en concurrencia con el resto de datos entrantes por el servidor tras el Input del jugador desde la aplicaci\'on de Android.
-%-------------------------------------------------------------------
-\section{Env\'io de imagenes por red}
-%-------------------------------------------------------------------
-\label{cap6:sec:discusion}
-
-Como feature adicional a lo planeado en un inicio, se propuso la idea de poder usar el dispositivo Android como un mapa interactuable o incluso como pantalla secundaria. La idea era dar la mayor libertad creativa al desarrollador del videojuego.
-\\
- Para hacer esto posible se ha implementado un API que coge la textura de una c\'amara de Unity y la env\'ia por red. La imagen que posteriormente va a ser enviada, es cogida de una c\'amara de Unity y guardada en otra textura 2D. Esta nueva textura es le\'ida y transformada a PNG, lo que la comprime.
-\\
- Tras ser enviada, la textura es recibida en un formato comprimido que se descomprime en la aplicaci\'on Android para ser mostrada como fondo de la pantalla. Todo este proceso se lleva a cabo en en un hilo que se ejecuta concurrentemente en la aplicaci\'on de PC. Este hilo tiene la opci\'on de no ejecutarse ya que el desarrollador puede elegir si necesita o no que su videojuego env\'ie una imagen de fondo o solamente reciba Input del jugador. Con esto puede enviarse una imagen pero en la demostraci\'on hecha para este proyecto se env\'ia constantemente el contenido de la c\'amara principal del videojuego para que en el fondo de la aplicaci\'on se vea el juego de una manera fluida.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
