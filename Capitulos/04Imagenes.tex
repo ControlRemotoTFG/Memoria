@@ -96,9 +96,10 @@ El flujo de mensajes durante la ejecuci\'on de estas aplicaciones tiene un inter
 La figura XXXX describe este protocolo de manera m\'as gr\'afica.
 
 \begin{figure}[h]
-
 \centering
 \includegraphics[width=0.6\textwidth]{Imagenes/Bitmap/UDP-protocol.png}
+\caption{Protocolo de comunicaci\'on entre las aplicaciones}
+\label{Protocolo Android - Unity}
 \end{figure}
 
 \newpage
@@ -109,13 +110,15 @@ La figura XXXX describe este protocolo de manera m\'as gr\'afica.
 
 La principal funci\'on de este proyecto es el uso de un dispositivo Android para controlar de manera remota un videojuego realizado en Unity. Para esto es necesario conocer la arquitectura de Android y c\'omo funciona el ciclo de vida de sus aplicaciones.
 La siguiente figura muestra el ciclo de vida de cualquier aplicaci\'on que se ejecute en un dispositivo Android.
-
+\\
 \begin{figure}[h]
 
 \centering
 \includegraphics[width=0.6\textwidth]{Imagenes/Bitmap/Ciclo_de_vida_Android.png}
+\caption{Ciclo de Vida de una Actividad de Android}
+ \label{Ciclo de vida android}
 \end{figure}
-
+\\
 Como puede observarse, cada Activity de una aplicaci\'on ejecutada en Android tiene varias etapas por las que puede pasar:
 
 \begin{enumerate}
@@ -140,9 +143,34 @@ Este c\'odigo QR es generado gracias a la librer\'ia de ZXing.NET desde la aplic
 
 Si el c\'odigo QR que se lee es correcto, se lanza una segunda Activitidad. La creaci\'on de una segunda actividad permite usar un archivo de manifiesto diferente y con \'el, generar una interfaz de usuario adecuada a esta segunda actividad. Esta segunda actividad tiene como prop\'osito establecer la comunicaci\'on con el servidor ya iniciado en la direcci\'on IP extraida del c\'odigo QR y a su vez el intercambio de informaci\'on (pulsaciones e im\'agenes) durante la sesi\'on de juego.
 \\
-QUE SE VE, QUE SE MANDA, QUE SE RECIBE, COMO LO RECOGEMOS. ARQUITECTURA E HILOS QUE ME TIENE QUE DIBUJAR SERGIO EN DIBUJAR Y PASARLO A BONITO SUPER NAISER
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{Imagenes/Bitmap/Mando.png}
+\caption{Vista del mando enviado desde Unity a Android}
+ \label{Mando}
+\end{figure}
+\\
+En caso de que el c\'odigo QR se lea correctamente, se inciar\'a la conexi\'on con el servidor que se est\'a ejecutando en Unity. En el siguiente apartado se explica la ejecuci\'on en la lado de Unity y el inicio de la conexi\'on con este. Desde Unity se env\'ia de manera constanste un streaming de im\'agenes sacadas de una c\'amara auxiliar colocada en la escena del juego. Esto permite en el env\'io de tanto un mando, mando con gameplay o \'unicamente gameplay. Para la demostraci\'on de este proyecto, se ha optado por el env\'io de la im\'agen de un mando de manera exclusiva. Este mando puede verse en la figura XXXXX . 
+\\
+
+Esta im\'agen llega al dispositivo Android tras realizarse una compresi\'on a formato PNG en el lado del servidor. Los bytes que llegan son convertidos a un tipo Bitmap y este Bitmap es usado como fondo de la Actividad. Este proceso se realiza constantemente ya que en caso de que se quiera utilizar para gameplay, este vaya fluido. En el cap\'ítulo siguiente se tratan las pruebas con usuario donde se hace un estudio de cu\'anto tarda esta im\'agen en procesarse y enviarse. 
+\\
+La arquitectura de este proyecto de Android puede verse en la figura XXXX. 
+\\
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Imagenes/Bitmap/Arquitectura_Android.png}
+\caption{Arquitectura de la aplicaci\'on Android}
+ \label{Arquitectura_Android}
+\end{figure}
+\\
+
+\textbf{MainActivity} y \textbf{Controller} son las 2 actividades que se ha comentado anteriormente que existen en este proyecto de Android. La funci\'on de MainActivity es la de la lectura del QR. Su dise\~no tiene como \'unico prop\'osito el de mostrar la c\'amara para la lectura del QR. Se encarga de pedir los permisos necesarios para el uso de la c\'amara. Cuando el QR es correcto, guarda la informaci\'on y antes de terminar ordena la creaci\'on de una segunda actividad con la informaci\'on del QR. La informaci\'on del QR es de tipo \textbf{String} y tiene como formato \textit{IP:Puerto}. 
+\\
+Adem\'as de la informaci\'on del QR y las im\'agenes, hay otro dato que interviene en la comunicaci\'on entre las 2 aplicaciones planteadas para este proyecto. Estos datos son las pulsaciones de la pantalla del dispositivo Android. En estos mensajes se env\'ian los datos de las coodenadas (x,y) donde el usuario ha pulsado y adem\'as el tipo de gesto que ha hecho (pulsar o levantar). La disposici\'on de los bytes que se env\'ian puede verse en la figura XXX. Un mensaje que \'unicamente se realiza al inicio de la conexi\'on es el del env\'io de las dimensiones de la pantalla que tiene el dispositivo Android. La disposici\'on de los bytes de este mensaje puede verse en la figura XXX.
 
 
+\newpage
 %-------------------------------------------------------------------
 \section{Aplicaci\'on PC}
 %-------------------------------------------------------------------
