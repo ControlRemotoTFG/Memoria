@@ -153,7 +153,7 @@ Si el c\'odigo QR que se lee es correcto, se lanza una segunda Activitidad. La c
 En caso de que el c\'odigo QR se lea correctamente, se inciar\'a la conexi\'on con el servidor que se est\'a ejecutando en Unity. En el siguiente apartado se explica la ejecuci\'on en la lado de Unity y el inicio de la conexi\'on con este. Desde Unity se env\'ia de manera constanste un streaming de im\'agenes sacadas de una c\'amara auxiliar colocada en la escena del juego. Esto permite en el env\'io de tanto un mando, mando con gameplay o \'unicamente gameplay. Para la demostraci\'on de este proyecto, se ha optado por el env\'io de la im\'agen de un mando de manera exclusiva. Este mando puede verse en la figura XXXXX . 
 \\
 
-Esta im\'agen llega al dispositivo Android tras realizarse una compresi\'on a formato PNG en el lado del servidor. Los bytes que llegan son convertidos a un tipo Bitmap y este Bitmap es usado como fondo de la Actividad. Este proceso se realiza constantemente ya que en caso de que se quiera utilizar para gameplay, este vaya fluido. En el cap\'ítulo siguiente se tratan las pruebas con usuario donde se hace un estudio de cu\'anto tarda esta im\'agen en procesarse y enviarse. 
+Esta im\'agen llega al dispositivo Android tras realizarse una compresi\'on a formato PNG en el lado del servidor. Este array de bytes que llega es convertido a un tipo Bitmap mediante \textit{BitmapFactory} y es usado como fondo de la Actividad. Este proceso se realiza constantemente ya que en caso de que se quiera utilizar para gameplay, este requiere de fluidez. En el cap\'itulo siguiente se tratan las pruebas con usuario donde se hace un estudio de cu\'anto tarda esta im\'agen en procesarse. 
 \\
 La arquitectura de este proyecto de Android puede verse en la figura XXXX. 
 \\
@@ -165,7 +165,7 @@ La arquitectura de este proyecto de Android puede verse en la figura XXXX.
 \end{figure}
 \\
 
-\textbf{MainActivity} y \textbf{Controller} son las 2 actividades que se ha comentado anteriormente que existen en este proyecto de Android. La funci\'on de MainActivity es la de la lectura del QR. Su dise\~no tiene como \'unico prop\'osito el de mostrar la c\'amara para la lectura del QR. Se encarga de pedir los permisos necesarios para el uso de la c\'amara. Cuando el QR es correcto, guarda la informaci\'on y antes de terminar ordena la creaci\'on de una segunda actividad con la informaci\'on del QR. La informaci\'on del QR es de tipo \textbf{String} y tiene como formato \textit{IP:Puerto}. 
+\textbf{MainActivity} y \textbf{Controller} son las 2 actividades que se han comentado anteriormente que existen en este proyecto de Android. La funci\'on de MainActivity es la de la lectura del QR. Su dise\~no tiene como \'unico prop\'osito el de mostrar la c\'amara para la lectura del QR. Se encarga de pedir los permisos necesarios para el uso de la c\'amara. Cuando el QR es correcto, guarda la informaci\'on y antes de terminar ordena la creaci\'on de una segunda actividad con la informaci\'on del QR. La informaci\'on del QR es de tipo \textbf{String} y tiene como formato \textit{IP:Puerto}. 
 \\
 Adem\'as de la informaci\'on del QR y las im\'agenes, hay otro dato que interviene en la comunicaci\'on entre las 2 aplicaciones planteadas para este proyecto. Estos datos son las pulsaciones de la pantalla del dispositivo Android. En estos mensajes se env\'ian los datos de las coodenadas (x,y) donde el usuario ha pulsado y adem\'as el tipo de gesto que ha hecho (pulsar o levantar). La disposici\'on de los bytes que se env\'ian puede verse en la figura XXX. Un mensaje que \'unicamente se realiza al inicio de la conexi\'on es el del env\'io de las dimensiones de la pantalla que tiene el dispositivo Android. La disposici\'on de los bytes de este mensaje puede verse en la figura XXX.
 
@@ -176,7 +176,47 @@ Adem\'as de la informaci\'on del QR y las im\'agenes, hay otro dato que intervie
 %-------------------------------------------------------------------
 \label{cap4:sec:aplicaiconPC}
 
+Como ya se ha mencionado en el cap\'itulo 2, la aplicaci\'on de escritorio que contiene el servidor y el juego est\'a desarrollada en Unity. Unity es un motor de videojuegos basado en entidades y componentes. Estos componentes est\'an concebidos para ser caracter\'isticas independientes que se a\~naden a las entidades. Por su parte las entidades por si mismas no realizan ninguna acci\'on hasta que no se le a\~naden componentes. Este sistema anima a integrar partes independientes a la arquitectura general de un proyecto sin necesidad de hacer cambios dr\'asticos, es por esto que la idea principal de este proyecto era la de desarrollar una serie de scripts que a\~nadiesen la posibilidad de utilizar un dispositivo Android para el control de un videojuego ya terminado.
+\\
+Para el inicio de la conexi\'on se ha utilizado la librer\'ia de ZXing, la cual tiene su versi\'on para diferentes lenguajes. En el caso de C\# es suficiente con tener la DLL en el directorio del proyecto. ZXing es una librer\'ia que soporta tanto la generaci\'on como la decodificaci\'on de c\'odigos de barras. Algunos de los diferentes formatos que soporta son:
+\\
+\begin{itemize}
+\item C\'odigos QR
+\item PDF 417
+\item EAN (European Article Number)
+\item UPC (Universal Product Code)
+\item Aztec Code
+\end {itemize}
 
+Un c\'odigo QR suele utilizarse para la conexi\'on con una URL ya que es m\'as r\'apido y f\'acil leer un c\'odigo QR que escribir una URL completa en un dispositivo m\'ovil. El QR utilizado en este proyecto no es est\'atico ya que no contiene ninguna URL, lo que contiene son tanto la IP como el puerto al que debe conectarse la aplicaci\'on m\'ovil para poder jugar al juego. Es por esto que no sirve cualquier aplicaci\'on gen\'erica de lectura de QRs y se ha tenido que integrar dentro de la aplicaci\'on m\'ovil que se utiliza para controlar el videojuego. Una vez este c\'odigo se ha creado con la IP del ordenador al que conectarse y el puerto habilitado para el intercambio de datos, el QR se genera como si formase parte de la interfaz del usuario hasta que este se conecte.
+\\
+La primera acci\'on que se realiza desde el PC una vez se ha realizado la conexi\'on es la del env\'io del tiempo de vibraci\'on en caso de que los desarrolladores del juego quieran dar ese feedback al usuario. Este mensaje es un \'unico valor de tipo \textit{int} que indica el tiempo de vibraci\'on. Inmediatamente despu\'es comienza el env\'io de im\'agenes, estas im\'agenes son enviadas 1 vez por cada frame del juego. La decisi\'on de enviar estas im\'agenes es porque se da la posibilidad de ver gameplay fluido en el dispositivo m\'ovil donde se est\'a jugando. Dentro de Unity esto es posible gracias al uso de m\'ultiples c\'amaras dentro de la misma escena. Para este proyecto se ha propuesto el uso de una c\'amara auxiliar que sirva para decidir lo que el usuario va a ver en su tel\'efono m\'ovil. Al igual que se explic\'o en el apartado anterior con Android, Unity dispone de varias funciones que son llamadas directamente por el entorno. Unity dispone de la funci\'on \textbf{LateUpdate()}, la cual se llama al final de cada frame del videojuego. Gracias a esta funci\'on, el motor nos asegura que todas las transformaciones f\'isicas se han realizado, por lo tanto,  la c\'amara auxiliar puede sacar una instant\'anea de lo que est\'a viendo y enviarsela al usuario por red. Para que esta im\'agen pese lo menos posible, se la somete a una compresi\'on PNG. Esta compresi\'on PNG est\'a basado en algoritmo de compresi\'on de datos sin p\'erdidas conocido como \textbf{\textit{DEFLATE o Deflaci\'on}}. Para que esta conversi\'on sea posible, la API de Unity proporciona la funci\'on \textbf{EncodeToPNG()}. \footnote{https://docs.unity3d.com/ScriptReference/ImageConversion.EncodeToPNG.html} Esta funci\'on devuelve una array de bytes preparados para ser enviados directamente al dispositivo m\'ovil por red.
+\\
+Desde Android se env\'ian las coordenadas de las pulsaciones para que dependiendo del mando, esto signifique si se ha pulsado un bot\'on. Esta notificaci\'on se realiza siguiendo el \textbf{patr\'on listener}. Este patr\'on de dise\~no de software define que el cambio del estado de un objeto es notificado a todos los miembros dependientes. El objetivo de usar este patr\'on de dise\~no es el de definir una dependendia uno a muchos. Esto es una modificaci\'on del patr\'on \textbf{Observador} ya que en este caso un elemento no quiere estar pendiente de otro sino que se le avise autom\'aticamente. 
+\\
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Imagenes/Bitmap/Listener.png}
+\caption{Patr\'on Listener}
+ \label{Patron_Listener}
+\end{figure}
+\\
+La librer\'ia realizada para este proyecto utiliza este patr\'on. Para esto se ha implementado una interfaz llamada \textbf{InputMobileInterface} que sirve para avisar al objeto que implemente dicha interfaz de:
+\begin{itemize}
+\item Recepci\'on de una pulsaci\'on por parte del usuario.
+\item Valores del alto y ancho en pixeles de la pantalla del tel\'efono m\'ovil del usuario que se ha conectado.
+\item Notificaci\'on del final de la conexi\'on.
+\end {itemize}
+Al tratarse una interfaz p\'ublica, cualquier clase puede convertirse en Listener de InputMobileInterface heredando de esta e implementando los 3 m\'etodos mencionados anteriormente. En el cap\'itulo siguiente se explicar\'a de manera m\'as detallada los pasos a seguir para la inclusi\'on de esta serie de scripts en un juego ya terminado junto con las pruebas con usuarios. La librer\'ia desarrollada consta de 3 scripts que se comunican entre si para realizar las funciones que se han descrito en este apartado.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=1.0\textwidth]{Imagenes/Bitmap/Arquitectura_Unity.png}
+\caption{Arquitectura de la librer\'ia implementada para Unity}
+ \label{Unityr}
+\end{figure}
+
+La clase \textbf{ServerUDP} es la clase principal y es de la cual se requiere tener una instancia en el proyecto. Esta clase es la encargada de guardar y registrar listeners. Adem\'as se encarga de utilizar la clase \textbf{QR} que implementa la funcionalidad para generar el c\'odigo QR correcto con el uso de la librer\'ia ZXing.Net. Por \'ultimo, la clase ServerUDP tiene como  cometido la inicializaci\'on del socket y la de inicar los hilos de recepci\'on y env\'io de datos al dispositivo m\'ovil cuando este se conecte. Una vez lleguen los datos de las pulsaciones, esta clase tambi\'en se encarga de avisar a todos los listeners que se hayan registrado.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
