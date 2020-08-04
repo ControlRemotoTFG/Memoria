@@ -49,93 +49,36 @@
 \end{FraseCelebre}
 
 
-%-------------------------------------------------------------------
-\section{Objetivos}
-%-------------------------------------------------------------------
-\label{cap3:sec:obejtivos}
-
-Tal y como se ha podido ver en los cap\'itulos anteriores, las empresas de videojuegos han puesto todos sus esfuerzos para adaptarse e integrar los dispositivos m\'oviles dentro del mundo de los videojuegos. Con las tecnolog\'ias mencionadas en el c\'apitulo dos como referencia directa, los objetivos que se plantearon para el proyecto son:
-
-
-\begin{itemize}
-\item Desarrollar una librer\'ia para Unity3D. Esta consistir\'a en un servidor  que ofrecer\'a su IP y el puerto elegido para la comunicaci\'on mediante un QR que aparecer\'a en pantalla.
-\item Desarrollar una aplicaci\'on Android para usar el propio m\'ovil como mando virtual. Esta aplicaci\'on utilizar\'a la c\'amara para leer el c\'odigo QR e iniciar una conexi\'on con el servidor.
-\item Integrar las herramientas mencionadas en los puntos anteriores en un proyecto ya cerrado para demostrar su funcionalidad.
-\end{itemize}
-
-Con la integraci\'on del proyecto en un juego ya cerrado se pretende hacer una serie de pruebas con usuarios para ver el rendimiento de la herramienta en ordenadores y dispositivos m\'oviles con diferentes caracter\'isticas. Para eso se implementar\'an herramientas para la recogida de datos de los usuarios y las acciones realizadas durante las sesiones. Estos datos ser\'an analizados en el cap\'itulo 5 con mayor profundidad.
- \\
-A continuaci\'on plantearemos la metodolog\'ia y el plan de trabajo seguido.
-
+\chapter{Especificaci\'on}
+\label{cap3}
+\label{cap:especificacion}
 
 %-------------------------------------------------------------------
-\section{Plan de trabajo}
+\section{Introducci\'on}
 %-------------------------------------------------------------------
-\label{cap3:sec:plandetrabajo}
+\label{cap3:sec:intro}
 
-La primera fase estar\'a dedicada a la investigaci\'on y el estudio de las herramientas ya existentes que exploran los aspectos en com\'un con este TFG. Se usar\'a Github\footnote{https://github.com/} como sistema de control de versiones, donde estar\'an 2 repositorios: uno para la memoria y otro donde se encontrar\'a el c\'odigo de la demo. El uso de Github es debido a su amplio reconocimiento a nivel mundial, en enero de 2013 ya contaba con 3 millones de usuarios junto con 4.9 millones de repositorios. Unos datos m\'as actuales indican que Github en Junio de 2018 alojaba casi 80 millones de proyectos. Dado a la gran cantidad de usuarios de dicha plataforma existe una gran ayuda para todo problema que surja.
-\\
-Las reuniones con los directores ser\'an cada 2-3 semanas, dependiendo de la disponibilidad y horarios. El objetivo de estas reuniones ser\'a llevar un control de lo que se haya avanzado y plantear las pr\'oximas 2-3 semanas de trabajo.
-Se han marcado unos hitos espec\'ificos:
-
- 
-\begin{enumerate}
-
-\item \textbf{Hito 1:} Conexi\'on entre Android y Unity3D establecida. Con esto se pretende que un personaje en Unity3D sea capaz de moverse gracias al Input que recibe desde Android.
-\item \textbf{Hito 2:} Se deber\'a de haber conseguido tener una c\'amara en Unity3D enviando una imagen via streaming al dispositivo Android mientras se juega con el Input recibido del dispositivo m\'ovil.
-\item \textbf{Hito 3:} Aqui se debe tener una demo que sea capaz de demostrar las capacidades de la herramienta.
-\item \textbf{Hito 4:} Pruebas con usuarios, recogida de informaci\'on y an\'alisis.
-\end{enumerate}
-
-
+Con este proyecto lo que se busca es convertir a un dispositivo m\'ovil en un dispositivo de entrada para jugar a videojuegos. Para conseguir esto se necesita que al menos 2 dispositivos se comuniquen entre si, en este caso un ordenador y un tel\'efono Android.
+En el ordenador lo que se quiere es ejecutar un videojuego y que este se controle atrav\'es de una aplicaci\'on m\'ovil que se conecte y transfiera datos de pulsaciones y acciones del jugador para que pueda jugar al juego desde su tel\'elefono m\'ovil. Para que esta comunicaci\'on sea posible, es necesario un protocolo de comunicaci\'on. Con este protocolo de cmunicaci\'on ambas aplicaciones tendr\'an un control sobre los datos que envian y reciben para poder actuar en consecuencia.
 
 %-------------------------------------------------------------------
-\section{Metodolog\'ia}
+\section{Funcionalidad}
 %-------------------------------------------------------------------
-\label{cap3:sec:metodolog\'ia}
 
-La metodolog\'ia utilizada para la realizaci\'on de este proyecto est\'a basada en el desarrollo \'agil. Se han marcado peque'nos objetivos de 2 semanas de duraci\'on llamados sprints hasta llegar a las metas grandes o hitos mencionados en el apartado anterior.\\
-La metodolog\'ia que se iba a usar estaba definida desde el primer d\'ia ya que es la que los miembros del proyecto siguen en todos los trabajos que realizan. Se decidi\'o usar \textbf{Scrum}.
-Scrum es una metodolog\'ia \'agil que adopta una estrategia de desarrollo incremental, en lugar de la planificaci\'on y ejecuci\'on completa del proyecto en cuesti\'on. La particularidad que se tiene en este proyecto es el constante cambio de las tareas nuevas que se pueden llegar a incluir tras cada reuni\'on.
+\begin {itemize}
+\item Env\'io de pulsaciones y gestos admisibles en pantallas t\'actiles.
+\item Env\'io de im\'agenes de manera constante. Streaming de video.
+\item Vubraci\'on y el uso de vibraci\'on como feedback.
+\item ?`Nombrar aqui posible trabajo futuro y ya desarrollarlo en el cap\'itulo que corresponde?
+\end {itemize}
 
 %-------------------------------------------------------------------
-\section{Herramientas utilizadas}
+\section{Protocolo de comunicaci\'on}
 %-------------------------------------------------------------------
-\label{cap3:sec:herramientas}
-
-Es resultado final del proyecto involucra tanto un ordenador como un dispositivo m\'ovil conectados a la misma red. Para el desarrollo usaremos las siguientes herramientas software de comunicaci\'on, seguimiento y planificaci\'on:
-
-\begin{enumerate}
-
-\item \textbf{\LaTeX \footnote{https://www.latex-project.org/}}\\
-
-Para la realizaci\'on de este documento se ha usado \LaTeX en su distribuci\'on de MiKTeX \footnote{https://miktex.org/} para Windows.
-Las caracter\'isticas m\'as apreciables de MiKTeX son su habilidad de actualizarse por s\'i mismo descargando nuevas versiones de componentes y paquetes instalados previamente, y su f\'acil proceso de instalaci\'on.\\
-
-\item \textbf{GitHub}\\
-
- GitHub es una plataforma de desarrollo cooperativo en la que se pueden alojar proyectos utilizando el sistema de control de versiones Git\footnote{https://git-scm.com/}. Se utiliza para la creaci\'on y almacenamiento de c\'odigo fuente de manera p\'ublica. La herramienta Git se ha usado para mantener un control de versiones sobre 2 repositorios, uno para la demo y otro para la memoria. \\
-
-\item \textbf{Discord\footnote{https://discord.com/}}\\
-
-Discord es una plataforma de comunicaci\'on por voz, texto y v\'ideo. Discord ofrece la posibilidad de crear canales dedicados, lo que se ha usado para guardar enlaces de inter\'es para el desarrollo prematuro de este proyecto. 
-Esta herramienta es multiplataforma y no requiere de instalaci\'on ya que puede usarse desde navegadores como Chrome o Firefox. Adem\'as de esto consta con un sistema de tranferencia de archivos y de retransmisi\'on de tu pantalla a las personas que se encuentren en la llamada. Todas estas caracter\'isticas han sido utilizadas para las sesiones de trabajo grupal. \\
-\\
-
-\item \textbf{Unity\footnote{https://unity.com/es}}\\
-
-Unity ha sido el entorno de desarrollo elegido, la versi\'on de Unity utilizada ha sido la 2018.4.18f1. La elecci\'on de Unity fue por la gran comunidad de usuarios y la extensa y detallada documentaci\'on con la que cuenta este motor. Adem\'as, al usar C\# como lenguaje de programaci\'on, se ha contado con toda la API y documentaci\'on de Microsoft sobre .NET.\footnote{https://docs.microsoft.com/es-es/dotnet/} 
-
-\item \textbf{Visual Studio 2019\footnote{https://visualstudio.microsoft.com/es/}}\\
-
-La decisi\'on de usar Visual Studio como IDE fue por la integraci\'on que tiene con Unity. Gracias a esta integraci\'on se ha podido crear y mantener archivos de proyectos de Visual Studio autom\'aticamente. Algo a tener en cuenta es que no se usa el compilador de Visual Studio, sino que se usa directamente el compilador de C\# para la compilaci\'on de los scripts creados en Unity.\\
-
-\item \textbf{Android Studio\footnote{https://developer.android.com/studio}}\\
-
-Se ha decidido usar este IDE para el desarrollo de la aplicaci\'on para Android. Android Studio dispone de una construcci\'on del proyecto basada en Gradle\footnote{https://gradle.org/}, lo que hace que su construcci\'on se haga de manera din\'amica y un editor de dise\~no enriquecido que permite a los usuarios arrastrar y soltar componentes de la interfaz de usuario.
-Adem\'as de incluir las SDK de Android y todo lo que estas incorporan para que el desarrollo en Android sea posible.
-\\
-\end{enumerate}
+\begin {itemize}
+\item Diagrama del protocolo con explicaci\'on exhaustiva sobre el uso del little o big endian (coger por ejemplo el protocolo HTTP para ver como se realiza una especificaci\'on detallada)
+\item Explicaci\'on de cada uno de los mensajes que se env\'ian y reciben. Hab\'ia pensado poner los cl\'asicos diagramas de cajas para ver la estructura de los bytes que se envian y el orden sobretodo para una posterior lectura si alguien utiliza solamente una de las partes del proyecto.
+\end {itemize}
 
 %\begin{table}[t]
 %\footnotesize
