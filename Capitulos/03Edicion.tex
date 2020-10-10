@@ -54,7 +54,7 @@
 \section{Introducci\'on}
 %-------------------------------------------------------------------
 \label{cap3:sec:intro}
-En este cap\'itulo lo que se plantea es poner sobre la mesa las diferentes tecnolog\'ias involucradas en el proyecto y ver las decisiones tomadas en base a las necesidades para la realizaci\'on de este proyecto. La finalidad de el proyecto es la conexi\'on entre 2 dispositivos, uno de ellos ejecuta el juego y el otro funciona como un dispositivo de entrada / mando para controlar el videojuego. 
+En este cap\'itulo lo que se plantea es poner sobre la mesa las diferentes tecnolog\'ias involucradas en el proyecto y ver las decisiones tomadas en base a las necesidades para la realizaci\'on de este proyecto. La finalidad del proyecto es la conexi\'on entre 2 dispositivos, uno de ellos ejecuta el juego y el otro funciona como un dispositivo de entrada / mando para controlar el videojuego. 
 Para conseguir esta comunicaci\'on entre ambos dispositivos es necesario plasmar la funcionalidad que se quiere dar y la posterior creaci\'on e implementaci\'on de un protocolo de red.
 
 
@@ -63,7 +63,7 @@ Para conseguir esta comunicaci\'on entre ambos dispositivos es necesario plasmar
 %-------------------------------------------------------------------
 
 En los \'ultimos a\~nos se ha visto un aumento en la incorporaci\'on de elementos t\'actiles en los controladores de videojuegos. Empresas como Sony a\~nadieron una pantalla t\'actil en el Dualshock4, Nintendo con las consolas port\'atiles lleva varias generaciones a\~nadiendo pantallas t\'actiles a sus consolas y los dispositivos m\'oviles cada vez son m\'as usados para jugar a videojuegos.
-Es por esto que en este proyecto, la comunicaci\'on entre 2 dispositivos ser\'a m\'as espec\'ifica y ser\'a entre un dispositivoen el cual se ejecuta el juego y un dispositivo m\'ovil que servir\'a como mando. Una de las principales diferencias entre un mando tradicional y un dispositivo m\'ovil es la pulsaci\'on de botones. El feedback recibido en la pulsaci\'on de una pantalla t\'actil es inexistente a no ser que no se especifique en la funcionalidad de la aplicaci\'on y debe ser lo suficientemente sutil como para no ser molesto a la hora de jugar.
+Es por esto que en este proyecto, la comunicaci\'on entre 2 dispositivos ser\'a m\'as espec\'ifica y ser\'a entre un dispositivo en el cual se ejecuta el juego y un dispositivo m\'ovil que servir\'a como mando. Una de las principales diferencias entre un mando tradicional y un dispositivo m\'ovil es la pulsaci\'on de botones. El feedback recibido en la pulsaci\'on de una pantalla t\'actil es inexistente a no ser que no se especifique en la funcionalidad de la aplicaci\'on y debe ser lo suficientemente sutil como para no ser molesto a la hora de jugar.
 
 Otras de las caracter\'sticas que tiene un dispositivo m\'ovil frente a un mando tradicional es el uso de gestos espec\'ificos. Una gran parte de estos gestos son utilizados de manera natural ya que son asociados al uso de dispositivos m\'oviles. 
 
@@ -74,7 +74,7 @@ Con estas caracter\'isticas contempladas, las principales funcionalidades que de
 \begin {itemize}
 \item Env\'io de pulsaciones y gestos admisibles en pantallas t\'actiles.
 \item Env\'io de im\'agenes est\'aticas.
-\item Env\'io de im\'agenes de manera constante. Streaming de video.
+\item Env\'io de im\'agenes de manera constante, simulando un streaming de video.
 \item El uso de vibraci\'on como feedback de la pulsaci\'on de la pantalla.
 \end {itemize}
 
@@ -94,7 +94,7 @@ En este proyecto ambos dispositivos envian y reciben mensajes por lo que no pued
 
 La comprobaci\'on que se realiza en este mensaje es si se reciben 8 bytes en el lado del dispositivo que ejecuta el juego.
 
-Una vez la conexi\'on se ha establecido correctamente, el dispositivo que ejecuta el juego env\'ia al controlador la duraci\'on de la vibraci\'on que debe realizar cada vez que se pulse un bot\'on en la pantalla para que el usuario reciba un feedback h\'aptico. Este mensaje contiene un \textit{int} de 4 bytes que representa el tiempo que debe durar la vibraci\'on en milisegundos.
+Una vez la conexi\'on se ha establecido correctamente, el dispositivo que ejecuta el juego env\'ia al controlador la duraci\'on de la vibraci\'on que debe realizar para que el usuario reciba un feedback h\'aptico. Este mensaje contiene un \textit{int} de 4 bytes que representa el tiempo que debe durar la vibraci\'on en milisegundos.
 
 Tras el env\'io de este mensaje comienza un bucle de juego en el que ambos dispositivos intercambian mensajes de una manera no ordenada. El dispositivo que se encarga de ejecutar el juego env\'ia los siguientes mensajes:
 \begin {itemize}
@@ -110,7 +110,7 @@ Adem\'as de enviar estos mensajes, el dispositivo encargado de ejecutar el juego
 \item \textit{Meter una imagen con la distribucion de bits}
 \end {itemize}
 
-Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene el valor 2. La recepci\'on de este mensaje hace que el dispositivo que ejecuta el juego env\'ie 1 byte con el valor 1 al dispositivo m\'oviles y ambos cierran la conexi\'on. Estos mensajes puedes enviarse y recibirse en cualquier momento en caso de que sucediese cualquier error durante la comunicaci\'on. Para la detecci\'on de una p\'erdida de conexi\'on entre el dispositivo m\'ovil y el dispositivo que ejecuta el juego, este dispone de un tiempo m\'aximo sin la recepci\'on de mensajes hasta que se finalice la conexi\'on (Time Out).
+Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene el valor 2. La recepci\'on de este mensaje hace que el dispositivo que ejecuta el juego env\'ie 1 byte con el valor 1 al dispositivo m\'oviles y ambos cierran la conexi\'on. Estos mensajes puedes enviarse y recibirse en cualquier momento en caso de que sucediese cualquier error durante la comunicaci\'on. Para la detecci\'on de una p\'erdida de conexi\'on entre el dispositivo m\'ovil y el dispositivo que ejecuta el juego, este dispone de un tiempo m\'aximo en el que si no se reciben mensajes se finaliza la conexi\'on (Time Out).
 
 \begin {itemize}
 \item Diagrama del protocolo con explicaci\'on exhaustiva sobre el uso del little o big endian (coger por ejemplo el protocolo UDP para ver como se realiza una especificaci\'on detallada)
