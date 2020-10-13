@@ -89,12 +89,38 @@ En este proyecto ambos dispositivos envian y reciben mensajes por lo que no pued
 \begin {itemize}
 \item Los 4 primeros bytes son un n\'umero de tipo \textit{int} que simboliza el ancho del dispositivo m\'ovil.
 \item Los 4 \'ultimos bytes son un n\'umero de tipo \textit{int} que simboliza el alto del dispositivo m\'ovil.
-\item \textit{Meter una imagen con la distribucion de bits}
 \end {itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|} 
+\hline
+Bits                    & 0-31                   & 32-63                   \\
+\hline
+\multicolumn{1}{|c|}{0} & \multicolumn{1}{c|}{Ancho} & \multicolumn{1}{c|}{Alto}  \\
+\hline
+\end{tabular}
+\caption{Primer mensaje del controlador al ejecutor de juego}
+\label{table:2}
+\end{table}
+
 
 La comprobaci\'on que se realiza en este mensaje es si se reciben 8 bytes en el lado del dispositivo que ejecuta el juego.
 
 Una vez la conexi\'on se ha establecido correctamente, el dispositivo que ejecuta el juego env\'ia al controlador la duraci\'on de la vibraci\'on que debe realizar para que el usuario reciba un feedback h\'aptico. Este mensaje contiene un \textit{int} de 4 bytes que representa el tiempo que debe durar la vibraci\'on en milisegundos.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|} 
+\hline
+Bits                    & 0-31                 \\
+\hline
+\multicolumn{1}{|c|}{0} & Tiempo de vibraci\'on  \\
+\hline
+\end{tabular}
+\caption{Tiempo de vibraci\'on del dispositivo movil en milisegundos}
+\label{table:2}
+\end{table}
 
 Tras el env\'io de este mensaje comienza un bucle de juego en el que ambos dispositivos intercambian mensajes de una manera no ordenada. El dispositivo que se encarga de ejecutar el juego env\'ia los siguientes mensajes:
 \begin {itemize}
@@ -107,14 +133,25 @@ Adem\'as de enviar estos mensajes, el dispositivo encargado de ejecutar el juego
 \item El primer byte es el tipo de la pulsaci\'on. El valor 0 indica el comienzo de la pulsaci\'on y el valor 1 indica el fin de la pulsaci\'on.
 \item Los siguentes 4 bytes representan un \textit{int} cuyo valor indica la posici\'on X de la pantalla del dispositivo m\'ovil donde se ha pulsado el bot\'on.
 \item Los \'ultimos 4 bytes representan un \textit{int} cuyo valor indica la posici\'on Y de la pantalla del dispositivo m\'ovil donde se ha pulsado el bot\'on.
-\item \textit{Meter una imagen con la distribucion de bits}
 \end {itemize}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|c|c|c|} 
+\hline
+Bits                    & 0-7               & 8-39                            & 40-71                            \\ 
+\hline
+\multicolumn{1}{|c|}{0} & Tipo de pulsaci\'on & \multicolumn{1}{l|}{Posici\'on X} & \multicolumn{1}{l|}{Posici\'on Y}  \\
+\hline
+\end{tabular}
+\caption{Pulsaci\'on enviada desde el dispositivo m\'ovil al ejecutor del juego}
+\label{table:2}
+\end{table}
 
 Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene el valor 2. La recepci\'on de este mensaje hace que el dispositivo que ejecuta el juego env\'ie 1 byte con el valor 1 al dispositivo m\'oviles y ambos cierran la conexi\'on. Estos mensajes puedes enviarse y recibirse en cualquier momento en caso de que sucediese cualquier error durante la comunicaci\'on. Para la detecci\'on de una p\'erdida de conexi\'on entre el dispositivo m\'ovil y el dispositivo que ejecuta el juego, este dispone de un tiempo m\'aximo en el que si no se reciben mensajes se finaliza la conexi\'on (Time Out).
 
 \begin {itemize}
-\item Diagrama del protocolo con explicaci\'on exhaustiva sobre el uso del little o big endian (coger por ejemplo el protocolo UDP para ver como se realiza una especificaci\'on detallada)
-\item Explicaci\'on de cada uno de los mensajes que se env\'ian y reciben. Hab\'ia pensado poner los cl\'asicos diagramas de cajas para ver la estructura de los bytes que se envian y el orden sobretodo para una posterior lectura si alguien utiliza solamente una de las partes del proyecto.
+\item \textbf{TODO:}Diagrama del protocolo con explici\'on.
 \end {itemize}
 
 
