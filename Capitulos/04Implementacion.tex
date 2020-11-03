@@ -77,44 +77,100 @@ Cuando un usuario navega por una aplicaci\'on, la cierra, la vuelve a abrir o la
 
 
 \begin{figure}[h]
-\caption{Ciclo de vida de una Actividad de un sistema Android}
+
 \centering
 \includegraphics[width=0.7\textwidth]{./Imagenes/Bitmap/Ciclo_de_vida_Android}
+\caption{Ciclo de vida de una Actividad de un sistema Android}
 \end{figure}
 
 Cada uno de los estados que tiene la actividad es llamado en un momento concreto de la ejecuci\'on de la Actividad. Las caracter\'isticas de cada uno de estos estados son las siguientes:
 
 \begin {itemize}
 \item \textbf{onCreate()} $\rightarrow$ Este m\'etodo es el primero que llama cuando se crea la Actividad. Este estado es utilizado para ejecutar la l\'ogica de la aplicaci\'on que debe ocurrir \'unicamente una vez en todo el ciclo de vida. Este m\'etodo recibe el par\'ametro \textit{\textbf{savedInstanceState}}, que es un objeto de tipo \textbf{\textit{Bundle}} que contiene el estado ya guardado de la actividad. Si la actividad nunca existi\'o, el valor del objeto \textit{Bundle} es nulo.
-\item \textbf{onStart()} $\rightarrow$ 
+\item \textbf{onStart()} $\rightarrow$ Cuando la actividad entra en el estado Started, el sistema invoca esta devoluci\'on de llamada. La llamada \textit{onStart()} hace que el usuario pueda ver la actividad mientras la app se prepara para que esta entre en primer plano y se convierta en interactiva. Por ejemplo, este m\'etodo es donde la app inicializa el c\'odigo que mantiene la IU.
+\item \textbf{onResume()} $\rightarrow$  La aplicaci\'on permanece en este estado hasta que ocurre alg\'un evento que la quita de foco. Tal evento podr\'ia ser, por ejemplo, recibir una llamada telef\'onica, que el usuario navegue a otra actividad o que se apague la pantalla del dispositivo.
+\item \textbf{onPause()} $\rightarrow$ Este estado se utiliza cuando se ha perdido el foco de una aplicaci\'on. Sin embargo una actividad con el estado Paused puede ser completamente visible si est\'a en el modo multiventana. En este estado no deben guardarse datos de la aplicaci\'on ya que es un estado que dura poco tiempo.
+\item \textbf{onStop()} $\rightarrow$ En este estado es donde los componentes del ciclo de vida pueden detener cualquier funcionalidad que no necesite ejecutarse mientras el componente no sea visible en la pantalla. Este estado debe usarse para liberar o ajustar recursos que no son necesarios mientras no sea visible para el usuario.
+\item \textbf{onDestroy()} $\rightarrow$ Se llama a este m\'etodo antes de que se finalice la actividad. El sistema invoca esta devoluci\'on de llamada cuando el dispositivo rota o cuando la aplicaci\'on se cierra. En este estado es donde los componentes del ciclo de vida pueden recuperar cualquier elemento que se necesite antes de que finalice la Actividad.
 \end {itemize}
 
 %-------------------------------------------------------------------
-\section{Android}
+\subsection {Arquitectura de la aplicaci\'on Android}
 %-------------------------------------------------------------------
+
+Para que la aplicaci\'on Android cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han realizado 3 clases:
 
 \begin {itemize}
-\item Explicaci\'on muy despacito de qu\'e es un ciclo de vida. Hablar sobre Actividades y los estados que tienen estas Actividades.
-\item Explciaci\'on de niveles de API y permisos. La aplicaci\'on est\'a preparada para leer un c\'odigo QR si o si en el formato IP:Puerto. Todo esto hace que mencione el QR al hablar de Android, seria recomendable hacer una subseccion para hablar del uso del QR, "historia" de este tipo de c\'odigos, etc?
-\item Veis mejor hacer aqui una subseccion para explicar arquitectura y otra para explicacion del uso?
-\item Subseccion dedicada unicamente a la concurrencia y comunicacion entre hilos.
-\item subseccion para la arquitectura?
+\item \textbf{Controller} $\rightarrow$ Esta es la actividad principal. Desde esta actividad se recogen los datos de IP y puerto al que debe conectarse el dispositivo Android para ser utilizado como controlador.Al crearse la Actividad se lanza la ejecuci\'on de una hebra que se encargar\'a de recibir, leer e interpretar las im\'agenes que lleguen por red una vez la aplicaci\'on se conecte al juego. Desde esta clase se controla la pulsaci\'on del usuario en la pantalla. De esta pulsaci\'on se guardan 3 datos: posici\'on (x,y) donde se ha realizado la pulsaci\'on y el tipo de pulsaci\'on (presionar,levantar o arrastrar). Para cada una de estas pulsaciones se dispara la ejecuci\'on de hilo (\textbf{UdpClientThread}). La \'ultima funci\'on de esta clase es la de cambiar la imagen que se muestra en la aplicaci\'on. 
+\item \textbf{UdpClientThread} $\rightarrow$ Esta clase tiene como funci\'on el env\'io de datos a la aplicaci\'on donde se ejecuta el juego. La primera vez que el usuario realice una pulsaci\'on se enviar\'a el tama\~no de la pantalla del dispositivo Android. Adem\'as de este mensaje, esta hebra se encarga del env\'io de paquetes que incluyen el tipo de pulsaci\'on que se ha realizado, la coordenada x y la coordenada y de la pantalla del dispositivo donde se ha realizado la pulsaci\'on. Una vez que la aplicaci\'on se cierre, el packete de cierre de conexi\'on se env\'ia desde esta hebra.
+\item \textbf{Receive\_Image} $\rightarrow$ Esta clase se ejecuta desde una hebra distinta a la de la Actividad principal y la funci\'on que desempe\~na es la de recibir informaci\'on que mande el juego. Esta clase se queda escuchando en un puerto designado, normalmente el mismo que abre el juego para recibir los datos de la aplicaci\'on Android. Los primeros mensajes en llegar son el tiempo de vibraci\'on del dispositivo cada vez que se realice una pulsaci\'on en la pantalla y posteriormente las im\'agenes que se env\'ien desde el juego. Estas im\'agenes se esperan en formato PNG ya que se realiza una descompresi\'on de este formato.
 \end {itemize}
 
 
+\begin{figure}[h]
+
+\centering
+\includegraphics[width=0.8\textwidth]{./Imagenes/Bitmap/Arquitectura_App_Android}
+\caption{Arquitectura de la aplicaci\'on Android implementada}
+\end{figure}
+
+
 %-------------------------------------------------------------------
-\section{Unity}
+\section{Implementaci\'on de la aplicaci\'on de Unity}
 %-------------------------------------------------------------------
+
+Como se coment\'o al principio de este cap\'itulo, el motor de videojuegos elegido para la realizaci\'on de este proyecto ha sido Unity. Unity es un motor de videojuegos multiplataforma creado por \textit{Unity Technologies} en 2005. Unity est\'a disponible como plataforma de desarrollo para Microsoft, Mac OS y Linux y tiene soporte de compilaci\'on con m\'ultiples plataformas:
 
 \begin {itemize}
-\item Uso de Unity (entidades, ciclo de vida de entidades, lenguaje de scripting usando .NET)
-\item Usos habituales del QR aqui? Mejor hacerlo en el apartado de Android?
-\item Uso de las hebras para el tratamiento de los datos que se leen desde la hebra de red que tenemos pendiente de la llegada de datos al socket.
-\item Uso de una hebra para mandar datos por la red.
-\item Subseccion para explicar la utilizacion de esto?
-\item subseccion para la arquitectura?
+\item \textbf{Web} $\rightarrow$ WebGL.
+\item \textbf{PC} $\rightarrow$ Windows, SteamOS, Linux, OS X y Windows Store Apps.
+\item \textbf{Dispositivos m\'oviles} $\rightarrow$ iOS, Android, Windows Phone.
+\item \textbf{Smart TV} $\rightarrow$ tvOS, Samsung Smart TV, Android TV.
+\item \textbf{Consolas} $\rightarrow$ PlayStation Vita, PlayStation 4, Xbox 360, Xbox One, Wii U, Nintendo 3DS, Nintendo Switch.
+\item \textbf{Dispositivos de realidad virtual} $\rightarrow$ Oculus Rift, Google Cardboard, HTC Vive, PlayStation VR, Samsung Gear VR
 \end {itemize}
 
+Adem\'as de contar con soporte para m\'ultiples dispositivos, Unity puede usarse junto con m\'ultiples herramientas de desarrollo como \textbf{Blender}, \textbf{Autodesk 3ds Max} y \textbf{ZBrush} entre otros.
+
+%-------------------------------------------------------------------
+\subsection {Funcionamiento de Unity}
+%-------------------------------------------------------------------
+
+Unity es un motor de videojuegos que aglutina una gran variedad de herramientas para el desarrollo. Estas herramientas van desde inclusiones de \textbf{Scripts} para dar comportamientos espec\'ificos a cada una de las \textbf{Entidades} del juego hasta elementos m\'as visuales como diagramas de estado para el control de las animaciones de un modelo. Para que todos estos sistemas tan diferentes puedan convivir, hay una serie de funciones que se ejecutan en un orden determinado. Unity a su vez se compone de varios elementos clave:
+
+\begin {itemize}
+\item \textbf{Escena} $\rightarrow$  Las escenas contienen los objetos del juego. Pueden usarse para crear niveles, men\'us o cualquier estado del juego.
+\item \textbf{GameObjects / Entidades} $\rightarrow$ Cada una de las escenas contiene objetos. Estos objetos se llaman GameObjects. Cualquier elemento es considerado un GameObject, no tiene por qu\'e verse (m\'usica, c\'amara,etc).
+\item \textbf{Componentes} $\rightarrow$ Los componentes son los diferentes atributos que se le dan a los GameObjects para que tengan funcionalidad (movimiento,posici\'on,animaci\'on,colisi\'on f\'isica,etc).
+\end {itemize}
+
+Unity ofrece una serie de componentes que dan una funcionalidad ya definida a un objeto, esta funcionalidad va desde tener una posici\'on definida en el mundo hasta emitir un sonido y realizar una animaci\'on. Los desarrolladores pueden desarrollar sus propios componentes usando Scipts. Estos scripts indican a las diferentes entidades donde sean incluidos c\'omo comportarse. El lenguaje seleccionado para este sistema de \textit{scripting} es C\# y un script debe estar vinculado a una entidad para que este se ejecute. Al tratarse de un sistema basado en la ejecuci\'on e interacci\'on entre scripts, Unity tiene una serie de funciones que se ejecutan autom\'aticamente por el motor. Estas funciones son:
+
+\begin {itemize}
+\item \textbf{Awake} $\rightarrow$  Awake se invoca solo una vez. Si un GameObject est\'a inactivo, entonces no podr\'a invocarse hasta que se le active. Sin embargo, Awake se invoca incluso si el GameObject est\'a activo pero el componente no est\'a habilitado. Se puede utilizar Awake para inicializar todas las variables a las que es necesario asignar un valor.
+\item \textbf{Start} $\rightarrow$ Al igual que Awake, Start se invocar\'a si un GameObject est\'a activo, pero solo si el componente est\'a habilitado.
+\item \textbf{Update} $\rightarrow$ Update se invoca una vez por frame. En esta funci\'on se debe definir la l\'ogica que se ejecuta continuamente, como animaciones, inteligencia artificial y otras partes del juego que tienen que actualizarse continuamente.
+\item \textbf{FixedUpdate} $\rightarrow$ Esta funci\'on es muy similar a Update pero su uso queda reservado para el desempe\~no de acciones en las que est\'e involucrada la f\'isica. Unity tiene un sistema basado en frames y FixedUpdate es la \'unica funci\'on en la que se asegura que se va a ejecutar en un \textit{frame-rate} fijo. 
+\item \textbf{LateUpdate} $\rightarrow$ Esta es una funci\'on que es similar a Update, pero LateUpdate se invoca al final del frame. Unity analizar\'a todos los objetos de juego, encontrar\'a todas las Updates, e invocar\'a las LateUpdates. Esto es bueno para cosas como la c\'amara.
+\end {itemize}
+
+%-------------------------------------------------------------------
+\subsection {Arquitectura de la aplicaci\'on en Unity}
+%-------------------------------------------------------------------
+
+Para que la aplicaci\'on desarrollada en Unity cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han realizado 2 clases:
+
+\begin {itemize}
+\item \textbf{UDPSocket} $\rightarrow$ Esta clase se utiliza para la creaci\'on de todo lo necesario para hacer funcionar esta herramienta. Con el m\'etodo \textbf{init()} se inician 2 hebras de ejecuci\'on diferentes. Una de ellas se encarga de enviar los datos necesarios al dispositivo de entrada. Estos datos son tanto la vibraci\'on como la imagen a renderizar en el dispositivo. La otra se encarga de recibir los datos de entrada del dispositivo y avisar a los diferentes \textit{listeners} para que estos utilicen esa informaci\'on para lo que decida el desarrollador del juego (mover al personaje, pausar el juego, salir, etc). Esta clase tambi\'en se encarga de cerrar la conexi\'on.
+\item \textbf{InputMobileInterface} $\rightarrow$ Esta interfaz sirve para dar soporte a la conexi\'on.\textbf{ EndOfConnection()} debe ser utilizado para realizar la conexi\'on. \textbf{ReceiveTouch()} recibe las coordenadas donde se ha realizado la pulsaci\'on en el dispositivo de enttrada, la misi\'on de esta funci\'on es la de comprobar si estas coordenadas corresponden con la posici\'on de un bot\'on u objeto interactuable dentro del juego. Por \'ultimo \textbf{ScreenSize()} recibe las dimensiones del dispositivo de entrada para posteriormente poder enviar im\'agenes y hacer las transformaciones de la posici\'on de los botones.
+\end {itemize}
+
+\begin{figure}[h]
+
+\centering
+\includegraphics[width=0.8\textwidth]{./Imagenes/Bitmap/Arquitectura Unity}
+\caption{Arquitectura de la aplicaci\'on de Unity implementada}
+\end{figure}
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
