@@ -37,8 +37,8 @@
 \label{cap4}
 \label{cap:impl}
 
-En este cap\'itulo se cubre todo el proceso de creaci\'on y desarrollo de las diferentes aplicaciones y la demo que posteriormente se utiliza como ejemplo de implementaci\'on de la herramienta.
-Se ha divido este cap\'itulo en 3 apartados principales:
+En este cap\'itulo se detalla todo el proceso de creaci\'on y desarrollo de las diferentes aplicaciones y la demo que posteriormente se utiliza como ejemplo de implementaci\'on de la herramienta.
+Se ha divido este cap\'itulo en 3 secciones:
 
 \begin {itemize}
 \item Implementaci\'on de la aplicaci\'on de Android.
@@ -50,7 +50,7 @@ Se ha divido este cap\'itulo en 3 apartados principales:
 \section{Implementaci\'on de la aplicaci\'on de Android}
 %-------------------------------------------------------------------
 
-Este proyecto se ha desarrollado utilizando principalmente 2 tecnolog\'ias: Unity y Android Studio. Al tratarse de un proyecto de creaci\'on de un controlador para videojuegos y tomando como base la especificaci\'on desarrollada en el cap\'itulo 3 se ha optado por el desarrollo de una aplicaci\'on para Android que sirva como dispositivo de entrada y una aplicaci\'on en Unity que sirva como ejecutor del juego.
+Este proyecto se ha desarrollado utilizando principalmente 2 tecnolog\'ias: el motor de Unity y Android. Al tratarse de un proyecto de creaci\'on de un controlador para videojuegos y tomando como base la especificaci\'on desarrollada en el cap\'itulo 3 se ha optado por el desarrollo de una aplicaci\'on para Android que sirva como dispositivo de entrada y una aplicaci\'on en Unity que sirva como ejecutor del juego.
 
 Android Studio es el entorno de desarrollo integrado (IDE) oficial para la plataforma de Android. Hasta finales del 2014 para desarrollar en Android se utilizaba Eclipse como IDE oficial y est\'a disponible para las plataformas Microsoft Windows, macOS y GNU/Linux. Android Studio incluye una gran variedad de herramientas para facilitar el desarrollo en Android entre las que se incluyen:
 
@@ -83,6 +83,7 @@ Cuando un usuario navega por una aplicaci\'on, la cierra, la vuelve a abrir o la
 \caption{Ciclo de vida de una Actividad de un sistema Android}
 \end{figure}
 
+
 Cada uno de los estados que tiene la actividad es llamado en un momento concreto de la ejecuci\'on de la Actividad. Las caracter\'isticas de cada uno de estos estados son las siguientes:
 
 \begin {itemize}
@@ -98,7 +99,7 @@ Cada uno de los estados que tiene la actividad es llamado en un momento concreto
 \subsection {Arquitectura de la aplicaci\'on Android}
 %-------------------------------------------------------------------
 
-Para que la aplicaci\'on Android cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han realizado 3 clases:
+Para que la aplicaci\'on Android cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han implementado 3 clases:
 
 \begin {itemize}
 \item \textbf{Controller} $\rightarrow$ Esta es la actividad principal. Desde esta actividad se recogen los datos de IP y puerto al que debe conectarse el dispositivo Android para ser utilizado como controlador.Al crearse la Actividad se lanza la ejecuci\'on de una hebra que se encargar\'a de recibir, leer e interpretar las im\'agenes que lleguen por red una vez la aplicaci\'on se conecte al juego. Desde esta clase se controla la pulsaci\'on del usuario en la pantalla. De esta pulsaci\'on se guardan 3 datos: posici\'on (x,y) donde se ha realizado la pulsaci\'on y el tipo de pulsaci\'on (presionar,levantar o arrastrar). Para cada una de estas pulsaciones se dispara la ejecuci\'on de hilo (\textbf{UdpClientThread}). La \'ultima funci\'on de esta clase es la de cambiar la imagen que se muestra en la aplicaci\'on. 
@@ -140,18 +141,18 @@ Unity es un motor de videojuegos que aglutina una gran variedad de herramientas 
 
 \begin {itemize}
 \item \textbf{Escena} $\rightarrow$  Las escenas contienen los objetos del juego. Pueden usarse para crear niveles, men\'us o cualquier estado del juego.
-\item \textbf{GameObjects / Entidades} $\rightarrow$ Cada una de las escenas contiene objetos. Estos objetos se llaman GameObjects. Cualquier elemento es considerado un GameObject, no tiene por qu\'e verse (m\'usica, c\'amara,etc).
-\item \textbf{Componentes} $\rightarrow$ Los componentes son los diferentes atributos que se le dan a los GameObjects para que tengan funcionalidad (movimiento,posici\'on,animaci\'on,colisi\'on f\'isica,etc).
+\item \textbf{GameObjects / Entidades} $\rightarrow$ Cada una de las escenas contiene objetos. Estos objetos se llaman GameObjects. Cualquier elemento es considerado un GameObject, no tiene por qu\'e tener una representaci\'on visual (m\'usica, c\'amara, etc).
+\item \textbf{Componentes} $\rightarrow$ Los componentes son los diferentes atributos que se le dan a los GameObjects para que tengan funcionalidad (movimiento, posici\'on, animaci\'on, colisi\'on f\'isica, etc).
 \end {itemize}
 
-Unity ofrece una serie de componentes que dan una funcionalidad ya definida a un objeto, esta funcionalidad va desde tener una posici\'on definida en el mundo hasta emitir un sonido y realizar una animaci\'on. Los desarrolladores pueden desarrollar sus propios componentes usando Scipts. Estos scripts indican a las diferentes entidades donde sean incluidos c\'omo comportarse. El lenguaje seleccionado para este sistema de \textit{scripting} es C\# y un script debe estar vinculado a una entidad para que este se ejecute. Al tratarse de un sistema basado en la ejecuci\'on e interacci\'on entre scripts, Unity tiene una serie de funciones que se ejecutan autom\'aticamente por el motor. Estas funciones son:
+Unity ofrece una serie de componentes que dan una funcionalidad ya definida a un objeto, esta funcionalidad va desde tener una posici\'on definida en el mundo hasta emitir un sonido y realizar una animaci\'on. Los desarrolladores pueden desarrollar sus propios componentes usando Scipts. Estos scripts indican a las diferentes entidades c\'omo comportarse. El lenguaje seleccionado para este sistema de \textit{scripting} es C\# y un script debe estar vinculado a una entidad para que este se ejecute. Al tratarse de un sistema basado en la ejecuci\'on e interacci\'on entre scripts, Unity tiene una serie de funciones que se ejecutan autom\'aticamente por el motor. Estas funciones son:
 
 \begin {itemize}
-\item \textbf{Awake} $\rightarrow$  Awake se invoca solo una vez. Si un GameObject est\'a inactivo, entonces no podr\'a invocarse hasta que se le active. Sin embargo, Awake se invoca incluso si el GameObject est\'a activo pero el componente no est\'a habilitado. Se puede utilizar Awake para inicializar todas las variables a las que es necesario asignar un valor.
+\item \textbf{Awake} $\rightarrow$  Awake se invoca solo una vez al inicio de la ejecuci\'on. Si un GameObject est\'a inactivo, entonces no podr\'a invocarse hasta que se le active. Sin embargo, Awake se invoca incluso si el GameObject est\'a activo pero el componente no est\'a habilitado. Se puede utilizar Awake para inicializar todas las variables a las que es necesario asignar un valor.
 \item \textbf{Start} $\rightarrow$ Al igual que Awake, Start se invocar\'a si un GameObject est\'a activo, pero solo si el componente est\'a habilitado.
 \item \textbf{Update} $\rightarrow$ Update se invoca una vez por frame. En esta funci\'on se debe definir la l\'ogica que se ejecuta continuamente, como animaciones, inteligencia artificial y otras partes del juego que tienen que actualizarse continuamente.
 \item \textbf{FixedUpdate} $\rightarrow$ Esta funci\'on es muy similar a Update pero su uso queda reservado para el desempe\~no de acciones en las que est\'e involucrada la f\'isica. Unity tiene un sistema basado en frames y FixedUpdate es la \'unica funci\'on en la que se asegura que se va a ejecutar en un \textit{frame-rate} fijo. 
-\item \textbf{LateUpdate} $\rightarrow$ Esta es una funci\'on que es similar a Update, pero LateUpdate se invoca al final del frame. Unity analizar\'a todos los objetos de juego, encontrar\'a todas las Updates, e invocar\'a las LateUpdates. Esto es bueno para cosas como la c\'amara.
+\item \textbf{LateUpdate} $\rightarrow$ Esta es una funci\'on que es similar a Update, pero LateUpdate se invoca al final del frame. Unity analizar\'a todos los objetos de juego, encontrar\'a todas las Updates, e invocar\'a las LateUpdates. Esto es bueno para entidades como la c\'amara.
 \end {itemize}
 
 %-------------------------------------------------------------------
@@ -161,8 +162,8 @@ Unity ofrece una serie de componentes que dan una funcionalidad ya definida a un
 Para que la aplicaci\'on desarrollada en Unity cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han realizado 2 clases:
 
 \begin {itemize}
-\item \textbf{UDPSocket} $\rightarrow$ Esta clase se utiliza para la creaci\'on de todo lo necesario para hacer funcionar esta herramienta. Con el m\'etodo \textbf{init()} se inician 2 hebras de ejecuci\'on diferentes. Una de ellas se encarga de enviar los datos necesarios al dispositivo de entrada. Estos datos son tanto la vibraci\'on como la imagen a renderizar en el dispositivo. La otra se encarga de recibir los datos de entrada del dispositivo y avisar a los diferentes \textit{listeners} para que estos utilicen esa informaci\'on para lo que decida el desarrollador del juego (mover al personaje, pausar el juego, salir, etc). Esta clase tambi\'en se encarga de cerrar la conexi\'on.
-\item \textbf{InputMobileInterface} $\rightarrow$ Esta interfaz sirve para dar soporte a la conexi\'on.\textbf{ EndOfConnection()} debe ser utilizado para realizar la conexi\'on. \textbf{ReceiveTouch()} recibe las coordenadas donde se ha realizado la pulsaci\'on en el dispositivo de enttrada, la misi\'on de esta funci\'on es la de comprobar si estas coordenadas corresponden con la posici\'on de un bot\'on u objeto interactuable dentro del juego. Por \'ultimo \textbf{ScreenSize()} recibe las dimensiones del dispositivo de entrada para posteriormente poder enviar im\'agenes y hacer las transformaciones de la posici\'on de los botones.
+\item \textbf{UDPSocket} $\rightarrow$ Esta clase se utiliza para la creaci\'on de todo lo necesario para hacer funcionar esta herramienta. Con el m\'etodo \textbf{init()} se inician 2 hebras de ejecuci\'on diferentes. Una de ellas se encarga de enviar los datos necesarios al dispositivo de entrada. Estos datos son tanto la vibraci\'on como la imagen a renderizar en el dispositivo. La otra se encarga de recibir los datos de entrada del dispositivo y avisar a los diferentes \textit{listeners}. Estos listeners utilizan esa informaci\'on para los prop\'ositos desigandos por el desarrollador del juego (mover al personaje, pausar el juego, salir, etc). Esta clase tambi\'en se encarga de cerrar la conexi\'on.
+\item \textbf{InputMobileInterface} $\rightarrow$ Esta interfaz sirve para dar soporte a la conexi\'on.\textbf{ EndOfConnection()} debe ser utilizado para finalizar la conexi\'on. \textbf{ReceiveTouch()} recibe las coordenadas donde se ha realizado la pulsaci\'on en el dispositivo de entrada. La misi\'on de esta funci\'on es comprobar si estas coordenadas corresponden con la posici\'on de un bot\'on u objeto interactuable dentro del juego. Por \'ultimo \textbf{ScreenSize()} recibe las dimensiones del dispositivo de entrada para posteriormente poder enviar im\'agenes y hacer las transformaciones de la posici\'on de los botones.
 \end {itemize}
 
 \begin{figure}[h]

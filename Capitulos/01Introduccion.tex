@@ -3,39 +3,13 @@
 %                          Cap�tulo 1
 %
 %---------------------------------------------------------------------
-%
-% 01Introduccion.tex
-% Copyright 2009 Marco Antonio Gomez-Martin, Pedro Pablo Gomez-Martin
-%
-% This file belongs to the TeXiS manual, a LaTeX template for writting
-% Thesis and other documents. The complete last TeXiS package can
-% be obtained from http://gaia.fdi.ucm.es/projects/texis/
-%
-% Although the TeXiS template itself is distributed under the 
-% conditions of the LaTeX Project Public License
-% (http://www.latex-project.org/lppl.txt), the manual content
-% uses the CC-BY-SA license that stays that you are free:
-%
-%    - to share & to copy, distribute and transmit the work
-%    - to remix and to adapt the work
-%
-% under the following conditions:
-%
-%    - Attribution: you must attribute the work in the manner
-%      specified by the author or licensor (but not in any way that
-%      suggests that they endorse you or your use of the work).
-%    - Share Alike: if you alter, transform, or build upon this
-%      work, you may distribute the resulting work only under the
-%      same, similar or a compatible license.
-%
-% The complete license is available in
-% http://creativecommons.org/licenses/by-sa/3.0/legalcode
-%
+%Cambios en esta versión:
+% Primer párrafo de introducción.
 %---------------------------------------------------------------------
 
 \chapter{Introducci\'on}
 
-Los motores de videojuegos son herramientas utilizadas por empresas de todo tipo, no solamente de videojuegos. Cortos de animaci\'on, anuncios o incluso \textit{overlays} utilizados en programas televisivos son algunas de las aplicaciones que pueden hacerse con motores como Unity o Unreal. El uso de estos motores de videojuegos para la realizaci\'on de otro tipo de proyectos es algo que se expande cada vez m\'as y con la generaci\'on de aplicaciones para dispositivos m\'oviles todo ha crecido de manera exponencial.
+La relaci\'on entre los humanos y las m\'aquinas se ha ido consolidando en las \'ultimas d\'ecadas hasta el punto que son imprescindibles para algunas de nuestras tareas cotidianas. La tecnolog\'ia extiende nuestras capacidades y durante las \'ultimas d\'ecadas se han ido forjando y mejorando las interfaces de comunicaci\'on hombre-m\'aquina. Las pantallas t\'actiles y los controles por voz son algo a lo que la sociedad se ha acostumbrado y una gran parte de la responsabilidad de este hecho reside en los dispositivos m\'oviles. Junto con esta constante mejora en las interfaces humano-m\'aquina tambi\'en puede encontrarse una introducci\'on a la tecnolog\'ia h\'aptica en modo de pulso para saber que el tel\'efono ha registrado una orden o pulsaci\'on en la pantalla.
 
 %-------------------------------------------------------------------
 \section{Motivaci\'on}
@@ -43,7 +17,7 @@ Los motores de videojuegos son herramientas utilizadas por empresas de todo tipo
 \label{cap1:sec:introduccion}
 
 La industria del videojuego desde su inicio nos ha ense'nado que la innovaci\'on
- a la hora de crear experiencias nuevas para los usuarios es algo que enriquece a muchos jugadores,por ende se est\'a ayudando a que
+ a la hora de crear experiencias nuevas para los usuarios es algo que enriquece a muchos jugadores, por ende se est\'a ayudando a que
 la experiencia de juego sea cada vez m\'as c\'omoda y flexible para los jugadores.
 
 Es por esta raz\'on que empresas como Electronic Arts, Ubisoft, Kunos Simulazioni y Polyphony Digital,entre otras, dedican gran cantidad de sus recursos
@@ -74,15 +48,36 @@ Este trabajo pretende aplicar los modelos propuestos anteriormente y crear una h
 
 \section{Objetivos}
 
-Dentro de Unity existe una plataforma  en la que los diferentes creadores de contenido suben sus creaciones para que otros desarrolladores las utilicen para sus proyectos. Estas herramientas pueden ser tanto de pago como gratuitas y entre ellas se encuentran modelos 3D, recursos de audio como m\'usica y efectos de sonido y \textit{plug-ins}. Un \textit{plug-in} es \textit{software} que se introduce dentro de un programa para a\~nadir nuevas funcionalidades. Para este proyecto el objetivo principal es la realizaci\'on de un \textit{plug-in} gratuito y subirlo a la \textbf{Unity Asset Store} para su uso por cualquier desarrollador. 
-
-Adem\'as de esto, la segunda parte de este proyecto tiene varias partes:
+Los objetivos de este proyecto son:
 
 \begin {itemize}
-\item Buscar un proyecto cerrado al que se pueda a\~nadir un controlador.
-\item Modificar este proyecto para a\~nadir el \textit{plug-in} desarrollado y con esto generar una demo.
-\item Hacer una peque\~na prueba con usuarios con la demo desarrollada para ver posibles fallos de conectividad y recabar \textit{feedback} y opiniones sobre el funcionamiento de la aplicaci\'on.
+\item Desarrollar y publicar un \textit{plug-in open source} para Unity que permita establecer conexi\'on y recibir \textit{input} desde otro dispositivo.
+\item Desarrollar y publicar una aplicaci\'on \textit{open source} para Android que permita establecer conexi\'on con otro dispositivo para ser usado como dispositivo de entrada.
+\item Evidenciar y realizar un estudio posterior de los resultados del proyecto atrav\'es de una serie de pruebas con usuarios. 
 \end {itemize}
+
+Dentro de Unity existe una plataforma  en la que los diferentes creadores de contenido suben sus creaciones para que otros desarrolladores las utilicen para sus proyectos. Estas herramientas pueden ser tanto de pago como gratuitas y entre ellas se encuentran modelos 3D, recursos de audio como m\'usica y efectos de sonido y \textit{plug-ins}. Un \textit{plug-in} es \textit{software} que se introduce dentro de un programa para a\~nadir nuevas funcionalidades. 
+
+\section{Metodolog\'ia}
+
+Como metodolog\'ia de desarrollo se ha decidido usar una metodolog\'ia \'agil de producci\'on que es habitual en la industria del desarrollo de software y videojuegos. Se ha elegido una metodolog\'ia \'agil por la experiencia positiva en proyectos previos.
+
+\textbf{Scrum}, propuesto por Schwaber and Sutherland (2018), es un framework para la gesti\'on de proyectos de trabajo en equipo. El paradigma se basa en un principio simple: comenzar con metas a corto plazo que formen parte del resultado final, tras esto se sigue el progreso y modifica seg\'un se avance en el proyecto.
+
+Debido a los problemas de disponibilidad durante el desarrollo del proyecto, se realizaba una peque\~na reuni\'on de 10 minutos cada 1-3 d\'ias para ver el progreso de cada uno de los integrantes. En estas reuniones se revisaba la planificaci\'on para la siguiente reuni\'on o la siguiente semana. Al principio del desarrollo fueron necesarias reuniones mucho m\'as largas que en muchas ocasiones incluian a los directores del TFG en las que se discut\'ian las diferentes \textit{features} que deber\'ian tener las aplicaciones que se estaban desarrollando. Estas reuniones m\'as extensas serv\'ian como cierre de \textit{Sprint} y como preparaci\'on del siguiente. El seguimiento de las diferentes tareas a realizar se realizaba usando la herramienta online \textbf{Pivotal Tracker} donde se marcaban las tareas con 3 posibles estados: ``Open'', ``In Progress'' o ``Done''.
+
+
+\section{Planificaci\'on}
+
+La planificaci\'on del desarrollo de este proyecto se ha dividido en 3 fases:\\
+
+
+\textbf{Documentaci\'on y dise\~no:} Durante esta fase tratamos de delimitar claramente el alcance y objetivos del TFG, reunir fuentes y referencias y preparar las herramientas que se utilizar\'ian durante el resto del desarrollo. Adem\'as, en esta primera fase se realiz\'o un dise\~no de las aplicaciones que se desarrollar\'ian en los meses posteriores.\\
+
+\textbf{Desarrollo:} Durante esta fase del desarrollo se desarrollaron todas las funcionalidades especificadas en la fase anterior del proyecto. Al hacerse revisiones peri\'odicas de la implementaci\'on, algunas de las funcionalidades iniciales sufrieron cambios o fueron eliminidas y se a\~nadieron otras que encajaban m\'as con el rumbo que estaba tomando el desarrollo. 
+Esta fase ha ocupado la mayor parte del tiempo que ha tomado realizar este proyecto. Durante esta fase se realizaron 2 aplicaciones en forma de demo con las que poder probar la herramienta y demostrar la viabilidad del proyecto.\\
+
+\textbf{Cierre:} Durante la fase final del desarrollo se realizaron las mejoras finales de las aplicaciones y se refinaron los \'ultimos detalles de rendimiento. En esta fase tambi\'en se realizaron las pruebas con usuarios para extraer datos tanto de rendimiento de las aplicaciones como de posibles fallos y mejoras de las aplicaciones. Estos datos se han refinado, filtrado y analizado y han servido para extraer las conclusiones finales de este trabajo. Adem\'as, durante esta \'ultima fase del desarrollo se ha trabajado en terminar la redacci\'on de este documento junto con la revisi\'on por los directores de este TFG. 
 
 \section{Estructura del documento}
 
