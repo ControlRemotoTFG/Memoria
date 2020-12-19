@@ -115,6 +115,7 @@ Para que la aplicaci\'on Android cumpla los requisitos expuestos en el apartado 
 \caption{Arquitectura de la aplicaci\'on Android implementada}
 \end{figure}
 
+Se ha optado por una aplicaci\'on cerrada para que el desarrollador no tenga que implementar nueva funcionalidad en Android. El coste computacional de la aplicaci\'on es bajo, lo que permite ser utilizado en una gran cantidad de dispositivos. La divisi\'on en 2 actividades es debido a que el flujo de Android se basa en ir cambiando entre actividades para que cada una tenga un uso espec\'ifico. La primera actividad de usa para capturar un QR con la c\'amara y la segunda es utilizada para simular un mando.
 
 %-------------------------------------------------------------------
 \section{Implementaci\'on de la aplicaci\'on de Unity}
@@ -155,8 +156,10 @@ Unity ofrece una serie de componentes que dan una funcionalidad ya definida a un
 \item \textbf{LateUpdate} $\rightarrow$ Esta es una funci\'on que es similar a Update, pero LateUpdate se invoca al final del frame. Unity analizar\'a todos los objetos de juego, encontrar\'a todas las Updates, e invocar\'a las LateUpdates. Esto es bueno para entidades como la c\'amara.
 \end {itemize}
 
+
+
 %-------------------------------------------------------------------
-\subsection {Arquitectura de la aplicaci\'on en Unity}
+\subsection {Arquitectura de la API en Unity}
 %-------------------------------------------------------------------
 
 Para que la aplicaci\'on desarrollada en Unity cumpla los requisitos expuestos en el apartado de especificaci\'on del proyecto, se han realizado 2 clases:
@@ -172,6 +175,10 @@ Para que la aplicaci\'on desarrollada en Unity cumpla los requisitos expuestos e
 \includegraphics[width=0.8\textwidth]{./Imagenes/Bitmap/Arquitectura Unity}
 \caption{Arquitectura de la aplicaci\'on de Unity implementada}
 \end{figure}
+
+Con esta implementaci\'on se quiere dar al desarrollador una API que permita al usuario tener un nivel de abstracci\'on superior al que tendr\'ia en caso de tener que manejar directamente la conexi\'on entre 2 dispositivos y el tratamiento de input. Esto se ha conseguido manejando los hilos de manera individual y a la funcionalidad dada por la interfaz \textbf{InputMobileInterface}. La interfaz permite que el desarrollador decida en cada momento de la ejecuci\'on lo que se realiza en cada una de sus fases.
+
+La primera fase consiste en el reescalado de las im\'agenes que se env\'ian. En la segunda fase se realiza el tratamiento del input. En esta fase el desarrollador deber\'a decidir las coordenadas de los botones que quiere que tenga su mando y decidir qu\'e acci\'on se va a realizar con la pulsaci\'on de estos botones. La \'ultima fase involucra volver a lanzar el servidor en caso de que se pierda la conexi\'on ya sea porque el dispositivo se apaga, porque se cierre la conexi\'on de manera controlada o por inactividad.
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
 % compilaci�n y funcionen mejor algunas teclas r�pidas de AucTeX
