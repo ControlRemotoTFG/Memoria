@@ -84,9 +84,6 @@
 TeXiS/TeXiS_pream,TeXiS/TeXiS_cab,TeXiS/TeXiS_bib,TeXiS/TeXiS_cover,%
 TeXiS/TeXiS_part%
 }
-\newcommand{\ficherosBasicosTexto}{%
-constantes,guionado,Cascaras/bibliografia,config%
-}
 \newcommand{\compilaCapitulo}[1]{%
 \includeonly{\ficherosBasicosTeXiS,\ficherosBasicosTexto,Capitulos/#1}%
 }
@@ -115,6 +112,10 @@ constantes,guionado,Cascaras/bibliografia,config%
 \usepackage{pgfplots}
 \usepackage{amssymb}
 \usepackage{tikz}
+
+
+\usepackage{natbib}
+\bibliographystyle{unsrtnat}
 % Incluimos el fichero con comandos de constantes
 \include{constantes}
 
@@ -189,7 +190,7 @@ constantes,guionado,Cascaras/bibliografia,config%
 % Bibliograf�a
 %
 
-\include{Cascaras/bibliografia}
+\bibliography{sample}
 
 %
 % �ndice de palabras
