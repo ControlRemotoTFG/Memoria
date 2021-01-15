@@ -36,30 +36,92 @@
 \chapter{Estado del arte en entrada de usuario para videojuegos}
 \label{cap2}
 
-\begin{FraseCelebre}
-\begin{Frase}
-  %La mejor estructura no garantizar� los resultados ni el rendimiento.
-  %Pero la estructura equivocada es una garant�a de fracaso.
-\end{Frase}
-\begin{Fuente}
-%Peter Drucker
-\end{Fuente}
-\end{FraseCelebre}
 
 A lo largo de las diferentes generaciones de computadores y de consolas se han ido desarrollando una serie de dispositivos de entrada que permiten al usuario interactuar con la m\'aquina. Estos dispositivos van desde teclados y ratones hasta c\'amaras que permiten transformar tus movimientos f\'isicos en movimientos dentro de un entorno virtual pasando por detectores de aceleraci\'on y pantallas t\'actiles. En este cap\'itulo se presentan muchos de los trabajos pasados en el \'ambito de los dispositivos de entrada de usuario.
 %-------------------------------------------------------------------
-\section{Evoluci\'on de los dispositivos de entrada}
+\section{Breve introducci\'on a los dispositivos de entrada}
 
-Los dispositivos de entrada son aquellos que permiten introducir datos o informaci\'on en un ordenador para que este los procese u ordene. Otro t\'ermino usado para estos dispositivos es perif\'erico. A pesar de que este t\'ermino implica a menudo el concepto de adicional y no esencial, en muchos sistemas inform\'aticos son elementos fundamentales. Estos dispositivos de entrada pueden clasificarse seg\'un el tipo de entrada, ya sea sonora, visual, de movimiento mec\'anico, etc. o dependiendo de si su forma de entrada es discreta (pulsaciones de teclas) o continua (una posici\'on).\\
+Los dispositivos de entrada son aquellos que permiten introducir datos o informaci\'on en un ordenador para que este los procese u ordene. Otro t\'ermino usado para estos dispositivos es perif\'erico. A pesar de que este t\'ermino implica a menudo el concepto de adicional y no esencial, en muchos sistemas inform\'aticos son elementos fundamentales. \cite{entradasalida} expone que los m\'as comunes de estos dispositivos de entrada son el teclado y rat\'on. Pero no existen \'unicamente estos 2 dispositivos de entrada, a lo largo de la historia de la inform\'atica se han ido desarrollando diversos dispositivos de entrada tanto sonora como visual y de movimiento mec\'anico.\\
+
+\setcitestyle{super}
+
+\subsection{Evoluci\'on de los teclados}
+
+La historia de los teclados\cite{historiateclados} actuales tiene su origen en las m\'aquinas de escribir. Estas primeras m\'aquinas de escribir tienen su origen en el a\~no 1877, cuando la empresa Remington comenz\'o a comercializar de manera masiva las m\'aquinas de escribir. En un primer momento las teclas de dispusieron en orden alfab\'etico, algo que cambiar\'ia un a\~no despu\'es con la aparici\'on de la primera patente del teclado QWERTY. Tal y como se\~nala Jimmy Stamp\cite{jimmy} en su art\'iculo, esta primera versi\'on de las m\'aquinas de escribir ten\'ian un defecto que fue notorio cuando los usuarios escrib\'ian r\'apidamente una sucesi\'on de letras que se encontraban cerca en el teclado. Para evitar este fallo en el modelo inicial se desarroll\'o el sistema QWERTY, el cual distancia los pares de letras que se suelen escribir juntas.\\
+
+Uno de los primeros avances de estas m\'aquinas de escribir ocurri\'o en la d\'ecada de 1930, cuando se combinaron la tecnolog\'ia de la entrada e impresi\'on de las m\'aquinas de escribir con la tecnolog\'ia de la comunicaci\'on del tel\'egrafo. Este dispositivo fue muy popular durante el siglo XX y sus funciones eran las de enviar y recibir mensajes mecanografiados de un punto a otro a trav\'es de un canal de comunicaci\'on. M\'as adelante fue utilizado en conjunto con las cintas perforadas para almacenar datos en los primeros ordenadores. As\'i, en 1955, el Whirlwind del MIT, se convierte en el primer ordenador del mundo que permite a sus usuarios introducir comandos a trav\'es de un teclado y confirma lo \'util y conveniente que puede ser un dispositivo de entrada como el teclado.\\
+
+Actualmente las principales mejoras que han sufrido los teclados de ordenador se basan en la eliminaci\'on de cables gracias al Bluetooth. Con la llegada de los dispositivos t\'actiles se a\~nadi\'o adem\'as el concepto de teclado virtual. Este teclado virtual elimina el uso de un teclado hardware para pasar a un teclado software que imita el teclado tradicional QWERTY pero en una pantalla t\'actil. \\
+
+\subsection{Evoluci\'on de los ratones}
+
+Adem\'as del teclado, el segundo dispositivo de entrada por excelencia es el rat\'on. La primera maqueta fue dise\~nada durante los a\~nos 60, dispon\'ia de 2 ruedas met\'alicas que al desplazarse por una superficie mov\'ian 2 ejes. Cada uno de estos ejes controlaba el movimiento tanto vertical como horizontal del cursor en la pantalla y dispon\'ia de un bot\'on en la parte superior con el que se permit\'ia hacer clic en la posici\'on en la que se encontraba el cursor.\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.29\textwidth]{./Imagenes/Bitmap/Primer_raton.jpg}
+\caption{Primer rat\'on desarrollado por Douglas Engelbart y Bill English}
+\label{Fig:primerraton}
+\end{figure}
+
+El siguiente avance del dispositivo fue cambiar su carcasa de madera por una de pl\'astico y a\~nadir m\'as botones. Tal y como describi\'o Daniel Entrialgo\cite{xerox} en su art\'iculo, este avance suele ser atribuido a Microsoft o a Apple pero fue la empresa \textbf{Xerox} la que realiz\'o el nuevo dise\~no del rat\'on y del que es considerado el primer ordenador personal de la historia junto al Altair 8080. Este nuevo dispositivo sustitu\'ia las 2 ruedas que marcaban la posici\'on del cursor por una \'unica bola de metal. La posici\'on relativa de esta bola era la que determinaba la posici\'on del cursor en la pantalla. 
+
+\begin{figure}[!htb]
+\begin{minipage}{0.9\textwidth}
+    \centering
+    \includegraphics[width=0.40\textwidth]{./Imagenes/Bitmap/mouse_xerox_alto(1).png}
+    \includegraphics[width=0.20\textwidth]{./Imagenes/Bitmap/mouse_xerox_alto(2).jpg}
+\end{minipage}
+    \caption{Rat\'on del Xerox Alto de los a\~nos 70}
+\label{Fig:xerox}
+\end{figure}
+
+En el a\~no 1992 Microsoft decidi\'o vender en un mismo paqueta su \'ultima versi\'on de MS-DOS y Windows 3.1, lo que hizo que el rat\'on pasase a ser un perif\'erico fundamental ya que se dejaba atr\'as el mundo del texto y se abr\'ian a todos los p\'ublicos las interfaces gr\'aficas del PC. Este cambio hizo que el rat\'on siguiera evolucionando y durante la d\'ecada de los 90 e inicios del 2000 los ratones sufrieron algunas mejoras. Algunas de estas mejoras son: una rueda central o lateral para el desplazamiento, el sensor de movimiento \'optico por diodo led o un sensor basado en un l\'aser no visible. Un sector que aprovech\'o mucho esta estandarizaci\'on del rat\'on y de las interfaces gr\'aficas fue el de los videojuegos. El rat\'on se ha convertido en una parte esencial del mundo de los videojuegos de PC, sirviendo no solo para seleccionar y accionar objetos en pantalla en juegos de estrategia, sino para controlar la c\'amara o cambiar la direcci\'on del personaje en juegos de primera y tercera persona.\\
+
+\subsection{Evoluci\'on de los gamepads a trav\'es de las generaciones de consolas}
+
+Los videojuegos de PC fueron, son y ser\'an muy importantes para el desarrollo de la industria pero las precursoras de este existo son sin dudas las m\'aquinas recreativas. Se dice que el primer intento de videojuego es una patente de 1947 sobre la simulaci\'on del lanzamiento de misiles pero no fue hasta 1958 y la salida del famoso ``Tenis para Dos''\cite{tenispara2} creado por William Higginbotham. En este juego se recreaba una pista de tenis en la que la pelota iba de un lado a otro de la pista. Poco despu\'es, en 
+
+
+\subsubsection{Primera generaci\'on (1972-1976)}
+a
+\subsubsection{Segunda generaci\'on (1976-1983)}
+a
+
+\subsubsection{Tercera generaci\'on (1983-1987)}
+
+a
+
+\subsubsection{Cuarta generaci\'on (1987-1993)}
+
+
+a
+
+\subsubsection{Quinta generaci\'on (1993-1998)}
+
+a
+
+\subsubsection{Sexta generaci\'on (1998-2005)}
+
+a
+
+
+\subsubsection{Septa generaci\'on (2005-2012)}
+
+
+a
+
+\subsubsection{Octava generaci\'on (2012-2020)}
+
+a
+
+\subsubsection{Novena generaci\'on (2020-Actual)}
+\subsection{Otros dispositivos}
 
 Todos estos dispositivos de entrada son conocidos como \textbf{HID, Human Interface Device}. La principal motivaci\'on para HID era la de permitir innovaciones en los dispositivos de entrada a los ordenadores y as\'i simplificar el proceso de instalaci\'on de este tipo de dispositivos. Antes de HID, los dispositivos de entrada se ajustaban a unos estrictos protocolos dise\~nados para ratones, teclados y joysticks. Con cualquier innovaci\'on en el hardware se requer\'ia de sobrecargar el protocolo existente o la creaci\'on de un driver. Un solo driver HID analiza los datos de entrada y permite una asociaci\'on din\'amica de estos datos con la funcionalidad descrita por la aplicaci\'on. En el protocolo HID existen 2 enidades: el host y el dispositivo.El dispositivo es la entrada que intercat\'ua directamente con el humano, un ejemplo puede ser el teclado o rat\'on. El host es el que recibe los datos de entrada del dispositivo con las acciones ejecutadas por el humano, el host suele ser un ordenador.
  Los dispositivos definen sus paquetes de datos y luego presentan un descriptor HID al host. El descriptor HID es codificado como un grupo de bytes que describen los paquetes de datos del dispositivo. Esto incluye: cuantos paquetes soporta el dispositivo, el tama\~no de los paquetes, y el prop\'osito de cada byte y bit en el paquete. Se espera que el host sea la entidad m\'as compleja de las 2 ya que el host necesita obtener el descriptor HID del dispositivo y analizarlo antes de establecer la comunicaci\'on. El HID tambi\'en define el modo arranque, este modo es limitado ya que paquetes de datos son utilizados durante ese modo. Los \'unicos dispositivos que soportan el modo arranque son teclados y ratones.\\
 
-Un teclado es un HID que se representa como una disposici\'on de botones o teclas. Cada una de estas teclas se puede utilizar para ingresar cualquier car\'acter ling\"u\'istico o hacer una llamada a cualquier funci\'on particular del ordenador. Los teclados  tienen su inspiraci\'on en las m\'aquinas de escribir que tienen su origen en el a\~no 1877, cuando la marca Remington comenz\'o a comercializar de manera masiva las m\'aquinas de escribir. Uno de los primeros avances de estas m\'aquinas de escribir ocurri\'o en la d\'ecada de 1930, cuando se combinaron la tecnolog\'ia de la entrada e impresi\'on de las m\'aquinas de escribir con la tecnolog\'ia de la comunicaci\'on del tel\'egrafo. Adem\'as, los sistemas de tarjetas perforadas tambi\'en se combinaron con las m\'aquinas de escribir para crear perforadoras de teclado que fueron la base para las primeras calculadoras. La emergente m\'aquina de escribir el\'ectrica mejor\'o a\'un m\'as la uni\'on tecnol\'ogica entre la m\'aquina de escribir y el ordenador. As\'i, en 1955, el Whirlwind del MIT, se convierte en el primer ordenador del mundo que permite a sus usuarios introducir comandos a trav\'es de un teclado y confirma lo \'util y conveniente que puede ser un dispositivo de entrada de teclado. En 1964 se impul\'o el desarrollo de una nueva interfaz de usuario llamada terminal de visualizaci\'on de video que permiti\'o a los usuarios de las primeras computadoras ver qu\'e carcacteres estaban escribiendo. En los a\~nos 80, IBM lanz\'o su primer ordenador personal que inclu\'ia un teclado mec\'anico. Actualmente las principales mejoras que han sufrido los teclados de ordenador se basan en la eliminaci\'on de cables gracias al Bluetooth o WI-FI. Con la llegada de los dispositivos t\'actiles se a\~nadi\'o adem\'as el concepto de teclado virtual. Este teclado virtual elimina el uso de un teclado hardware para pasar a un teclado software que imita el teclado tradicional QWERTY pero en una pantalla t\'actil. \\
-
-Adem\'as del teclado, el segundo dispositivo de entrada por excelencia es el rat\'on. La primera maqueta fue dise\~nada durante los a\~nos 60, dispon\'ia de 2 ruedas met\'alicas que al desplazarse por una superficie mov\'ian 2 ejes. Cada uno de estos ejes controlaba el movimiento tanto vertical como horizontal del cursor en la pantalla. Durante lo s\~nos posteriores se a\~nadieron botones, una rueda central o lateral para el desplazamiento, el sensor de movimiento \'optico por diodo led o un sensor basado en un l\'aser no visible. En los primeros a\~nos de la inform\'atica, el teclado era el dispositivo m\'as popular para la entrada de datos pero la aparici\'on y \'exito del rat\'on, junto con la evoluci\'on de los sistemas operativos, lograron facilitar y mejorar la comodidad a la hora de manejar ambos perif\'ericos a la vez. Los ratones suelen estar preparados para manejarse con ambas manos pero algunos fabricantes tambi\'en ofrecen modelos espec\'icos para zurdos y diestros. Los sistemas operativos tambi\'en han ayudado a que ambos tipos de personas tengan un uso satisfactorio de los ratones. Con el avance de los nuevos ordenadores, el rat\'on se ha convertido en un dipsositivo esencial a la hora de jugar videojuegos, sirviendo no solo para seleccionar y accionar objetos en pantalla en juegos de estrategia, sino para controlar la c\'amara o cambiar la direcci\'on del personaje en juegos de primera y tercera persona.\\
-
-Los videojuegos han sido los principables responsables de la evoluci\'on de los dispositivos de entrada en las d\'ecadas posteriores a los a\~nos 70. En 1972 fue lanzada de manera oficial la \textbf{Magnavox Odyssey} y fue considerada la primera videoconsola. El dispositivo de entrada para poder jugar consit\'ia de 2 diales que se utilizaban para el movimiento horizontal y vertical del personaje, un cuadrado blanco. Como juego para la consola Odyssey sacaron el Magnavox Odyssey Shooting Gallery en 1972. El mando que se usaba para poder jugar a este juego tenía la forma de un rifle y la peculiaridad que tenía este accesorio/mando era que los disparos se registraban siempre y cuando el rifle apuntase a una luz intensa por lo que era muy f\'acil de enga\~nar si no fuese porque el juego no dispon\'ia de un registro de puntos. En 1976 la empresa Fairchild Semiconductor sac\'o al mercado la \textbf{Fairchild Channel F} cuya caracter\'istica principal a nivel de entrada de usuario fue la incorporaci\'on de un joystick de 8 direcciones.  Adem\'as de ofrecer un movimiento en 8 direcciones, la parte de arriba de este mando pod\'ia girarse para ser compatible con juegos como \textit{Pong} y tambi\'en pod\'ia ser pulsado y usarse normalmente como bot\'on de disparo. En 1977 sali\'o al mercado uno de los joysticks m\'as famosos. Este joystick es el que se utilizaba en la consola \textbf{Atari 2600}. Este joystick se conoc\'ia como el \textbf{Atari CX40} y consist\'ia de una palanca que permit\'ia un movimiento en 8 direcciones y un bot\'on. Junto con este modelo, Atari sac\'o al mercado un tipo de conexi\'on que se convertir\'ia en el est\'andar de la ind\'ustria y que ser\'ia compatible con sistemas posteriores. Unos pocos a\~nos despu\'es, en 1982, Atari lanz\'o su nueva consola Atari 5200. Adem\'as de mejorar gr\'aficamente, el controlador que llevaba incorporado proviene de un kit de controlador de un avi\'on RC. El sistema combinaba un dise\~no mec\'anico demasiado complejo con un sistema de circuito flexible interno de muy bajo coste. Este controlador incluy\'o un bot\'on de pausa, una caracter\'istica \'unica en ese momento.\\
+En 1972 fue lanzada de manera oficial la \textbf{Magnavox Odyssey} y fue considerada la primera videoconsola. El dispositivo de entrada para poder jugar consit\'ia de 2 diales que se utilizaban para el movimiento horizontal y vertical del personaje, un cuadrado blanco. Como juego para la consola Odyssey sacaron el Magnavox Odyssey Shooting Gallery en 1972. El mando que se usaba para poder jugar a este juego tenía la forma de un rifle y la peculiaridad que tenía este accesorio/mando era que los disparos se registraban siempre y cuando el rifle apuntase a una luz intensa por lo que era muy f\'acil de enga\~nar si no fuese porque el juego no dispon\'ia de un registro de puntos. En 1976 la empresa Fairchild Semiconductor sac\'o al mercado la \textbf{Fairchild Channel F} cuya caracter\'istica principal a nivel de entrada de usuario fue la incorporaci\'on de un joystick de 8 direcciones.  Adem\'as de ofrecer un movimiento en 8 direcciones, la parte de arriba de este mando pod\'ia girarse para ser compatible con juegos como \textit{Pong} y tambi\'en pod\'ia ser pulsado y usarse normalmente como bot\'on de disparo. En 1977 sali\'o al mercado uno de los joysticks m\'as famosos. Este joystick es el que se utilizaba en la consola \textbf{Atari 2600}. Este joystick se conoc\'ia como el \textbf{Atari CX40} y consist\'ia de una palanca que permit\'ia un movimiento en 8 direcciones y un bot\'on. Junto con este modelo, Atari sac\'o al mercado un tipo de conexi\'on que se convertir\'ia en el est\'andar de la ind\'ustria y que ser\'ia compatible con sistemas posteriores. Unos pocos a\~nos despu\'es, en 1982, Atari lanz\'o su nueva consola Atari 5200. Adem\'as de mejorar gr\'aficamente, el controlador que llevaba incorporado proviene de un kit de controlador de un avi\'on RC. El sistema combinaba un dise\~no mec\'anico demasiado complejo con un sistema de circuito flexible interno de muy bajo coste. Este controlador incluy\'o un bot\'on de pausa, una caracter\'istica \'unica en ese momento.\\
 
 En 1983 Nintendo sac\'o al mercado su \textbf{Nintendo Entertainment System (NES)} cuyo controlador sent\'o unas bases en el control del movimiento gracias a la cruceta que incorporaba. Esta cruceta permit\'ia un movimiento en 4 direcciones y que pretend\'ia reemplazar a las voluminosas palancas de mando de los controladores. Adem\'as de la cruceta, el mando dispon\'ia de 2 botones redondos (A y B) y otros 2 botones rectangulares (START y SELECT). En lo sucesivo, se lanzaron varios dispositivos especiales dise\~nados precisamente para usarse con juegos espec\'ificos, aunque muy pocos de estos se volvieron populares. Uno de estos dispositivos era el \textbf{Power Glove}, el que ser\'ia considerado como uno de los primeros perif\'ericos de interfaz en recrear los movimientos de la mano en una pantalla de televisi\'on o de un ordenador en tiempo real. En 1990 Nintendo hizo evolucionar a la Nintendo NES y lanz\'o la \textbf{Super Nintendo Entertainment System (SNES)}, la cual dej\'o atr\'as un dise\~no cuadrado del controlador y se inclin\'o por un dise\~no m\'as ergon\'omico, se mejor\'o la cruceta y se a\~nadieron otr\'os 2 botones (X e Y). El tiempo de respuesta del controlador era de 16 milisegundos. Dentro de la evoluci\'on de los controladores, en 1993 la compa\~nia SEGA sorprendi\'o con el lanzamiento de un nuevo accesorio para su consola \textbf{Sega Mega Drive}. Este accesorio consist\'ia en un aro octogonal que se colocaba en el sueloy se conectaba directamente al puerto de controlador de la consola. Lo llamaron \textbf{Sega Activator} y fue el primer controlador que utilizaba el cuerpo completo. El jugador se ten\'ia que situar en el centro del aro, el cual emit\'ia rayos infrarrojos hacia arriba para detectar los movimientos del jugador. Los juegos orientados para el Sega Activator eran juegos que involucrasen el movimiento de brazos y piernas para que el jugador cruzase los rayoss infrarrojos y as\'i se detectase el movimiento. Al tratarse de 8 segmentos, cada uno de estos segmentos estaba mapeado como si fuera un bot\'on en el mando tradicional, el cual se "pulsar\'ia" cada vez que el jugador cruzase un segmento de los rayos infrarrojos. \\
 
