@@ -88,7 +88,7 @@ Este \'ultimo dise\~no ha sido el utilizado para este proyecto. Las funcionalida
 \item Envi\'io de orden de vibraci\'on del juego al m\'ovil.
 \end {itemize}
 
-Para que el desarrollador tenga un control total de lo que se env\'ia en cada momento, se da la opci\'on de enviar un mensaje de vibraci\'on al dispositivo m\'ovil. Estao permite que el m\'ovil vibre no solo por las pulsaciones, sino, por ejemplo, cuando el jugador reciba da\~no o se choque si est\'a jugando a un juego de conducci\'on. En la siguiente secci\'on se detalla el protocolo desarrollado y en el pr\'oximo cap\'itulo se detallar\'a la implementaci\'on de la parte de m\'ovil y PC.
+Para que el desarrollador tenga un control total de lo que se env\'ia en cada momento, se da la opci\'on de enviar un mensaje de vibraci\'on al dispositivo m\'ovil. Esto permite que el m\'ovil vibre no solo por las pulsaciones, sino, por ejemplo, cuando el jugador reciba da\~no o se choque si est\'a jugando a un juego de conducci\'on. En la siguiente secci\'on se detalla el protocolo desarrollado y en el pr\'oximo cap\'itulo se detallar\'a la implementaci\'on de la parte de m\'ovil y PC.
 
 
 %-------------------------------------------------------------------
@@ -136,9 +136,9 @@ Bits                    & 0-7                   & 8-23                   \\
 
 Este mensaje puede ser enviado de nuevo en caso de que quiera cambiarse la duraci\'on de la vibraci\'on. Adem\'as de modificar el tiempo, se da la opci\'on de hacer peticiones al m\'ovil para que este vibre por una determinada acci\'on del juego. Esto puede hacerse con el env\'io de un mensaje de tama\~no 1 byte cuya cabecera contenga el valor 2, valor designado para activar la vibraci\'on en el tiempo determinado por la estructura anterior.\\
 
-Tras el env\'io de este mensaje comienza un bucle de juego en el que ambos dispositivos intercambian mensajes de una manera no ordenada. Adem\'as de la vibraci\'on, el juego tiene la posibilidad de enviar im\'agenes. Estas im\'agenes pueden enviarse en forma de im\'agenes est\'aticas o en forma de streaming de video. El formato de compresi\'on utilizado ser\'a \textbf{PNG}.
+Tras el env\'io de este mensaje comienza un bucle de juego en el que ambos dispositivos intercambian mensajes de una manera no ordenada. Adem\'as de la vibraci\'on, el juego tiene la posibilidad de enviar im\'agenes. Estas im\'agenes pueden enviarse en forma de im\'agenes est\'aticas o en forma de streaming de video. El formato de compresi\'on utilizado ser\'a \textbf{PNG} y la cabecera que diferencia este tipo de mensajes es un byte con valor 3.
 
-Adem\'as de enviar estos mensajes, el dispositivo encargado de ejecutar el juego recibir\'a mensajes de 6 bytes cada uno cuya estructura ser\'a:
+Adem\'as de enviar estos mensajes, el dispositivo encargado de ejecutar el juego recibir\'a mensajes de 6 bytes cuya estructura ser\'a:
 \begin {itemize}
 \item El primer byte tiene el valor 0 e indica el tipo del mensaje.
 \item El segundo byte es el tipo de la pulsaci\'on. El valor 0 indica el comienzo de la pulsaci\'on y el valor 1 indica el fin de la pulsaci\'on.
@@ -163,10 +163,12 @@ Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env
 \begin{figure}[h]
 
 \centering
-\includegraphics[width=0.9\textwidth]{./Imagenes/Bitmap/Arquitectura}
+\includegraphics[width=0.7\textwidth]{./Imagenes/Vectorial/Arquitectura}
 \caption{Diagrama del protocolo de comunicaci\'on entre ambos dispositivos}
 \end{figure}
 
+
+Tal y como hemos visto en este cap\'itulo, para la realizaci\'on de este proyecto surgieron 3 alternativas de las posibles caracter\'isticas que deber\'ia incorporar. Tras analizar las ventajas y desventajas se escogi\'o la que mayor versatiidad daba al desarrollador a cambio de un mayor coste en el ancho de banda. Para solventar esto se decidi\'o utilizar UDP como protocolo de transmisi\'on. En el pr\'oximo cap\'itulo se procede a explicar la implementaci\'on tanto de la aplicaci\'on de Android como de  la aplicaci\'on de Unity. 
 
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
