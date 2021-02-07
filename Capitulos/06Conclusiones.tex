@@ -1,23 +1,17 @@
 
-\chapter{Conclusiones}
+\chapter{Conclusiones y trabajo futuro}
 \label{cap7}
 \label{cap:conclusiones}
 
-El objetivo del proyecto es dise\~nar e implementar una herramienta con la que poder utilizar un dispositivo m\'ovil como dispositivo de entrada para videojuegos. Para probar que esta herramienta funciona, se ha implementado la herramienta desarrollada en un proyecto ya finalizado de Unity. La integraci\'on de la herramienta en esta demo ha requerido de la implementaci\'on de scripts auxiliares y modificaciones espec\'ificas del proyecto desarrollado por Unity. Las pruebas realizadas con usuarios muestran unos datos positivos ya que todas las ejecuciones han podido realizarse sin inconvenientes a pesar de la situaci\'on actual. Esto demuestra que la herramienta se comporta de manera favorable en entornos diferentes y con configuraciones no preestablecidas. Esta situaci\'on ha reflejado que existe un problema cuando las dimensiones de los dispositivos Android no son las mismas que las que se pens\'o inicialmente. 
 
-Como puede verse en los resultados de las pruebas, gran parte de la fluidez depende del procesador del ordenador donde se ejecute el juego. Esto indica que el proceso de compresi\'on de imagen es muy lento en algunas de las pruebas realizadas. La latencia de red y la velocidad de descompresi\'on de la imagen en Android son muy \'optimas debido a que los dispositivos m\'oviles utilizados en las pruebas eran de gama media-alta. 
+El objetivo de este proyecto era el de utilizar un dispositivo m\'ovil como dispositivo de entrada para videojuegos. Para conseguir esto, se ha realizado una librer\'ia aplicable en el motor de videojuegos Unity con el objetivo de poder utilizar un dispositivo m\'ovil como dispositivo de entrada durante una sesi\'on de juego. Posterior al desarrollo de la librer\'ia, se ha ralizado una implementaci\'on en un juego terminado con la que realizar pruebas de rendimiento de la herramienta.\\
 
+El resultado de estas pruebas mostraron que la librer\'ia se comporta como se esperaba y que alcanza la tasa de fotogramas por segundo m\'inima aceptable en diferentes dispositivos. Estos resultados dejaron claro que el rendimiento de la librer\'ia est\'a ligado al \textit{hardware} donde se est\'a ejecutando. En los pr\'oximos p\'arrafos se expondr\'an diferentes posibles mejoras para el proyecto.\\
 
-%-------------------------------------------------------------------
-\section{Trabajo Futuro}
-%-------------------------------------------------------------------
+Existen diferentes algoritmos de compresi\'on de im\'agenes y en este proyecto se ha utilizado PNG debido a que se encuentra integrado en las dos plataformas utilizadas durante el desarrollo de la librer\'ia. Este formato de compresi\'on de im\'agenes es m\'as r\'apido cuanto menor sea la variedad de colores que contenga la im\'agen. En el videojuego utilizado para la prueba con usuarios, la im\'agen que se enviaba al dispositivo m\'ovil ten\'ia siempre los mismos colores, es por esto que el uso del formato PNG era suficiente. Para conseguir que los resultados sean mejores con im\'agenes m\'as complejas, se propone la b\'usqueda de un m\'etodo de compresi\'on de im\'agenes alternativo.\\
 
-Como se ha comprobado, el proyecto y la herramienta cumplen los objetivos definidos en el cap\'itulo 1 y 3. Sin embargo, debido a los problemas para realizar las pruebas con usuarios en un entorno controlado se han descubierto una serie de fallos. A continuaci\'on se proporcionan una serie de tareas a realizar en una posible revisi\'on de la herramienta:
+El uso de un m\'ovil como dispositivo de entrada no solo aporta una pantalla t\'actil en la que poder tener un mando, adem\'as de esto pueden utilizarse los diferentes sensores con los que cuentan estos dispositivos. Los sensores a los que se quiere dar m\'as importancia en este proyecto son el aceler\'ometro y el giroscopio. Estos sensores no se encuentran \'unicamente en los m\'oviles sino que tambi\'en se encuentran en otros dispositivos de entrada de algunas consolas antiguas. Por falta de tiempo, no se pudo implementar la monitorizaci\'on de estos sensores para ser utilizados en la librer\'ia pero su inclusi\'on dar\'ia m\'as versatilidad al desarrollador.\\
 
-\begin {itemize}
-\item Mejorar los tiempos de descompresi\'on de imagen en sistemas m\'oviles de gamas m\'as bajas.
-\item Mejorar los tiempos de compresi\'on de textura a PNG en ordenadores con procesadores de gamas bajas.
-\item Eliminar la restricci\'on que obliga a ambos dispositivos a estar conectados a la misma red.
-\item Tener en cuenta las dimensiones del dispositivo m\'ovil para modificar la posici\'on de los botones.
-\item A\~nadir una lista de posibilidades para elegir con qu\'e mando se desea jugar. 
-\end {itemize}
+Por falta de tiempo durante el desarrollo de este trabajo, se abandon\'o la idea de permitir el uso de m\'ultiples m\'oviles durante una misma ejecuci\'on. Los juegos multijugador locales permitir\'ian exprimir al m\'aximo el uso de varios dispositivos m\'oviles, tal y como se hace en la saga de juegos PlayLink. Para conseguir esto es necesario la modificaci\'on del servidor de Unity para soportar m\'as de un cliente. \\
+
+Adem\'as de lo relacionado con el apartado t\'ecnico del proyecto, un punto destacable a mejorar es el n\'umero de usuarios utilizado para las pruebas. Debido a la situaci\'on actual, las pruebas han tenido que realizarse en remoto, lo que hace que se necesite mucho m\'as tiempo para cada una de las pruebas. Con un cuestionario m\'as extenso y un n\'umero de usuarios mayor se podr\'ian dar valores estad\'isticos m\'as precisos. Con ello podr\'ian sacarse conclusiones con un peso estad\'istico mayor y tener una visi\'on m\'as global del rendimiento de la librer\'ia.

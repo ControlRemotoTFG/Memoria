@@ -1,37 +1,4 @@
-%---------------------------------------------------------------------
-%
-%                          Cap�tulo 3
-%
-%---------------------------------------------------------------------
-%
-% 03Edicion.tex
-% Copyright 2009 Marco Antonio Gomez-Martin, Pedro Pablo Gomez-Martin
-%
-% This file belongs to the TeXiS manual, a LaTeX template for writting
-% Thesis and other documents. The complete last TeXiS package can
-% be obtained from http://gaia.fdi.ucm.es/projects/texis/
-%
-% Although the TeXiS template itself is distributed under the 
-% conditions of the LaTeX Project Public License
-% (http://www.latex-project.org/lppl.txt), the manual content
-% uses the CC-BY-SA license that stays that you are free:
-%
-%    - to share & to copy, distribute and transmit the work
-%    - to remix and to adapt the work+
-%
-% under the following conditions:
-%
-%    - Attribution: you must attribute the work in the manner
-%      specified by the author or licensor (but not in any way that
-%      suggests that they endorse you or your use of the work).
-%    - Share Alike: if you alter, transform, or build upon this
-%      work, you may distribute the resulting work only under the
-%      same, similar or a compatible license.
-%
-% The complete license is available in
-% http://creativecommons.org/licenses/by-sa/3.0/legalcode
-%
-%---------------------------------------------------------------------
+
 
 
 \begin{FraseCelebre}
@@ -51,7 +18,7 @@
 \label{cap:especificacion}
 
 
-La finalidad de este trabajo es conseguir la consexi\'on entre 2 dispositivos con la creaci\'on de una librer\'ia para un motor de videojuegos. Uno de ellos va funcionar como un controlador de videojuegos y otro como ejecutor del juego. Para que esta comunicaci\'on se consiga es necsesario analizar y definir las funcionalidades que se quieren ofrecer a los desarrolladores que usen la librer\'ia. \\
+La finalidad de este trabajo es conseguir la conexi\'on entre 2 dispositivos con la creaci\'on de una librer\'ia para un motor de videojuegos. Uno de ellos va funcionar como un controlador de videojuegos y otro como ejecutor del juego. Para que esta comunicaci\'on se consiga es necesario analizar y definir las funcionalidades que se quieren ofrecer a los desarrolladores que usen la librer\'ia. \\
 
 En este cap\'itulo se va realizar un an\'alisis de las diferentes funcionalidades que son necesarias para que la comunicaci\'on pueda realizarse. Se expondr\'an las ventajas y las desventajas de cada una de estas funcionalidades y por \'ultimo se definir\'a el protocolo de comunicaci\'on entre los 2 dispositivos involucrados en este trabajo.
 
@@ -62,30 +29,30 @@ En este cap\'itulo se va realizar un an\'alisis de las diferentes funcionalidade
 
 \begin{figure}[!htb]
     \centering
-    \includegraphics[width=0.90\textwidth]{./Imagenes/Bitmap/resumen.png}
+    \includegraphics[width=0.90\textwidth]{./Imagenes/Vectorial/Diagrama protocolo.pdf}
     \caption{Arquitectura del proyecto}
 \label{Fig:arquitectura}
 \end{figure}
 
-Como ya hemos mencionado, el objetivo a alto nivel consiste en lo siguiente (figura~\ref{Fig:arquitectura}). 
+Como ya hemos mencionado, el objetivo a alto nivel se explica en la figura~\ref{Fig:arquitectura}. 
 
-Para conseguir usar el dispositivo m\'ovil como mando para videojuegos se plantearon 3 posibles dise\~nos. Estas opciones difieren en la versatilidad que se le ofrece al usuario de la librer\'ia, la complejidad de programaci\'on y el ancho de banda usado durante la ejecuci\'on del juego. \\
+Para conseguir usar el dispositivo m\'ovil como mando para videojuegos se plantearon las posibles caracter\'isticas que podr\'ian incluirse. Como se detalla m\'as adelante, estas opciones difieren en la versatilidad que se le ofrece al usuario de la librer\'ia, la complejidad de programaci\'on y el ancho de banda usado durante la ejecuci\'on del juego. \\
 
-La primera de estas opciones se basa en el uso de im\'agenes est\'aticas de mandos cargados previamente en la aplicaci\'on del m\'ovil. La comunicaci\'on entonces ser\'ian las pulsaciones que se env\'ian desde el m\'ovil al ordenador.  En este esquema el feedback viene dado por la aplicaci\'on que se ejecuta en el dispositivo m\'ovil. La principal ventaja de este dise\~no de arquitectura es el poco uso de ancho de banda. Con este dise\~no la \'unica comunicaci\'on que se tiene por red  es el env\'io de las pulsaciones del usuario en la pantalla del m\'ovil al ordenador. Esta comunicaci\'on puede realizarse utilizando TCP y conseguir as\'i que no se pierda ninguna pulsaci\'on del usuario. Otra ventaja que ofrece este dise\~no es la poca complejidad que supone para el usuario final de la librer\'ia. Con este sistema, el juego ser\'a notificado de la llegada de pulsaciones desde el tel\'efono gracias a la librer\'ia desarrollada. El desarrollador del juego \'unicamente tendr\'a que encargarse de decidir qu\'e hacer con la llegada de cada pulsaci\'on. Esto lleva directamente a la primera desventaja, la poca versatilidad que se le da al usuario de la librer\'ia. Al no haber una comunicaci\'on desde el videojuego hasta el m\'ovil, perdemos la oportunidad de que el desarrollador del juego modifique el mando que quiere utilizar o que ordene al tel\'efono activar la vibraci\'on a su gusto.\\
+La primera de estas opciones se basa en el uso de im\'agenes est\'aticas de mandos cargados previamente en la aplicaci\'on del m\'ovil. La comunicaci\'on entonces ser\'ian las pulsaciones que se env\'ian desde el m\'ovil al ordenador.  En este esquema el feedback viene dado por la aplicaci\'on que se ejecuta en el dispositivo m\'ovil. La principal ventaja en el env\'io de una \'unica imagen est\'atica es el poco uso de ancho de banda. La \'unica comunicaci\'on que se tiene por red es el env\'io de las pulsaciones del usuario en la pantalla del m\'ovil al ordenador. Esta comunicaci\'on puede realizarse utilizando TCP y conseguir as\'i que no se pierda ninguna pulsaci\'on del usuario. Otra ventaja que ofrece es la poca complejidad que supone para el usuario final de la librer\'ia. Con este sistema, el juego ser\'ia notificado de la llegada de pulsaciones desde el tel\'efono gracias a la librer\'ia desarrollada. El desarrollador del juego \'unicamente tendr\'ia que encargarse de decidir qu\'e hacer con la llegada de cada pulsaci\'on. Esto lleva directamente a la primera desventaja, la poca versatilidad que se le da al usuario de la librer\'ia. Al no haber una comunicaci\'on desde el videojuego hasta el m\'ovil, perdemos la oportunidad de que el desarrollador del juego modifique el mando que quiere utilizar o que ordene al tel\'efono activar la vibraci\'on a su gusto.\\
 
-Para resolver el problema de la modificaci\'on del mando que usar se plante\'o el segundo dise\~no: permitir que el juego env\'ie im\'agenes en formato .PNG a lo largo de la sesi\'on de juego. Para que esto sea posible se tiene que habilitar el env\'io de datos en ambas direcciones. Hacer esto supone un aumento en el uso necesario del ancho de banda a cambio de dar m\'as versatilidad al usuario de la librer\'ia. Para conseguir la modificaci\'on de las im\'agenes, Android ofrece un sistema de capas en las im\'agenes que se describan en el archivo de manifiesto. Estas capas se pintan en orden descendiente, siendo la \'ultima im\'agen declara la que tapar\'ia al resto. 
+Para resolver el problema de la modificaci\'on del mando que usar se plante\'o una nueva caracter\'istica: permitir que el juego env\'ie im\'agenes en formato .PNG a lo largo de la sesi\'on de juego. Para que esto sea posible se tiene que habilitar el env\'io de datos en ambas direcciones. Hacer esto supone un aumento en el uso necesario del ancho de banda a cambio de dar m\'as versatilidad al usuario de la librer\'ia. Para conseguir la modificaci\'on de las im\'agenes, Android ofrece un sistema de capas en las im\'agenes que se describan en el archivo de manifiesto. Estas capas se pintan en orden descendiente, siendo la \'ultima im\'agen declarada la que tapar\'ia al resto. 
 
-Para disminuir el impacto en el ancho de banda se plante\'o la opci\'on de que el env\'io del mando desde el juego al dispositivo m\'ovil se hiciese \'unicamente al inicio de la conexi\'on. Hacerlo de esta manera permitir\'ia al usuario de la librer\'ia modificar el mando con el que se quiere jugar pero este no se podr\'ia cambiar en ning\'un momento de la ejecuci\'on. Esta decisi\'on aumenta el coste en el ancho de banda al inicio de la conexi\'on pero disminuye dr\'asticamente una vez que la imagen del mando ha sido guardada, lo que permite seguir usando TCP como protoc\'olo de transmisi\'on.\\
+Para disminuir el impacto en el ancho de banda se plante\'o la opci\'on de que el env\'io del mando desde el juego al dispositivo m\'ovil se hiciese \'unicamente al inicio de la conexi\'on. Hacerlo de esta manera permitir\'ia al usuario de la librer\'ia modificar el mando con el que se quiere jugar pero este no se podr\'ia cambiar en ning\'un momento de la ejecuci\'on. Esta decisi\'on aumenta el coste en el ancho de banda al inicio de la conexi\'on pero disminuye dr\'asticamente una vez que la imagen del mando ha sido guardada, lo que permite seguir usando TCP como protocolo de transmisi\'on.\\
 
 
-El \'ultimo de los dise\~nos es el m\'as ver\'atil para el desarrollador del videojuego pero tambien el m\'as costoso en cuanto al ancho de banda que usa. Este dise\~no da la posibilidad al usuario de la librer\'ia enviar streaming de video al dispositivo m\'ovil y que este lo muestre por pantalla. Para que esto sea posible la comunicaci\'on entre ambos dispositivos tiene que realizarse en ambos sentidos durante toda la ejecuci\'on con un intercambio constante de datos. Como este dise\~no es el m\'as vers\'atil para el usuario de la librer\'ia, en esta arquitectura se dar\'ia la posibilidad de controlar la vibraci\'on tambi\'en al desarrollador. Darle todas estas caracter\'isticas al desarrollador implica un aumento en la complejidad del c\'odigo que este tiene que implementar. Dado que el consumo del ancho de banda sube de manera considerable, en este dise\~no se ha optado por modificar el protocolo de transmisi\'on de TCP a UDP para disminuir el consumo. Esto implica que se asume una posible p\'erdida de pulsaciones realizadas por el usuario o una posible p\'erdida de frames en el env\'io del streaming de video.\\
+Otra de las caracter\'isticas posibles es m\'as vers\'atil para el desarrollador del videojuego pero tambi\'en es m\'as costosa en cuanto al ancho de banda que usa. Esta nueva caracter\'istica da la posibilidad al usuario de la librer\'ia de enviar streaming de video al dispositivo m\'ovil y que este lo muestre por pantalla. Para que esto sea posible la comunicaci\'on entre ambos dispositivos tiene que realizarse en ambos sentidos durante toda la ejecuci\'on con un intercambio constante de datos. Como esta caracter\'isitica es la m\'as vers\'atil para el usuario de la librer\'ia, en esta arquitectura se dar\'ia la posibilidad de controlar la vibraci\'on tambi\'en al desarrollador. Darle todas estas caracter\'isticas al desarrollador implica un aumento en la complejidad del c\'odigo que este tiene que implementar. Dado que el consumo del ancho de banda sube de manera considerable, en este dise\~no se ha optado por modificar el protocolo de transmisi\'on de TCP a UDP para disminuir el consumo. Esto implica que se asume una posible p\'erdida de pulsaciones realizadas por el usuario o una posible p\'erdida de frames en el env\'io del streaming de video.\\
 
-Este \'ultimo dise\~no ha sido el utilizado para este proyecto. Las funcionalidades que se ofrecen al usuario de la librer\'ia son:
+Este \'ultimo conjunto de caracter\'isticas ha sido el utilizado para este proyecto. Las funcionalidades que se ofrecen al usuario de la librer\'ia son:
 
 \begin {itemize}
 \item Env\'io de pulsaciones desde el dispositivo m\'ovil al juego.
 \item Env\'io de streaming de im\'agenes en formato .PNG desde el juego al m\'ovil.
-\item Envi\'io de orden de vibraci\'on del juego al m\'ovil.
+\item Env\'io de orden de vibraci\'on del juego al m\'ovil.
 \end {itemize}
 
 Para que el desarrollador tenga un control total de lo que se env\'ia en cada momento, se da la opci\'on de enviar un mensaje de vibraci\'on al dispositivo m\'ovil. Esto permite que el m\'ovil vibre no solo por las pulsaciones, sino, por ejemplo, cuando el jugador reciba da\~no o se choque si est\'a jugando a un juego de conducci\'on. En la siguiente secci\'on se detalla el protocolo desarrollado y en el pr\'oximo cap\'itulo se detallar\'a la implementaci\'on de la parte de m\'ovil y PC.
@@ -95,9 +62,9 @@ Para que el desarrollador tenga un control total de lo que se env\'ia en cada mo
 \section{Protocolo de comunicaci\'on entre juego y dispositivo de entrada}
 %-------------------------------------------------------------------
 
-Un protocolo de comunicaci\'on es un sistema de reglas que permiten a 2 o m\'as dispositivos comunicarse entre ellos. Estas reglas se establecen para permitir la transmisi\'on de datos y la forma en la que la informaci\'on debe ser procesada. Cada mensaje tiene un significado exacto destinado a obtener una respuesta de un rango de posibles respuestas predeterminadas para esa situaci\'on en particular. Una de las caracter\'isticas principales de un protocolo de comunicaci\'on es que ambas partes tienen que acordar los mensajes que se van a enviar y a recibir. \\
+Un protocolo de comunicaci\'on es un sistema de reglas que permiten a 2 o m\'as dispositivos comunicarse entre ellos. Estas reglas se establecen para permitir la transmisi\'on de datos y la forma en la que la informaci\'on debe ser procesada. Cada mensaje tiene un significado exacto destinado a obtener una respuesta de un rango de posibles respuestas predeterminadas para esa situaci\'on en particular. Una de las caracter\'isticas principales de un protocolo de comunicaci\'on es que ambas partes tienen que conocer y usar los mensajes que se van a enviar y a recibir. \\
 
-Al inicio de la comunicaci\'on, el dispositivo encargado de ejecutar el juego debe quedarse a la escucha en un puerto asignado a la espera de un primer mensaje. Este primer mensaje es enviado por el m\'ovil y tiene de tama\~no 1 byte y define el n\'umero de versi\'on del protocolo. Este n\'umero de versi\'on es utilizado para comprobar si el cliente y el servidor son compatibles y as\'i evitar errores en la interpretaci\'on de los datagramas. Instantaneamente despu\'es, el dispositivo m\'ovil env\'ia al juego la resoluci\'on de su pantalla. Este dato viene dado en un mensaje de 4 bytes donde los 2 primeros se tratan como el ancho de la pantalla y los 2 siguientes como el alto. Se  han utilizado 2 bytes porque no se esperan resoluciones de pantalla que superen el valor de $2^{16}$. \\
+Al inicio de la comunicaci\'on, el dispositivo encargado de ejecutar el juego debe quedarse a la escucha en un puerto asignado a la espera de un primer mensaje. Este primer mensaje es enviado por el m\'ovil y tiene de tama\~no 1 byte y define el n\'umero de versi\'on del protocolo. Este n\'umero de versi\'on es utilizado para comprobar si el cliente y el servidor son compatibles y as\'i evitar errores en la interpretaci\'on de los datagramas. Instant\'aneamente despu\'es, el dispositivo m\'ovil env\'ia al juego la resoluci\'on de su pantalla. Este dato viene dado en un mensaje de 4 bytes donde los 2 primeros se tratan como el ancho de la pantalla y los 2 siguientes como el alto. Se  han utilizado 2 bytes porque no se esperan resoluciones de pantalla que superen el valor de $2^{16}$. \\
 
 \begin{table}[h!]
 \centering
@@ -158,7 +125,7 @@ Bits                    & 0-7               & 8-15                            & 
 \label{table:2}
 \end{table}
 
-Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene como cabecera del mensaje el valor 4 que es el valor que indica cierre de conexi\'on. Para este mensaje no se espera nada de vuelta ya que es siempre el m\'ovil el que cierra la conexi\'on. Para la detecci\'on de p\'erdidas de conexi\'on se utilizan paqueten de tipo \textit{Keep Alive} cuya cabecera tiene el valor 6. Este paquete consta del env\'io de 1 solo byte y una vez que este tipo de mensaje se env\'ia el receptor est\'a obligado a responder para que la conexi\'on no se corte.
+Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene como cabecera del mensaje el valor 4 que es el valor que indica cierre de conexi\'on. Para este mensaje no se espera nada de vuelta ya que es siempre el m\'ovil el que cierra la conexi\'on. Para la detecci\'on de p\'erdidas de conexi\'on se utilizan paquete de tipo \textit{Keep Alive} cuya cabecera tiene el valor 6. Este paquete consta del env\'io de 1 solo byte y una vez que este tipo de mensaje se env\'ia el receptor est\'a obligado a responder para que la conexi\'on no se corte.\\
 
 \begin{figure}[h]
 
@@ -167,8 +134,14 @@ Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env
 \caption{Diagrama del protocolo de comunicaci\'on entre ambos dispositivos}
 \end{figure}
 
+\bigskip
+\Large{\textbf{En el pr\'oximo cap\'itulo}}\\
+\normalsize
 
-Tal y como hemos visto en este cap\'itulo, para la realizaci\'on de este proyecto surgieron 3 alternativas de las posibles caracter\'isticas que deber\'ia incorporar. Tras analizar las ventajas y desventajas se escogi\'o la que mayor versatiidad daba al desarrollador a cambio de un mayor coste en el ancho de banda. Para solventar esto se decidi\'o utilizar UDP como protocolo de transmisi\'on. En el pr\'oximo cap\'itulo se procede a explicar la implementaci\'on tanto de la aplicaci\'on de Android como de  la aplicaci\'on de Unity. 
+\addvspace{1cm}
+
+
+Tal y como hemos visto en este cap\'itulo, para la realizaci\'on de este proyecto surgieron 3 alternativas de las posibles caracter\'isticas que deber\'ia incorporar. Tras analizar las ventajas y desventajas se escogi\'o la que mayor versatilidad daba al desarrollador a cambio de un mayor coste en el ancho de banda. Para solventar esto se decidi\'o utilizar UDP como protocolo de transmisi\'on. En el pr\'oximo cap\'itulo se procede a explicar la implementaci\'on tanto de la aplicaci\'on de Android como de  la aplicaci\'on de Unity. 
 
 
 % Variable local para emacs, para  que encuentre el fichero maestro de
