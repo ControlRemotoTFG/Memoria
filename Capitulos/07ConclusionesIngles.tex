@@ -1,7 +1,25 @@
 
-\chapter{Conclusions}
+\chapter{Conclusions and future work}
 \label{cap7}
 \label{cap:conclusions}
 
+The objective of this project was to use a mobile device as video game input device. It has been done a library in the Unity video game engine with the aim to be able to use a mobile device as an input device during a game session. After the development of the library, it has been implemented in a game with performance test.\\
+
+
+The result of these tests showed that the library behaves like expected and reaches the minimum frame rate per second acceptable on different devices. These results made it clear that the library performance is tied to the hardware it is running on. Furthermore, tests show that executions on Android devices in which the tests have been carried out maintain stability in the number of frames per second the application runs at.\\
+
+
+In the Unity part, a low image compression speed has been observed, which affects the performance of the tool on systems with low resources. On systems that have been tested to run the tool it has been seen that the rate of frames per second reaches industry accepted limits, 30 frames per second. The versatile library model puts all the responsibility of game optimization and image compression in the game developer.\\
 
 \section{Future Work}
+
+Despite reaching the minimums accepted by the industry in the executions carried out, the tool shows its weaknesses in systems with low resources. Since these improvements have not been able to enter the time spent to the elaboration of this TFG, they will be proposed as future work.\\
+
+
+There are different image compression algorithms and in this project PNG has been used because it is integrated in the two platforms used during the development of the library. This format of image compression is faster the smaller the variety of colors that contains the image is. In the video game used for the test with users, the image that was sent to the mobile device always had the same colors, that is why the use of the PNG format was enough. In order to get better results with more complex images, the search for an alternative image compression method has been proposed. In case you decide that the PNG format is sufficient, it is proposed to investigate more about the possibilities offered by this format to be compressed. Altering the compression parameters would help the tool go in a higher speed and not waste as much time in compressing by the default parameters offered by Unity.\\
+
+The use of a mobile phone as an input device not only provides a screen in which to have a remote control, in addition to this the different sensors that these devices have can be used. The sensors to those who want to give more importance in this project are the accelerometer and the gyroscope. These sensors are not only found in phones, they are also found in input devices of some consoles. Due to lack of time, the monitoring of these sensors to can not be used in the library but their inclusion would give more developer versatility.\\
+
+Due to lack of time during the development of this work, the idea of allowing the use of multiple mobiles during the same execution was abandoned. Local multiplayer games would allow the maximum use of various mobile devices, as is done in the PlayLink game saga. To achieve this it is necessary to modify the Unity server to support more than one client.\\
+
+In addition to what is related to the technical section of the project, a remarkable point to improve is the number of users used for the tests. Due to the current situation, the tests had to be carried out remotely, which makes it take much more time for each of the tests. With a longer questionnaire and a larger number of users, it would be possible to give more precise statistical values. With this, conclusions could be drawn with a greater statistical weight and have a more global vision of performance from the library.\\
