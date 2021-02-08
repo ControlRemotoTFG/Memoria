@@ -7,26 +7,89 @@
 
 \addcontentsline{toc}{chapter}{Introduction}
 
+The tecnology has become indispensable in all of the society's scopes. There are few scenarios where a technology device doesn't get involve. Everyday task such as preparing coffee at the morning or lifting the curtain are now posible by an app from our mobile device or by voice command.\\
+
+In addition to facilitating our tasks, the mobile devices has been united with the computers and videogames consoles in the task of entertainment for the large amount of users. With the progresion in cuantity of mobile devices, the game industry has decided to release games with bigger budges to the mobiles market.\\
+
+As we are going to see later, the introduction of the mobile devices in the entertainment industry has become an ally of the already existing devices. The mobile devices has helped developing new scopes for users to interact with the actual consoles in the entertainment industry.\\
+
+This project pretends to explore the actual situation os the mobile device usage as an input device for videogames runing on a diferent platform and the motivation for investing and researching in this new model of interaction with the users. This research will also have a tool that will make posible to use a mobile device as an input device for a game.\\
 
 \section*{Motivation}
 
 \addcontentsline{toc}{section}{Motivation}
 
+One of the main goals of the videogame industry has always been to create new experiences for the users. Those experiences fulfill players and now enjoy in a more flexible and comfortable way. One of the reason of the augment of versatility in gaming are the mobile devices.\\
+
+In the last decade, the \textit{gaming} market has adopt the mobile devices as their newcomer. The mobile games has had great success in the new generation of player. Thanks to the study published called  \cite{AEVI2019}, the 45\% of the revenue of the videogame industry in 2019 came from mobile games where the mobile devices such as tablets are included. \cite{moviles} studies the case scenario of the mobile devices been a threat for the new consoles and shows how few manufacturers of gaming peripherals has started developing gaming mobile devies for players.\\
+
+Big franchises in the industry such as \textit{League of Legends}, \textit{Call of Duty} or\textit{ Fornite} already have a mobile version. Thaks to those version been free and been in the top of the \textit{e-sports} in PC and console  \citep*{TEOQ32020}, their relevance in the mobile platform has skyrocketed. Despite this, \cite{futuro} shows that the \textit{gaming} mobile devices has their limitations such as the batery of the devices and the requirement of internet conexion.\\
+
+In order to resolve those drawbacks, the main brands of mobile devices started creating devices that solve the batery, heating and refresh rate problems in the high end devices. Sony in particular invest for the development of mobile devices for long gaming sesions.\footnote{Xperia -  \url{https://www.sony.es/electronics/xperia-mobile-gaming}} Sony has develop an app that allows to play remotely for the PlayStation~4 and PlayStation~5 called \textbf{PS Remote Play.\footnote{\url{https://remoteplay.dl.playstation.net/remoteplay/lang/es/index.html}}} In addition to this, Sony has develop another app that allows to control the PlayStation 4 interface by simulation a controller and a secondary screen called \textbf{PS4 Second Screen.\footnote{\url{https://play.google.com/store/apps/details?id=com.playstation.mobile2ndscreen&hl=es&gl=US}}}\\
+
+Nintendo has develop an app for voice chat in online games called\textbf{Nintendo Switch Online.}\footnote{\url{https://www.nintendo.es/Familia-Nintendo-Switch/Nintendo-Switch-Online/Aplicacion-para-moviles-1374628.html}} This app transforms your mobile device in a voice and text chat which solves the problem of not have a microphone in the console and allows the player to comunicate with their teammates. Microsoft have develop his own app \textbf{Xbox}\footnote{\url{https://www.xbox.com/es-ES/consoles/remote-play}} to allow player to play remotely. Thanks to this app, the user can download games in their Xbox, lauch and connect their phone or tablet in order to play directly with their smartphone through internet conexion.\\
+
+After developing their app, Sony launched a series of games know as  \textbf{PlayLink.\footnote{\url{https://www.playstation.com/es-es/accessories/playlink/}}} This new type of games have the common trait of not needing a convention PlayStation controller. Those games are played using a phone as a controller and the unique requirement is having both devices connect to the same Wi-Fi conexion. This solves the problem of having the controller at home because it only needs phones.\\
+
+The purpose of this project is to use a phone as an input device por a PC game by mimicking the apps mentioned before. In order to acomplish this goal we develop a librery for the videogame engine called Unity. This will allow the posibility of modify and extend the librery depending of the needs of the developer.\\
 
 
 \section*{Objectives}
 \addcontentsline{toc}{section}{Objectives}
 
+The objetive of this project is to establish the conexion with 2 devices, one that have the game launched and the other one as the input device for the game. This conexion has to be stable, with minimun input lag and easy to include for existing projects.\\
+
+The mobile device has to work as the input device for the videogame. To archive this, the screen of the mobile device has to so a virtual controller. When the user press in the screen, those touches are going to be send to the device that it's running the game like in an input device. The virtual controller that is shown in the screen can be configurated by the game because the game sends the image of the controller.\\
+
+\defcitealias{libroblanco2019}{White paper of videogames 2019}
+
+We have choosen to use Android for the input device and Unity for the game part. It was decided to use Unity because is one of the most used videogame engines. In Spain the 83\% of videogame studios use this engine for development purposes, \citepalias{libroblanco2019}. The use of Android for the mobile device is due to the help that Google gives in order to upload apps to Play Store and the large amount of Android devices.\\
+
+To archive the goal we choose to divide the problem in the next steeps:
+
+\begin {itemize}
+\item Develop a \textit{plug-in open source} for Unity that allows to stablish conexion and recives \textit{input} from another device.
+\item Develop an app \textit{open source} for Android that allows to stablish with another device to be used as an input device.
+\item Do a test subject for the subsequent analysis.
+\end {itemize}
+
+Last but not least, there will be a small game developed controlled by the input devise to test de library developed. When the game is finished there will be a test with users in order to track data such as latency, CPU usage and time in compress and decompress the images. The tracked data will allow us to rate the library capability to be use in comercial games and future developments.\\
 
 \section*{Methodology}
 \addcontentsline{toc}{section}{Methodology}
 
+For the methodology we choosed the agile methodology which is common in software development and videogame industry. We choose to use this agil methodology because of the positive experience in the previous projects.\\
+
+\textbf{SCRUM}, proposed by \cite{scrum} is a framework for the management of group projects. The original text came from a congress (OOPSLA 1995) but many term are not asociated with today's SCRUM such as the daily meeting \citep{scrum2}. SCRUM introduces the term \textit{sprint} that referes to a 2 to 4 weeks times periods where the team commits to do a series of task. Those task shouldn't be changed during the \textit{sprint} and the progress made in those tasks are shared in a daily meeting. Once the sprint is over the next goal for improving the already existing product has to be schedule. Clinton Keith explains how to introduce this methodology in the videogame development teams. The videogame are products with long years of development and big budges which reviewing the product in short time periods helps the hole team to get a better global vision of the state of the product \citep{keith2010agile}.\\
+
+Due to the availability problems during the development phase, it was set a meeting of 10 minutes in 1 to 3 days to see the progress of each member of the team. In those meeting was set the schedule for the next meeting or next week. At the start the meeting were longer and could also include the directors of the TFG where the funcionality of the app was defined. This meeting were used to finish the \textit{sprint} time and for the preparation of the next one. The track of the diferents tasks was done by using the tool called \textbf{Pivotal Tracker} where those tasks could be in 3 posible states: ``Open'', ``In progress'' or ``Done''.\\
 
 \section*{Planning}
 
 \addcontentsline{toc}{section}{Planning}
 
+
+The plannig of the project has been divided in 3 phases:\\
+
+\textbf{Documentation and Desing:} During this phase we tried to set the objectives of the TFG, gather information and set the tool that would be used in the rest of the development. The desing of the app was set in this time too.\\
+
+\textbf{Development:} During this phase all the funcionality were done. As the product was reviewed some funcionality was changed o erased and new ones were added. This was the most time consuming part of the project. During this phase 2 apps were done as a demo in order to test the tool and to show the viability of the project.\\
+
+\textbf{End:} During this phase improvements were made and the performance was detailed. In this phase the test with users was done and the data needed was collected. This helped getting the final conclusion of the project. The final drafting of the file and the review of the file by the director of the TFG was done.\\
+
 \section*{Document Structure}
 
 \addcontentsline{toc}{section}{Document Structure}
+
+This project is divided in 6 chapters, each one dedicated to a diferent topic. This section is in the introduction chapter where the motivation and objetives of the project has been defined.\\
+
+Chapter 2 includes the initial study of the state of the art in which the background of the subject of the work is exposed. In this chapter the changes sufered by de diferent videogames devices since the start of those are explained. Also includes the streaming systems funcionality and the feedback of the videogame controllers.\\
+
+Chapter 3 explains everything related to specification of the applications to be developed. This specification includes a description of the communication protocol between devices. \\
+
+Chapter 4 explains in detail the implementation of the applications that have been developed for this project. \\
+
+Chapter 5 explains the demo developed to test the viability of the \textit{plug-in} developed and as a practical case for the presentation of this draft. In addition a small experiment is carried on with diferent users in order to get \textit{feedback} and to test the app. The subjects are also decribed with the results and discusion about those results.\\
+
+The last chapter explains in detail the conclusions obtained after carrying out the project and an overview of future work that inspires this one.\\
 
