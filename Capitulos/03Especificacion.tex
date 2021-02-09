@@ -117,7 +117,7 @@ Byte de cabecera                   & 8-15                            & 16-31 & 3
 \hline
 Byte de cabecera                                     & 8-23                   \\
 \hline
-\multicolumn{1}{|c|}{0000101} & \multicolumn{1}{c|}{Tiempo de vibraci\'on}  \\
+\multicolumn{1}{|c|}{00000101} & \multicolumn{1}{c|}{Tiempo de vibraci\'on}  \\
 \hline
 \end{tabular}
 \caption{Tiempo de vibraci\'on del dispositivo m\'ovil en milisegundos}
@@ -138,10 +138,11 @@ Los mensajes de los que no se ha puesto ninguna tabla es porque son utilizados p
 
 Las im\'agenes enviadas est\'an comprimidas en formato PNG. El tama\~no de esta im\'agen puede variar en funci\'on de la complejidad de la im\'agen. En pruebas realizadas, esta im\'agen pesa aproximadamente 24KB, un valor bastante inferior a los 64KB que admite UDP como tama\~no m\'aximo de paquete. En este protocolo no se ha tenido en cuenta la divisi\'on de datagramas por superar el tama\~no m\'aximo soportado por UDP.\\
 
+\vspace{30mm}
+
 \bigskip
 \Large{\textbf{En el pr\'oximo cap\'itulo}}\\
 \normalsize
-
 
 Tal y como hemos visto en este cap\'itulo, para la realizaci\'on de este proyecto surgieron 3 alternativas de las posibles caracter\'isticas que deber\'ia incorporar. Tras analizar las ventajas y desventajas se escogi\'o la que mayor versatilidad daba al desarrollador a cambio de un mayor coste en el ancho de banda. Para solventar esto se decidi\'o utilizar UDP como protocolo de transmisi\'on. En el pr\'oximo cap\'itulo se procede a explicar la implementaci\'on tanto de la aplicaci\'on de Android como de  la aplicaci\'on de Unity. 
 
