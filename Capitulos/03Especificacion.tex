@@ -64,75 +64,79 @@ Para que el desarrollador tenga un control total de lo que se env\'ia en cada mo
 
 Un protocolo de comunicaci\'on es un sistema de reglas que permiten a 2 o m\'as dispositivos comunicarse entre ellos. Estas reglas se establecen para permitir la transmisi\'on de datos y la forma en la que la informaci\'on debe ser procesada. Cada mensaje tiene un significado exacto destinado a obtener una respuesta de un rango de posibles respuestas predeterminadas para esa situaci\'on en particular. Una de las caracter\'isticas principales de un protocolo de comunicaci\'on es que ambas partes tienen que conocer y usar los mensajes que se van a enviar y a recibir. \\
 
-Al inicio de la comunicaci\'on, el dispositivo encargado de ejecutar el juego debe quedarse a la escucha en un puerto asignado a la espera de un primer mensaje. Este primer mensaje es enviado por el m\'ovil y tiene de tama\~no 1 byte y define el n\'umero de versi\'on del protocolo. Este n\'umero de versi\'on es utilizado para comprobar si el cliente y el servidor son compatibles y as\'i evitar errores en la interpretaci\'on de los datagramas. Instant\'aneamente despu\'es, el dispositivo m\'ovil env\'ia al juego la resoluci\'on de su pantalla. Este dato viene dado en un mensaje de 4 bytes donde los 2 primeros se tratan como el ancho de la pantalla y los 2 siguientes como el alto. Se  han utilizado 2 bytes porque no se esperan resoluciones de pantalla que superen el valor de $2^{16}$. \\
+La estructura de estos mensajes consta de 2 partes: el primer byte define el tipo del mensaje y en los bytes posteriores viene la informaci\'on esperada. Con esto se consigue tener un tama\~no de datagrama diferente dependiendo de la informaci\'on que requiera mensaje. Adem\'as, es ampliable en caso de querer definir mensajes nuevos ya que no se utilizan todos los valores de este primer byte. En los siguientes p\'arrafos se van a describir cada uno de los mensajes que est\'an definidos para este protocolo. \\
+
+El byte de cabecera indica el tipo de mensaje y la informaci\'on que se espera. En esta primera versi\'on del protocolo se han utilizado los 7 primeros valores. Existen 2 mensajes que no tienen cabecera, el primer mensaje que realiza la conexi\'on y el env\'io de la resoluci\'on del dispositivo m\'ovil. Para que la conexi\'on se realice con \'exito, el dispositivo de entrada debe enviar la versi\'on del protocolo en la que se encuentra. En caso de que la versi\'on coincida en ambos dispositivos, la conexi\'on se dar\'a por buena. Tras el env\'io de la versi\'on del protocolo, el dispositivo m\'ovil enviar\'a su resoluci\'on para (tabla~\ref{table:1}). En caso contrario, el mensaje es descartado ya que contestar a este mensaje puede ser una brecha de seguridad. Al utilizar UDP, contestar a mensajes de conexi\'on fallidos puede desembocar en un ataque similar a una inundaci\'on UDP, \cite{udpflood}.\\
+
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|l|l|l|} 
+\begin{tabular}{|c|c|} 
 \hline
-Bits                    & 0-15                   & 16-32                   \\
+0-15                   & 16-32                   \\
 \hline
-\multicolumn{1}{|c|}{0} & \multicolumn{1}{c|}{Ancho} & \multicolumn{1}{c|}{Alto}  \\
+ \multicolumn{1}{|c|}{Ancho} & \multicolumn{1}{c|}{Alto}  \\
 \hline
 \end{tabular}
 \caption{Env\'io de la resoluci\'on del m\'ovil al juego.}
 \label{table:1}
 \end{table}
 
-En caso de que estos mensajes lleguen con un formato incorrecto son descartados. En caso de que la versi\'on del protocolo no coincida, el servidor descarta el mensaje y sigue a la espera de una versi\'on que coincida.\\
-
-Una vez la conexi\'on se ha establecido correctamente, el dispositivo que ejecuta el juego env\'ia al controlador la duraci\'on de la vibraci\'on que debe realizar para que el usuario reciba un feedback h\'aptico. Este mensaje contiene 3 bytes que se distribuyen de la siguiente forma:
+Una vez los 2 primeros mensajes son enviados, los siguientes se enviar\'an de forma as\'incrona y se diferencian por el primer byte del datagrama. Este primer byte tiene como funci\'on ser usado como cabecera y poder diferenciar cada tipo de mensaje. Los posibles mensajes son:\\
 
 \begin {itemize}
-\item Primer byte con valor 5 a modo de cabecera para que se sepa el tipo del mensaje.
-\item 2 bytes que indican la duraci\'on de la vibraci\'on en milisegundos.
+\item El valor de cabecera 0 es utilizado para los mensajes de tipo pulsacion. Estos mensajes son enviados desde el dispositivo m\'ovil (tabla~\ref{table:2}).
+\item  El valor de cabecera 1 es utilizado para los mensajes de tipo \textit{tracker}. 
+\item  El valor de cabecera 2 es utilizado para avisar al dispositivo m\'ovil de activar la vibraci\'on durante un tiempo establecido.
+\item  El valor de cabecera 3 es utilizado para enviar im\'agenes comprimidas desde el juego al m\'ovil.
+\item  El valor de cabecera 4 es utilizado para avisar sobre el cierre de conexi\'on por parte del dispositivo que lo env\'ia.
+\item  El valor de cabecera 5 es utilizado para establecer el tiempo de vibraci\'on en caso de que este se active (tabla~\ref{table:3}).
+\item  El valor de cabecera 6 es utilizado para los mensajes \textit{keep alive}, utilizados para comprobar que la conexi\'on sigue activa en caso de que el usuario no realice pulsaciones en un tiempo determinado.
 \end {itemize}
+
+%----------------------------------------------------------------------------------------------------------
 
 \begin{table}[h!]
 \centering
-\begin{tabular}{|l|l|l|} 
+\begin{tabular}{|c|c|c|c|} 
 \hline
-Bits                    & 0-7                   & 8-23                   \\
+Byte de cabecera                   & 8-15                            & 16-31 & 32-47 \\ 
 \hline
-\multicolumn{1}{|c|}{0} & \multicolumn{1}{c|}{0000101} & \multicolumn{1}{c|}{Tiempo de vibraci\'on}  \\
-\hline
-\end{tabular}
-\caption{Tiempo de vibraci\'on del dispositivo m\'ovil en milisegundos}
-\label{table:2}
-\end{table}
-
-Este mensaje puede ser enviado de nuevo en caso de que quiera cambiarse la duraci\'on de la vibraci\'on. Adem\'as de modificar el tiempo, se da la opci\'on de hacer peticiones al m\'ovil para que este vibre por una determinada acci\'on del juego. Esto puede hacerse con el env\'io de un mensaje de tama\~no 1 byte cuya cabecera contenga el valor 2, valor designado para activar la vibraci\'on en el tiempo determinado por la estructura anterior.\\
-
-Tras el env\'io de este mensaje comienza un bucle de juego en el que ambos dispositivos intercambian mensajes de una manera no ordenada. Adem\'as de la vibraci\'on, el juego tiene la posibilidad de enviar im\'agenes. Estas im\'agenes pueden enviarse en forma de im\'agenes est\'aticas o en forma de streaming de video. El formato de compresi\'on utilizado ser\'a \textbf{PNG} y la cabecera que diferencia este tipo de mensajes es un byte con valor 3.
-
-Adem\'as de enviar estos mensajes, el dispositivo encargado de ejecutar el juego recibir\'a mensajes de 6 bytes cuya estructura ser\'a:
-\begin {itemize}
-\item El primer byte tiene el valor 0 e indica el tipo del mensaje.
-\item El segundo byte es el tipo de la pulsaci\'on. El valor 0 indica el comienzo de la pulsaci\'on y el valor 1 indica el fin de la pulsaci\'on.
-\item Los \'ultimos 4 bytes representan las coordenadas X e Y de la pulsaci\'on del usuario. Los 2 primeros bytes indican la coordenada X en la pantalla del m\'ovil y los 2 \'ultimos la coordenada Y.
-\end {itemize}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|c|c|c|c|} 
-\hline
-Bits                    & 0-7               & 8-15                            & 16-31 & 32-47 \\ 
-\hline
-\multicolumn{1}{|c|}{0} & 00000000 & Tipo de pulsaci\'on & \multicolumn{1}{l|}{Posici\'on X} & \multicolumn{1}{l|}{Posici\'on Y}  \\
+\multicolumn{1}{|c|}{00000000} & Tipo de pulsaci\'on & \multicolumn{1}{c|}{Posici\'on X} & \multicolumn{1}{c|}{Posici\'on Y}  \\
 \hline
 \end{tabular}
 \caption{Pulsaci\'on enviada desde el dispositivo m\'ovil al ejecutor del juego}
 \label{table:2}
 \end{table}
 
-Para el cierre ordenado de la comunicaci\'on desde el dispositivo m\'ovil se env\'ia un mensaje de tama\~no 1 byte que tiene como cabecera del mensaje el valor 4 que es el valor que indica cierre de conexi\'on. Para este mensaje no se espera nada de vuelta ya que es siempre el m\'ovil el que cierra la conexi\'on. Para la detecci\'on de p\'erdidas de conexi\'on se utilizan paquete de tipo \textit{Keep Alive} cuya cabecera tiene el valor 6. Este paquete consta del env\'io de 1 solo byte y una vez que este tipo de mensaje se env\'ia el receptor est\'a obligado a responder para que la conexi\'on no se corte.\\
+%----------------------------------------------------------------------------------------------------------
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|c|c|} 
+\hline
+Byte de cabecera                                     & 8-23                   \\
+\hline
+\multicolumn{1}{|c|}{0000101} & \multicolumn{1}{c|}{Tiempo de vibraci\'on}  \\
+\hline
+\end{tabular}
+\caption{Tiempo de vibraci\'on del dispositivo m\'ovil en milisegundos}
+\label{table:3}
+\end{table}
+
+%----------------------------------------------------------------------------------------------------------
+
+Los mensajes de los que no se ha puesto ninguna tabla es porque son utilizados para avisar de eventos, por lo que con la cabecera es suficiente. El tiempo de vibraci\'on del dispositivo puede modificarse en cualquier momento para que el usuario de la librer\'ia pueda modificarla en funci\'on del momento del juego. En la figura~\ref{Fig:protocolo} se puede observar el flujo de datagramas durante una ejecuci\'on del juego.\\
 
 \begin{figure}[h]
 
 \centering
 \includegraphics[width=0.7\textwidth]{./Imagenes/Vectorial/Arquitectura}
 \caption{Diagrama del protocolo de comunicaci\'on entre ambos dispositivos}
+\label{Fig:protocolo}
 \end{figure}
+
+Las im\'agenes enviadas est\'an comprimidas en formato PNG. El tama\~no de esta im\'agen puede variar en funci\'on de la complejidad de la im\'agen. En pruebas realizadas, esta im\'agen pesa aproximadamente 24KB, un valor bastante inferior a los 64KB que admite UDP como tama\~no m\'aximo de paquete. En este protocolo no se ha tenido en cuenta la divisi\'on de datagramas por superar el tama\~no m\'aximo soportado por UDP.\\
 
 \bigskip
 \Large{\textbf{En el pr\'oximo cap\'itulo}}\\
